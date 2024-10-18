@@ -11,14 +11,22 @@ export default {
     theme: {
         extend: {
             fontFamily: {
-                Inter: ['Inter', 'sans-serif'],
+                Inter: ['Poppins', 'ui-sans-serif']
             },
             colors: {
+                dark: '#1A202C',
+                font: '#486284',
                 assets: '#115C5B',
                 second_a: '#1D9997',
                 amara: '#E65A41'
+            },
+            backdropBlur: {
+                xs: '2px',
             }
         },
+
     },
-    plugins: [],
+    plugins: [
+        require('flowbite/plugin')
+    ]
 };
