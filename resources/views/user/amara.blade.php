@@ -1,11 +1,11 @@
 @extends('layouts.assets')
 
-@section('title', 'kabinet' . $kabinet->nama)
+@section('title', 'kabinet' . $divisi->nama)
 
 @section('content')
     <style>
         body {
-            background-color: {{ $kabinet->warna }};
+            background-color: {{ $divisi->warna }};
             color: #fff; /* warna teks, sesuaikan jika perlu */
         }
 
@@ -24,7 +24,7 @@
     </style>
 
     <div class="container">
-        <h1 class="title">Kabinet {{ $kabinet->nama }}</h1>
-        <p>Ini adalah tampilan dari kabinet {{ $kabinet->nama }} dengan warna dasar {{ $kabinet->warna }}.</p>
+        <h1 class="title">Kabinet {{ $divisi->nama }}</h1>
+        <p>Ini adalah tampilan dari kabinet {{ $divisi->nama }} dengan warna dasar {{ $divisi->warna }}.</p>
     </div>
 @endsection
