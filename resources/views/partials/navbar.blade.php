@@ -17,13 +17,13 @@
                 <ul class="font-medium flex flex-col p-4 md:p-0 mt-4 border rounded-lg md:flex-row md:space-x-8 md:mt-0 md:border-0 md:hover:text-assets">
                     <li>
                         <a href="{{ route('home') }}"
-                            class="block py-2 px-3 {{ request()->routeIs('home') ? 'text-assets' : 'text-gray-400' }} text-gray-400 hover:text-second_a text-l">
+                            aria-current="page" class="block py-2 px-3 {{ request()->routeIs('home') ? 'text-assets' : 'text-font' }} text-font hover:text-second_a text-l" >
                             Home
                         </a>
                     </li>
 
                     <li>
-                        <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar" class="flex items-center justify-between py-2 px-3 text-gray-400 hover:text-second_a">
+                        <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar" class="flex items-center justify-between py-2 px-3 text-font hover:text-second_a">
                         Kabinet
                             <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/></svg>
                         </button>
@@ -31,26 +31,26 @@
                         <div id="dropdownNavbar" class="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-44 ">
                             <ul class="py-2 text-sm text-gray-400" aria-labelledby="dropdownLargeButton">
                                 <li>
-                                    <a href="{{ route('amara') }}" class="block px-4 py-2 text-assets hover:bg-assets hover:text-white">Amara</a>
+                                    <a href="{{ route('kabinet') }}" class="block px-4 py-2 text-assets hover:bg-assets hover:text-white">Amara</a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('orion') }}" class="block px-4 py-2 text-assets hover:bg-assets hover:text-white">Orion</a>
+                                    <a href="{{ route('kabinet') }}" class="block px-4 py-2 text-assets hover:bg-assets hover:text-white">Orion</a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('iris') }}" class="block px-4 py-2 text-assets hover:bg-assets hover:text-white">Iris</a>
+                                    <a href="{{ route('kabinet') }}" class="block px-4 py-2 text-assets hover:bg-assets hover:text-white">Iris</a>
                                 </li>
                             </ul>
                         </div>
                     </li>
                     <li>
-                        <a href="{{ route('proker') }}"
-                            class="block py-2 px-3 {{ request()->routeIs('alumni') ? 'text-assets' : 'text-gray-400' }} hover:text-second_a text-l">
-                            Proker
+                        <a href="{{ route('artikel') }}"
+                            class="block py-2 px-3 {{ request()->routeIs('artikel') ? 'text-assets' : 'text-font' }} hover:text-second_a text-l">
+                            Artikel
                         </a>
                     </li>
                     <li>
                         <a href="{{ route('about') }}"
-                            class="block py-2 px-3 {{ request()->routeIs('about') ? 'text-assets' : 'text-gray-400' }} hover:text-second_a text-l">
+                            class="block py-2 px-3 {{ request()->routeIs('about') ? 'text-assets' : 'text-font' }} hover:text-second_a text-l">
                             About Us
                         </a>
                     </li>

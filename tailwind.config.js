@@ -11,10 +11,10 @@ export default {
     theme: {
         extend: {
             fontFamily: {
-                Inter: ['Poppins', 'ui-sans-serif']
+                Inter: ['Inter']
             },
             colors: {
-                dark: '#1A202C',
+                black: '#1A202C',
                 font: '#486284',
                 assets: '#115C5B',
                 second_a: '#1D9997',
@@ -22,7 +22,12 @@ export default {
             },
             backdropBlur: {
                 xs: '2px',
-            }
+            },
+            borderRadius: {
+                xl: '10px',
+                xxl: '60px'
+            },
+
         },
 
     },

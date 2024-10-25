@@ -10,32 +10,28 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\LoginRegisterController;
 
 
-// Route::get('/home', function () {
-//     return view('layouts.assets');
-// })->name('home');
+Route::get('/', function () {
+    return view('user.home');
+})->name('home');
 
-Route::get('/amara', function () {
-    return view('layouts.app');
-})->name('amara');
+Route::get('/kabinet', function () {
+    return view('user.kabinet');
+})->name('kabinet');
 
-Route::get('/orion', function () {
-    return view('layouts.app');
-})->name('orion');
+Route::get('/artikel', function () {
+    return view('user.artikel');
+})->name('artikel');
 
-Route::get('/iris', function () {
-    return view('layouts.app');
-})->name('iris');
-
-Route::get('/proker', function () {
-    return view('layouts.app');
-})->name('proker');
+Route::get('/detailArtikel', function () {
+    return view('user.detailArtikel');
+})->name('detailArtikel');
 
 Route::get('/about', function () {
-    return view('layouts.app');
+    return view('user.about');
 })->name('about');
 
 
-Route::get('/', [HomeController::class, 'index'])->name('home');
+// Route::get('/', [HomeController::class, 'index'])->name('home');
 
 
 // Routes (in web.php)
