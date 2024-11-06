@@ -9,7 +9,7 @@ class Kabinet extends Model
     protected $table = 'kabinet';
     protected $primaryKey = 'id_kabinet';  // Tambahkan baris ini
 
-    
+
     protected $fillable = [
         "id_kabinet",
         "id_dosen",
@@ -26,5 +26,11 @@ class Kabinet extends Model
     public function dosen()
     {
         return $this->belongsTo(Dosen::class, 'id_dosen', 'id_dosen');
+    }
+
+
+    public function color_pallete()
+    {
+        return $this->hasOne(ColorPallete::class, 'id_kabinet', 'id_kabinet');
     }
 }

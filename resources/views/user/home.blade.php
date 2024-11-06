@@ -1,19 +1,23 @@
 @extends('layouts.app')
+
 @section('title', 'Home')
+
 @section('content')
 {{-- Banner start --}}
-<section class="relative isolate bg-white py-16 sm:py-20">
-    <div class="absolute inset-x-0 -top-3 -z-10 transform-gpu overflow-hidden px-36 blur-3xl" aria-hidden="true">
+<section class="relative isolate bg-white pt-8 pb-32">
+    {{-- background gradient --}}
+    <div class="absolute inset-x-0 -top-3 -z-10 transform-gpu overflow-hidden blur-3xl" aria-hidden="true">
         <div class="mx-auto aspect-[1155/678] w-[72.1875rem] bg-gradient-to-tr from-assets to-second_a opacity-30"
             style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)">
         </div>
     </div>
 
-    <div class="grid max-w-screen-2xl py-8 lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
+    {{-- assets banner --}}
+    <div class="grid max-w-screen-2xl py-8 pl-16 lg:gap-8 lg:grid-cols-12">
         <div class="mx-auto place-self-center lg:col-span-7">
             <h1 class="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl text-assets">ASSETS UGM</h1>
             <p class="max-w-2xl mb-6 font-semibold text-assets lg:mb-8 md:text-lg lg:text-xl">Associaton of Software Engineering Technology Students</p>
-            <p class="max-w-2xl mb-6 font-light text-assets lg:mb-8 md:text-lg lg:text-xl">Assocation Student of Teknologi Rekayasa Perangkat Lunak <br> Sekolah Vokasi Universitas Gadjah Mada.<br>Small Organization BIG Impact.</p>
+            <p class="max-w-2xl mb-6 font-light text-assets lg:mb-8 md:text-lg lg:text-xl">Association Student of Teknologi Rekayasa Perangkat Lunak <br> Sekolah Vokasi Universitas Gadjah Mada.<br>Small Organization BIG Impact.</p>
             <a href="{{ route('about') }}" class="inline-flex items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-lg bg-assets hover:bg-primary-800 focus:ring-4 focus:ring-primary-300">
                 See more
                 <svg class="w-5 h-5 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
@@ -28,6 +32,7 @@
 
 {{-- Carousel start --}}
 <div class="relative isolate bg-white px-0 py-24 sm:py-32">
+    {{-- background gradient --}}
     <div class="absolute inset-x-0 -top-3 -z-10 transform-gpu overflow-hidden px-36 blur-3xl" aria-hidden="true">
         <div class="mx-auto aspect-[1155/678] w-[72.1875rem] bg-gradient-to-tr from-assets to-second_a opacity-30"
             style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)">
@@ -130,6 +135,13 @@
     <div class="mx-auto mt-20 py-16 px-6 max-w-2xl text-center lg:max-w-4xl">
         <h2 class="mt-2 text-4xl font-extrabold tracking-tight text-assets sm:text-5xl">New Activities</h2>
     </div>
+    {{-- <a href="#" class="flex flex-col items-center mx-auto bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
+        <img class="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-s-lg" src="assets/article1.jpeg" alt="">
+        <div class="flex flex-col justify-between p-4 leading-normal">
+            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Noteworthy technology acquisitions 2021</h5>
+            <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.</p>
+        </div>
+    </a> --}}
     <div class="container mx-auto border-assets border-2 rounded-2xl shadow-lg">
         <div class="grid max-w-screen-xl px-4 py-8 mx-8 lg:gap-8 xl:gap-0 lg:grid-cols-12">
             <div class="bg-local me-8 lg:mt-0 lg:col-span-5 lg:flex">

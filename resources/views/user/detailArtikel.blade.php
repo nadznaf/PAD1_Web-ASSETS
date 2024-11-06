@@ -3,13 +3,36 @@
 @section('title', 'Artikel')
 
 @section('content')
-    <div class="bg-white p-6 rounded-lg shadow-lg">
+    <div class="bg-white">
+        {{-- carousel galeri --}}
+        <div id="gallery" class="relative h-56 max-w-full md:h-96">
+            <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                <img src="assets/series_img1.svg" class="absolute block max-w-full h-auto -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="">
+                {{-- {{ $article->image }} --}}
+            </div>
+            <!-- Item 2 -->
+            <div class="hidden duration-700 ease-in-out" data-carousel-item="active">
+                <img src="assets/series_img1.svg" class="absolute block max-w-full h-auto -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="">
+            </div>
+            <!-- Item 3 -->
+            <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                <img src="assets/series_img1.svg" class="absolute block max-w-full h-auto -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="">
+            </div>
+            <!-- Item 4 -->
+            <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                <img src="assets/series_img1.svg" class="absolute block max-w-full h-auto -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="">
+            </div>
+            <!-- Item 5 -->
+            <div class="hidden duration-700 ease-in-out" data-carousel-item>
+                <img src="assets/series_img1.svg" class="absolute block max-w-full h-auto -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="">
+            </div>
+        </div>
         <div class="flex flex-col md:flex-row">
             {{-- <div class="md:w-1/3">
                 <img src="{{ $article->image }}" alt="Gambar Artikel" class="w-full h-auto rounded-lg">
             </div> --}}
-            <div class="md:w-2/3 md:pl-6 mt-4 md:mt-0">
-                <h2 class="text-3xl font-bold text-gray-800">
+            <div class="mt-16">
+                <h2 class="text-3xl font-bold text-dark text-center">
                     Mahasiswa TRPL Raih Juara 1 dalam Bidang Data Science pada ICONIC IT 2024
                     {{-- {{ $article->title }} --}}
                 </h2>

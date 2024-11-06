@@ -9,3 +9,11 @@ html {
     font-weight: <weight>;
     font-style: normal;
 }
+
+.w-434 {
+    width: 434px;
+}
+
+.w-1000 {
+    width: 1000px;
+}

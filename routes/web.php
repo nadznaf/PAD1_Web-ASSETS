@@ -10,17 +10,33 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\LoginRegisterController;
 
 
-Route::get('/', function () {
-    return view('user.home');
-})->name('home');
+
+// Route::get('/', function () {
+//     return view('user.home');
+// })->name('home');
+
+Route::get('/', [HomeController::class, 'index'])->name('home');
+
 
 Route::get('/kabinet', function () {
     return view('user.kabinet');
 })->name('kabinet');
 
+Route::get('/kabinet/{id}', [dataKabinetController::class, 'show'])->name('kabinet.show');
+
+Route::get('/kepengurusan', function () {
+    return view('user.kepengurusan');
+})->name('kepengurusan');
+
+Route::get('/proker', function () {
+    return view('user.proker');
+})->name('proker');
+
 Route::get('/artikel', function () {
     return view('user.artikel');
 })->name('artikel');
+
+// Route::get('/kabinet/{id}', [artikelController::class, 'show'])->name('kabinet.show');
 
 Route::get('/detailArtikel', function () {
     return view('user.detailArtikel');

@@ -31,7 +31,7 @@ class dataKabinetController extends Controller
             'fotoKabinet' => 'nullable|image|mimes:jpeg,png|max:2048',
             'logoKabinet' => 'nullable|image|mimes:jpeg,png|max:2048'
         ]);
-    
+
         $data = [
             'nama_kabinet' => $request->namaKabinet,
             'visi_kabinet' => $request->visiKabinet,
@@ -42,7 +42,7 @@ class dataKabinetController extends Controller
             'tahun_awal_kabinet' => $request->tahunAwalKabinet,
             'tahun_akhir_kabinet' => $request->tahunAkhirKabinet,
         ];
-    
+
         if ($request->hasFile('fotoKabinet')) {
             $file = $request->file('fotoKabinet');
             $path = $file->store('datakabinet', 'public');
@@ -53,9 +53,9 @@ class dataKabinetController extends Controller
             $path = $file->store('datakabinet', 'public');
             $data['logo_kabinet'] = basename($path);
         }
-    
+
         Kabinet::create($data);
-    
+
         return redirect()->route('admin.datakabinet.index')->with('success', 'Data kabinet berhasil ditambahkan.');
     }
 
@@ -87,7 +87,7 @@ class dataKabinetController extends Controller
             if ($kabinet->foto_sampul_kabinet) {
                 Storage::delete('public/datakabinet/' . $kabinet->foto_sampul_kabinet);
             }
-            
+
             // Simpan foto baru
             $file = $request->file('fotoSampulKabinet');
             $path = $file->store('datakabinet', 'public');
@@ -99,7 +99,7 @@ class dataKabinetController extends Controller
             if ($kabinet->logo_kabinet) {
                 Storage::delete('public/datakabinet/' . $kabinet->logo_kabinet);
             }
-            
+
             // Simpan foto baru
             $file = $request->file('logoKabinet');
             $path = $file->store('datakabinet', 'public');
@@ -123,5 +123,14 @@ class dataKabinetController extends Controller
         $kabinet->delete();
 
         return redirect()->route('admin.datakabinet.index')->with('success', 'Data kabinet berhasil dihapus.');
+    }
+
+    public function show($id)
+    {
+        $kabinet = Kabinet::findOrFail($id);
+        $dataKabinet = Kabinet::with('dosen')->paginate(5);
+
+        // dd($kabinet->dosen); // Mengambil data kabinet berdasarkan ID
+        return view('user.kabinet', compact('kabinet', 'dataKabinet'));
     }
 }

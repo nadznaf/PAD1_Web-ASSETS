@@ -14,7 +14,7 @@ export default {
                 Inter: ['Inter']
             },
             colors: {
-                black: '#1A202C',
+                dark: '#1A202C',
                 font: '#486284',
                 assets: '#115C5B',
                 second_a: '#1D9997',
@@ -25,6 +25,7 @@ export default {
             },
             borderRadius: {
                 xl: '10px',
+                large: '25px',
                 xxl: '60px'
             },
 

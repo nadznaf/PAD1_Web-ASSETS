@@ -5,7 +5,7 @@
 @section('content')
 <section class="bg-white">
     <div class="mx-auto mt-20 py-16 px-6 max-w-2xl text-center lg:max-w-4xl">
-        <h2 class="mt-2 text-4xl font-extrabold tracking-tight text-assets sm:text-5xl">Artikel</h2>
+        <h2 class="mt-2 text-4xl font-extrabold text-assets sm:text-5xl">Artikel</h2>
     </div>
     <div class="container mx-auto border-assets border-2 rounded-2xl shadow-lg">
         <div class="grid max-w-screen-xl px-4 py-8 mx-8 lg:gap-8 xl:gap-0 lg:grid-cols-12">
