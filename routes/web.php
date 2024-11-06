@@ -5,6 +5,8 @@ use App\Http\Controllers\dataDosenController;
 use App\Http\Controllers\dataKabinetController;
 use App\Http\Controllers\dataDivisiController;
 use App\Http\Controllers\dataColorPalleteController;
+use App\Http\Controllers\dataStaffController;
+use App\Http\Controllers\dataProkerController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\LoginRegisterController;
@@ -101,5 +103,27 @@ Route::middleware('auth:admin')->group(function () {
         Route::post('/datacolorpallete', [dataColorPalleteController::class, 'store'])->name('datacolorpallete.store');
         Route::put('/datacolorpallete/{color_pallete:id_color_pallete}', [dataColorPalleteController::class, 'update'])->name('datacolorpallete.update');
         Route::delete('/datacolorpallete/{color_pallete:id_color_pallete}', [dataColorPalleteController::class, 'destroy'])->name('datacolorpallete.destroy');
+    });
+});
+
+Route::middleware('auth:admin')->group(function () {
+    Route::prefix('admin')->name('admin.')->group(function () {
+        Route::get('/datastaff', [dataStaffController::class, 'index'])->name('datastaff.index');
+        Route::post('/datastaff', [dataStaffController::class, 'store'])->name('datastaff.store');
+        Route::put('/datastaff/{staff:id_staff}', [dataStaffController::class, 'update'])->name('datastaff.update');
+        Route::delete('/datastaff/{staff:id_staff}', [dataStaffController::class, 'destroy'])->name('datastaff.destroy');
+        Route::post('/get-divisi', [dataStaffController::class, 'getDivisi'])->name('get.divisi');
+
+        Route::get('/mahasiswa/search', [dataStaffController::class, 'search'])->name('mahasiswa.search');
+    });
+});
+
+Route::middleware('auth:admin')->group(function () {
+    Route::prefix('admin')->name('admin.')->group(function () {
+        Route::get('/dataproker', [dataProkerController::class, 'index'])->name('dataproker.index');
+        Route::post('/dataproker', [dataProkerController::class, 'store'])->name('dataproker.store');
+        Route::put('/dataproker/{proker:id_proker}', [dataProkerController::class, 'update'])->name('dataproker.update');
+        Route::delete('/dataproker/{proker:id_proker}', [dataProkerController::class, 'destroy'])->name('dataproker.destroy');
+        Route::post('/get-divisi', [dataProkerController::class, 'getDivisi'])->name('get.divisi');
     });
 });

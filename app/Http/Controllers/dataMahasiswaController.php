@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Mahasiswa;
+use App\Models\ColorPallete;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
@@ -13,21 +14,31 @@ class dataMahasiswaController extends Controller
     public function index()
     {
         $admin = Auth::guard('admin')->user();
-        $dataMahasiswa = Mahasiswa::paginate(5);
+        $dataMahasiswa = Mahasiswa::latest()->paginate(5);
         return view('admin.dataMahasiswa', compact('dataMahasiswa', 'admin'));
     }
 
     public function store(Request $request)
     {
-        $request->validate([
+        $validatedData = $request->validate([
             'namaMahasiswa' => 'required',
             'nimMahasiswa' => 'required|unique:mahasiswa,nim_mhs',
-            'fotoMhs' => 'nullable|image|mimes:jpeg,png|max:2048',
+            'fotoMhs' => 'nullable|image|mimes:jpg,jpeg,png',
+        ], 
+        // Error message:
+        [
+            'namaMahasiswa.required' => 'Nama mahasiswa harus diisi.',
+            'nimMahasiswa.required' => 'NIM mahasiswa harus diisi.',
+            'nimMahasiswa.unique' => 'NIM mahasiswa sudah terdaftar.',
+            'fotoMhs.image' => 'File harus berupa gambar.',
+            'fotoMhs.mimes' => 'Gambar harus berformat jpg, jpeg, atau png.',
+            'fotoMhs.max' => 'Ukuran gambar maksimal 2MB.',
         ]);
     
+        // Jika validasi berhasil, simpan data mahasiswa
         $data = [
-            'nama_mhs' => $request->namaMahasiswa,
-            'nim_mhs' => $request->nimMahasiswa,
+            'nama_mhs' => $validatedData['namaMahasiswa'],
+            'nim_mhs' => $validatedData['nimMahasiswa'],
         ];
     
         if ($request->hasFile('fotoMhs')) {
@@ -40,6 +51,8 @@ class dataMahasiswaController extends Controller
     
         return redirect()->route('admin.datamahasiswa.index')->with('success', 'Data mahasiswa berhasil ditambahkan.');
     }
+    
+    
 
     public function update(Request $request, Mahasiswa $mahasiswa)
     {
@@ -47,7 +60,14 @@ class dataMahasiswaController extends Controller
             'namaMhs' => 'nullable',
             'nimMhs' => 'nullable|unique:mahasiswa,nim_mhs,' . $mahasiswa->id_mhs . ',id_mhs',
             'fotoMhs' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-        ]);        
+        ],
+        // Error message:
+        [
+            'nimMahasiswa.unique' => 'NIM mahasiswa sudah terdaftar.',
+            'fotoMhs.image' => 'File harus berupa gambar.',
+            'fotoMhs.mimes' => 'Gambar harus berformat jpg, jpeg, atau png.',
+            'fotoMhs.max' => 'Ukuran gambar maksimal 2MB.',
+        ]);   
     
         // Cek jika nama baru berbeda dari yang ada di database
         if ($request->namaMhs !== $mahasiswa->nama_mhs) {

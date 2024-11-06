@@ -27,4 +27,10 @@ class Kabinet extends Model
     {
         return $this->belongsTo(Dosen::class, 'id_dosen', 'id_dosen');
     }
+
+    public function color_pallete()
+    {
+        return $this->hasOne(ColorPallete::class, 'id_kabinet', 'id_kabinet');
+    }
+
 }

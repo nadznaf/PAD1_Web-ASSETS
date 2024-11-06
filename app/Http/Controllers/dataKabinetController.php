@@ -13,7 +13,7 @@ class dataKabinetController extends Controller
     public function index()
     {
         $admin = Auth::guard('admin')->user();
-        $dataKabinet = Kabinet::with('dosen')->paginate(5);
+        $dataKabinet = Kabinet::latest()->with('dosen')->paginate(5);
         $dataDosen = Dosen::all(); // Mengambil data dosen untuk dropdown
         return view('admin.dataKabinet', compact('dataKabinet', 'dataDosen', 'admin'));
     }
@@ -24,14 +24,21 @@ class dataKabinetController extends Controller
             'namaKabinet' => 'required',
             'visiKabinet' => 'required',
             'misiKabinet' => 'required',
+            'maknaKabinet' => 'nullable',
             'deskripsiKabinet' => 'required',
             'id_dosen' => 'required',
             'tahunAwalKabinet' => 'required',
             'tahunAkhirKabinet' => 'required',
             'fotoKabinet' => 'nullable|image|mimes:jpeg,png|max:2048',
             'logoKabinet' => 'nullable|image|mimes:jpeg,png|max:2048'
-        ]);
-    
+        ],
+        // error messsage:
+        [
+            'fotoKabinet.mimes' => 'Gambar harus berformat jpg, jpeg, atau png.',
+            'logoKabinet.mimes' => 'Gambar harus berformat jpg, jpeg, atau png.',
+            'fotoKabinet.max' => 'Ukuran gambar maksimal 2MB.',
+            'logoKabinet.max' => 'Ukuran gambar maksimal 2MB.',
+        ]);        
         $data = [
             'nama_kabinet' => $request->namaKabinet,
             'visi_kabinet' => $request->visiKabinet,
@@ -71,7 +78,14 @@ class dataKabinetController extends Controller
             'tahunAkhirKabinet' => 'nullable',
             'fotoSampulKabinet' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
             'logoKabinet' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
-        ]);
+        ],
+        // error messsage:
+        [
+            'fotoKabinet.mimes' => 'Gambar harus berformat jpg, jpeg, atau png.',
+            'logoKabinet.mimes' => 'Gambar harus berformat jpg, jpeg, atau png.',
+            'fotoKabinet.max' => 'Ukuran gambar maksimal 2MB.',
+            'logoKabinet.max' => 'Ukuran gambar maksimal 2MB.',
+        ]);  
 
         $kabinet->nama_kabinet = $request->namaKabinet;
         $kabinet->visi_kabinet = $request->visiKabinet;

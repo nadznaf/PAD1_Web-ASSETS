@@ -16,6 +16,8 @@ return new class extends Migration
             $table->unsignedBigInteger('id_kabinet');
             $table->string('primary_color')->nullable();
             $table->string('secondary_color')->nullable();
+            $table->string('third_color')->nullable();
+            $table->string('fourth_color')->nullable();
             $table->timestamps();
 
             $table->foreign('id_kabinet')->references('id_kabinet')->on('kabinet')->onDelete('restrict')->onUpdate('cascade');

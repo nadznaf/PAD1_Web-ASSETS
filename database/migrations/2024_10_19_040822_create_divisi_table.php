@@ -14,6 +14,7 @@ return new class extends Migration
             $table->string('nama_divisi');
             $table->text('deskripsi_divisi');
             $table->text('tugas_dan_tanggung_jawab');
+            $table->text('foto_sampul_divisi');
             $table->timestamps();
 
             $table->foreign('id_kabinet')->references('id_kabinet')->on('kabinet')->onDelete('restrict')->onUpdate('cascade');

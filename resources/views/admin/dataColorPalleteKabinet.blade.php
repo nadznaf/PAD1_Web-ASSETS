@@ -22,6 +22,7 @@
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             @csrf
             <div class="modal-body">
+                <!-- Fill dropdown button content using all data retrieved from kabinet's table -->
                 <label for="id_kabinet">Kabinet</label><br>
                 <select name="id_kabinet" class="form-select" required>
                       <option value="" disabled selected>Pilih Kabinet</option>
@@ -33,10 +34,11 @@
                     Input kabinet secara valid!
                 </div>
                 <div class="valid-feedback">
-                    Input valid.
+                    Input valid. 
                 </div>
                 <br>
                 <label for="color-select">Kode Hex Primary Color</label><br><br>
+                <!-- Color Picker and Color Preview will appear here -->
                 <div class="d-flex justify-content-center">
                   <fieldset>
                     <input
@@ -55,6 +57,7 @@
                 <br>
 
                 <label for="color-select">Kode Hex Secondary Color</label><br><br>
+                <!-- Color Picker and Color Preview will appear here -->
                 <div class="d-flex justify-content-center">
                   <fieldset>
                     <input
@@ -71,8 +74,43 @@
                   <p id="hex-code2" class="font-bold text-lg">#000000</p> <!-- Default value -->
                 </div>
                 <br>
+                <label for="color-select">Kode Hex Third Color (Opsional)</label><br><br>
+                <!-- Color Picker and Color Preview will appear here -->
+                <div class="d-flex justify-content-center">
+                  <fieldset>
+                    <input
+                      type="color"
+                      id="color-select3"
+                      name="thirdColor"
+                      class="mx-3 h-48 w-48 hover:cursor-pointer"
+                      onchange="updateHexCode3()"
+                    />
+                  </fieldset>
+                </div>
+                <!-- Elemen untuk menampilkan kode hex -->
+                <div class="d-flex justify-content-center mt-3">
+                  <p id="hex-code3" class="font-bold text-lg">#000000</p> <!-- Default value -->
+                </div>
+                <br>
+                <label for="color-select">Kode Hex Fourth Color (Opsional)</label><br><br>
+                <!-- Color Picker and Color Preview will appear here -->
+                <div class="d-flex justify-content-center">
+                  <fieldset>
+                    <input
+                      type="color"
+                      id="color-select4"
+                      name="fourthColor"
+                      class="mx-3 h-48 w-48 hover:cursor-pointer"
+                      onchange="updateHexCode4()"
+                    />
+                  </fieldset>
+                </div>
+                <!-- Elemen untuk menampilkan kode hex -->
+                <div class="d-flex justify-content-center mt-3">
+                  <p id="hex-code4" class="font-bold text-lg">#000000</p> <!-- Default value -->
+                </div>
+                <br>
                 
-            
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
                 <button type="submit" class="btn" id="button">Tambah</button>
@@ -84,26 +122,37 @@
     </div>
 
     <div class="card-body">
-    <div class="row">
-  <div class="col-sm-10 col-12">
-    <div class="input-group">
-      <span class="input-group-text" id="basic-addon1">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" class="w-5 h-5">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35M17 11a6 6 0 11-12 0 6 6 0 0112 0z" />
-        </svg>
-      </span>
-      <input type="text" id="searchInput" class="form-control" placeholder="Search in this Category..." onkeyup="searchTable()">
-    </div>
-  </div>
-  <div class="col-sm-2 col-12 mt-2 mt-sm-0 d-flex justify-content-sm-end">
-    <!-- Button trigger modal -->
-    <button type="button" id="button" class="btn w-100" data-bs-toggle="modal" data-bs-target="#insertData">
-      Tambah Data
-    </button>
-  </div>
-</div>
-
-
+      <div class="row">
+        <!-- Show Alert message when any error occur (especially when error storing data) -->
+        @if ($errors->any())
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                       <li><strong>DATA GAGAL DIUNGGAH</strong></li>
+                        <li>{{ $error }}</li>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    @endforeach
+                </ul>
+            </div>
+          @endif
+        <!-- Search Data in Table -->
+        <div class="col-sm-10 col-12">
+          <div class="input-group">
+            <span class="input-group-text" id="basic-addon1">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" class="w-5 h-5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35M17 11a6 6 0 11-12 0 6 6 0 0112 0z" />
+              </svg>
+            </span>
+            <input type="text" id="searchInput" class="form-control" placeholder="Search in this Category..." onkeyup="searchTable()">
+          </div>
+        </div>
+        <div class="col-sm-2 col-12 mt-2 mt-sm-0 d-flex justify-content-sm-end">
+          <!-- Button trigger modal -->
+          <button type="button" id="button" class="btn w-100" data-bs-toggle="modal" data-bs-target="#insertData">
+            Tambah Data
+          </button>
+        </div>
+      </div>
     </div>
     <br>
     <!-- dataColorPallete Table -->
@@ -113,16 +162,20 @@
           <tr>
             <th>NO.</th>
             <th>NAMA KABINET</th>
-            <th>PRIMARY COLOR (WARNA UTAMA)</th>
-            <th>SECONDARY COLOR (WARNA KEDUA)</th>
+            <th>PRIMARY COLOR </th>
+            <th>SECONDARY COLOR </th>
+            <th>THIRD COLOR </th>
+            <th>FOURTH COLOR</th>
             <th>ACTION</th>
           </tr>
         </thead>
+        
+        <!-- Fill Table Body using Retrieved Data from Database-->
         <tbody id="TableBody">
           @foreach($dataColorPallete as $index => $color)
           <tr>
             <td>{{ $dataColorPallete->firstItem() + $index }}</td>
-            <td>{{ $kabinet->nama_kabinet }}</td>
+            <td>{{ $color->kabinet->nama_kabinet}}</td>
             <td>
                 <div class="d-grid gap-2 d-sm-flex justify-content-sm-center justify-content-xl-start">
                     <div class="flex-none w-6 h-6 rounded" style="background-color: {{ $color->primary_color }}"></div>
@@ -130,9 +183,21 @@
                 </div>
             </td>
             <td>
+              <div class="d-grid gap-2 d-sm-flex justify-content-sm-center justify-content-xl-start">
+                <div class="flex-none w-6 h-6 rounded" style="background-color: {{ $color->secondary_color }}"></div>
+                <span class="ml-2">{{ $color->secondary_color }}</span>
+              </div>
+            </td>
+            <td>
                 <div class="d-grid gap-2 d-sm-flex justify-content-sm-center justify-content-xl-start">
-                    <div class="flex-none w-6 h-6 rounded" style="background-color: {{ $color->secondary_color }}"></div>
-                    <span class="ml-2">{{ $color->secondary_color }}</span>
+                    <div class="flex-none w-6 h-6 rounded" style="background-color: {{ $color->third_color }}"></div>
+                    <span class="ml-2">{{ $color->third_color }}</span>
+                </div>
+            </td>
+            <td>
+                <div class="d-grid gap-2 d-sm-flex justify-content-sm-center justify-content-xl-start">
+                    <div class="flex-none w-6 h-6 rounded" style="background-color: {{ $color->fourth_color }}"></div>
+                    <span class="ml-2">{{ $color->fourth_color}}</span>
                 </div>
             </td>
             <td>
@@ -186,6 +251,7 @@
                             <div class="modal-body">
                                 <div class="mb-3">
                                     <label for="id_kabinet">Asal Kabinet</label><br>
+                                    <!-- Fill dropdown button content using all data retrieved from kabinet's table -->
                                     <select name="id_kabinet" class="form-select" required>
                                         <!-- Option pertama adalah dosen yang sudah dipilih -->
                                         <option value="{{ $color->id_kabinet }}" selected>{{ $color->kabinet->nama_kabinet }}</option>
@@ -199,41 +265,81 @@
                                     </select>
                                 </div>
                                 <div class="mb-3">
-                                <label for="color-select-update">Kode Hex Primary Color</label><br><br>
+                                  <label for="primary-color-select-update">Kode Hex Primary Color</label><br><br>
+                                  <div class="d-flex justify-content-center">
+                                      <fieldset>
+                                          <input
+                                              type="color"
+                                              id="primary-color-select-update-{{$dataColorPallete->firstItem() + $index }}"
+                                              name="primaryColor"
+                                              class="mx-3 h-48 w-48 hover:cursor-pointer"
+                                              value="{{ $color->primary_color }}"
+                                          />
+                                      </fieldset>
+                                  </div>
+                                  <!-- Elemen untuk menampilkan kode hex -->
+                                  <div class="d-flex justify-content-center mt-3">
+                                      <p id="primary-hex-code-update-{{$dataColorPallete->firstItem() + $index }}" class="font-bold text-lg">
+                                          {{ $color->primary_color }}
+                                      </p>
+                                  </div>
+                              </div>
+                              <div class="mb-3">
+                                  <label for="secondary-color-select-update">Kode Hex Secondary Color</label><br><br>
+                                  <div class="d-flex justify-content-center">
+                                      <fieldset>
+                                          <input
+                                              type="color"
+                                              id="secondary-color-select-update-{{$dataColorPallete->firstItem() + $index }}"
+                                              name="secondaryColor"
+                                              class="mx-3 h-48 w-48 hover:cursor-pointer"
+                                              value="{{ $color->secondary_color }}"
+                                          />
+                                      </fieldset>
+                                  </div>
+                                  <!-- Elemen untuk menampilkan kode hex -->
+                                  <div class="d-flex justify-content-center mt-3">
+                                      <p id="secondary-hex-code-update-{{$dataColorPallete->firstItem() + $index }}" class="font-bold text-lg">
+                                          {{ $color->secondary_color }}
+                                      </p>
+                                  </div>
+                              </div>
+                                <div class="mb-3">
+                                    <label for="third-color-select-update">Kode Hex Third Color</label><br><br>
                                     <div class="d-flex justify-content-center">
                                       <fieldset>
                                         <input
                                           type="color"
-                                          id="color-select-update"
-                                          name="primaryColor"
+                                          id="third-color-select-update-{{$dataColorPallete->firstItem() + $index }}"
+                                          name="thirdColor"
                                           class="mx-3 h-48 w-48 hover:cursor-pointer"
-                                          onchange="updateHexCodeUpdate()"
-                                          value="{{ $color->primary_color }}"
+                                          value="{{ $color->third_color }}"
                                         />
                                       </fieldset>
                                     </div>
                                     <!-- Elemen untuk menampilkan kode hex -->
                                     <div class="d-flex justify-content-center mt-3">
-                                      <p id="hex-code-update" class="font-bold text-lg">{{ $color->primary_color }}</p> <!-- Default value -->
+                                      <p id="third-hex-code-update-{{$dataColorPallete->firstItem() + $index }}" class="font-bold text-lg">
+                                      {{ $color->third_color }}</p> <!-- Default value -->
                                     </div>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="color-select-update2">Kode Hex Secondary Color</label><br><br>
+                                    <label for="fourth-color-select-update">Kode Hex Fourth Color</label><br><br>
                                     <div class="d-flex justify-content-center">
                                       <fieldset>
                                         <input
                                           type="color"
-                                          id="color-select-update2"
-                                          name="secondaryColor"
+                                          id="fourth-color-select-update-{{$dataColorPallete->firstItem() + $index }}"
+                                          name="fourthColor"
                                           class="mx-3 h-48 w-48 hover:cursor-pointer"
-                                          onchange="updateHexCodeUpdate2()"
-                                          value="{{ $color->secondary_color }}"
+                                          value="{{ $color->fourth_color }}"
                                         />
                                       </fieldset>
                                     </div>
                                     <!-- Elemen untuk menampilkan kode hex -->
                                     <div class="d-flex justify-content-center mt-3">
-                                      <p id="hex-code-update2" class="font-bold text-lg">{{ $color->secondary_color }}</p> <!-- Default value -->
+                                      <p id="fourth-hex-code-update-{{$dataColorPallete->firstItem() + $index }}" class="font-bold text-lg">
+                                      {{ $color->fourth_color }}</p> <!-- Default value -->
                                     </div>
                                 </div>
                             </div>
@@ -288,29 +394,85 @@
 </div>
 
 <script>
+  // fungsi untuk primary color preview bagian upload
     function updateHexCode() {
-    // Ambil nilai dari color picker
-    const colorValue = document.getElementById('color-select').value;
-    // Update nilai hex di bawahnya
-    document.getElementById('hex-code').innerText = colorValue;
-  }
+      // Ambil nilai dari color picker
+      const colorValue = document.getElementById('color-select').value;
+      // Update nilai hex di bawahnya
+      document.getElementById('hex-code').innerText = colorValue;
+    }
+
+    // fungsi untuk secondary color preview bagian upload
     function updateHexCode2() {
-    // Ambil nilai dari color picker
-    const colorValue = document.getElementById('color-select2').value;
-    // Update nilai hex di bawahnya
-    document.getElementById('hex-code2').innerText = colorValue;
-  }
-    function updateHexCodeUpdate() {
-    // Ambil nilai dari color picker
-    const colorValue = document.getElementById('color-select-update').value;
-    // Update nilai hex di bawahnya
-    document.getElementById('hex-code-update').innerText = colorValue;
-  }
-    function updateHexCodeUpdate2() {
-    // Ambil nilai dari color picker
-    const colorValue = document.getElementById('color-select-update2').value;
-    // Update nilai hex di bawahnya
-    document.getElementById('hex-code-update2').innerText = colorValue;
-  }
+      // Ambil nilai dari color picker
+      const colorValue = document.getElementById('color-select2').value;
+      // Update nilai hex di bawahnya
+      document.getElementById('hex-code2').innerText = colorValue;
+    }
+
+    // fungsi untuk third color preview bagian upload
+    function updateHexCode3() {
+      // Ambil nilai dari color picker
+      const colorValue = document.getElementById('color-select3').value;
+      // Update nilai hex di bawahnya
+      document.getElementById('hex-code3').innerText = colorValue;
+    }
+
+    // fungsi untuk fourth color preview bagian upload
+    function updateHexCode4() {
+      // Ambil nilai dari color picker
+      const colorValue = document.getElementById('color-select4').value;
+      // Update nilai hex di bawahnya
+      document.getElementById('hex-code4').innerText = colorValue;
+    }
+
+  // fungsi untuk color preview bagian edit
+  document.addEventListener('DOMContentLoaded', function() {
+    // Fungsi untuk bagian edit primary color
+    const primaryColorPickers = document.querySelectorAll('[id^="primary-color-select-update-"]');
+    const primaryHexCodes = document.querySelectorAll('[id^="primary-hex-code-update-"]');
+    
+    primaryColorPickers.forEach((picker, index) => {
+        picker.addEventListener('input', function() {
+            if(primaryHexCodes[index]) {
+                primaryHexCodes[index].innerText = this.value;
+            }
+        });
+    });
+
+    // Fungsi untuk bagian edit secondary color
+    const secondaryColorPickers = document.querySelectorAll('[id^="secondary-color-select-update-"]');
+    const secondaryHexCodes = document.querySelectorAll('[id^="secondary-hex-code-update-"]');
+    
+    secondaryColorPickers.forEach((picker, index) => {
+        picker.addEventListener('input', function() {
+            if(secondaryHexCodes[index]) {
+                secondaryHexCodes[index].innerText = this.value;
+            }
+        });
+    });
+    // Fungsi untuk bagian edit third color
+    const thirdColorPickers = document.querySelectorAll('[id^="third-color-select-update-"]');
+    const thirdHexCodes = document.querySelectorAll('[id^="third-hex-code-update-"]');
+    
+    thirdColorPickers.forEach((picker, index) => {
+        picker.addEventListener('input', function() {
+            if(thirdHexCodes[index]) {
+              thirdHexCodes[index].innerText = this.value;
+            }
+        });
+    });
+    // Fungsi untuk bagian edit fourth color
+    const fourthColorPickers = document.querySelectorAll('[id^="fourth-color-select-update-"]');
+    const fourthHexCodes = document.querySelectorAll('[id^="fourth-hex-code-update-"]');
+    
+    fourthColorPickers.forEach((picker, index) => {
+        picker.addEventListener('input', function() {
+            if(fourthHexCodes[index]) {
+              fourthHexCodes[index].innerText = this.value;
+            }
+        });
+    });
+});
 </script>
 @endsection

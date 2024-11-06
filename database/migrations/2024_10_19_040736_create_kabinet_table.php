@@ -22,7 +22,7 @@ return new class extends Migration
             $table->text('deskripsi_kabinet');
             $table->timestamps();
 
-            $table->foreign('id_dosen')->references('id_dosen')->on('dosen')->onDelete('restrict')->onUpdate('cascade');
+            $table->foreign('id_dosen')->references('id_dosen')->on('dosen_pebimbing')->onDelete('restrict')->onUpdate('cascade');
         });
     }
 

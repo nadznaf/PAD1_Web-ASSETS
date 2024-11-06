@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Admin</title>
     <link rel="stylesheet" href="{{ asset('css/styleAuthAdmin.css') }}">
+    @vite('public/css/stylesAdmin.css')
     <style>
       @import url(https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200);
       
@@ -13,6 +14,10 @@
       @import url(https://fonts.googleapis.com/css2?family=Open+Sans&display=swap);
       
       @import url(https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200);
+
+      body{
+        background-color: #95b1af!important;
+      }
     </style>
   </head>
   <body>
@@ -36,6 +41,17 @@
               Create Account
             </a>
           </p>
+          @if ($errors->any())
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                        <li><strong>Reload this page!</strong></li>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    @endforeach
+                </ul>
+            </div>
+          @endif
           <form action="{{ route('authenticate') }}" method="post">
           @csrf
           <div class="space-y-4 mb-6">
@@ -54,19 +70,8 @@
                 lock
               </span>
               <input type="password" name="password" placeholder="Password" class="pl-12 w-full py-3 rounded-md border border-gray-300 focus:outline-none shadow-sm  @error('password') is-invalid @enderror"/>
-              @if ($errors->has('password'))
-                  <span class="text-danger">{{ $errors->first('password') }}</span>
-              @endif
             </div>
             </div>
-          
-            <div class="flex items-center mb-6">
-              <input type="checkbox" id="remember-device" class="mr-2 rounded-full border border-gray-400 focus:ring-0"/>
-              <label for="remember-device" class="text-sm">
-                Remember this device
-              </label>
-            </div>
-          
             <button class="w-full bg-teal-900 text-white py-3 rounded-md" value="Login">
               Sign In
             </button>

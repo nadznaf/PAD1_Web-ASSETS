@@ -47,10 +47,10 @@
                 <label>Foto Profil Dosen Pebimbing</label><br>
                 <div class="d-flex flex-column align-items-center">
                 <div class="d-flex flex-column align-items-center">
+                  <!-- Preview image will appear here -->
                     <div id="image-preview" class="border border-gray-400 border-dashed rounded-lg mb-3 p-3"
                         style="width: 200px; height: 200px; display: flex; justify-content: center; align-items: center; cursor: pointer;"
                         onclick="document.getElementById('uploadInput').click();">
-                        <!-- Preview image will appear here -->
                         <p class="text-gray-500">No image selected</p>
                     </div>
                     <input type="file" name="fotoDosen" id="uploadInput" accept="image/*" class="form-control" style="display: none;" required>
@@ -77,7 +77,20 @@
     </div>
 
     <div class="card-body">
+      <!-- Show Alert message when any error occur (especially when error storing data) -->
+    @if ($errors->any())
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <ul>
+                @foreach ($errors->all() as $error)
+                   <li><strong>DATA GAGAL DIUNGGAH</strong></li>
+                    <li>{{ $error }}</li>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                @endforeach
+            </ul>
+        </div>
+      @endif
       <div class="row">
+          <!-- Search Data in Table -->
         <div class="col-md-10">
             <div class="input-group">
               <span class="input-group-text" id="basic-addon1">
@@ -109,6 +122,8 @@
             <th>ACTION</th>
           </tr>
         </thead>
+
+        <!-- Fill Table Body using Retrieved Data from Database-->
         <tbody id="TableBody">
           @foreach($dataDosen as $index => $dosen)
           <tr>
@@ -119,14 +134,11 @@
               <img src="{{ asset('storage/datadosen/' . $dosen->foto_profil_dosen) }}" class="rounded w-24 h-24 object-cover">
             </td>
             <td>
-              <div class="d-grid gap-2 d-sm-flex justify-content-sm-center justify-content-xl-start">
-                <!-- Edit Button -->
-                <button type="button" class="btn" id="buttonedit" data-bs-toggle="modal"
+              <div>
+                <!-- Edit Modal Button -->
+                <button type="button" class="btn W-100" id="buttonedit" data-bs-toggle="modal"
                   data-bs-target="#editModal{{ $dosen->id_dosen }}">
                   Edit
-                </button>
-                <button type="button" class="btn" id="buttonred" data-bs-toggle="modal" data-bs-target="#deleteModal{{ $dosen->id_dosen }}">
-                  Delete
                 </button>
               </div>
             </td>
@@ -176,15 +188,16 @@
                                     <input type="text" class="form-control" name="nikaDosen" value="{{ $dosen->nika_dosen}}">
                                 </div>
                                 <div class="mb-3">
+                                  <!-- Image preview will appear here -->
                                     <label>Foto Profil Dosen</label><br>
                                     <div class="d-flex flex-column align-items-center">
-                                        <div id="image-preview-edit" class="border border-gray-400 border-dashed rounded-lg mb-3 p-3"
+                                        <div id="image-preview-edit-{{$dataDosen->firstItem() + $index }}" class="border border-gray-400 border-dashed rounded-lg mb-3 p-3"
                                             style="width: 200px; height: 200px; display: flex; justify-content: center; align-items: center; cursor: pointer;"
-                                            onclick="document.getElementById('editInput').click();">
+                                            onclick="document.getElementById('editInput-{{$dataDosen->firstItem() + $index }}').click();">
                                             <img src="{{ asset('storage/datadosen/' . $dosen->foto_profil_dosen) }}" class="rounded" style="object-fit: cover; max-width: 100%; max-height: 100%;">
                                         </div>
-                                        <input type="file" name="fotoDosenEdit" id="editInput" accept="image/*" class="form-control" style="display: none;">
-                                        <button type="button" class="btn btn-danger mt-2" id="clear-button-edit">Clear Image</button>
+                                        <input type="file" name="fotoDosenEdit" id="editInput-{{$dataDosen->firstItem() + $index }}" accept="image/*" class="form-control" style="display: none;">
+                                        <button type="button" class="btn btn-danger mt-2" id="clear-button-edit-{{$dataDosen->firstItem() + $index }}">Clear Image</button>
                                     </div>
                                 </div>
                             </div>
@@ -241,58 +254,57 @@
 </div>
 
 <script>
-document.getElementById('uploadInput').addEventListener('change', function(event) {
-    const imagePreview = document.getElementById('image-preview');
-    const clearButton = document.getElementById('clear-button');
+  //JS function for image preview in Input Modal
+  document.getElementById('uploadInput').addEventListener('change', function(event) {
+      const imagePreview = document.getElementById('image-preview');
+      const clearButton = document.getElementById('clear-button');
+      
+      if (event.target.files.length > 0) {
+          const file = event.target.files[0];
+          const reader = new FileReader();
+          
+          reader.onload = function(e) {
+              imagePreview.innerHTML = `<img src="${e.target.result}" class="img-fluid rounded-lg" alt="Image preview" style="max-width: 100%; max-height: 100%;">`;
+              clearButton.style.display = 'block';
+          };
+          
+          reader.readAsDataURL(file);
+      }
+  });
+  document.getElementById('clear-button').addEventListener('click', function() {
+      const imagePreview = document.getElementById('image-preview');
+      const uploadInput = document.getElementById('uploadInput');
+      
+      imagePreview.innerHTML = `<p class="text-gray-500">No image selected</p>`;
+      uploadInput.value = '';
+      this.style.display = 'none';
+  });
+
+  //JS function for image preview in Edit Modal
+  document.querySelectorAll('[id^="editInput-"]').forEach((input, index) => {
+  input.addEventListener('change', function(event) {
+    const imagePreviewEdit = document.getElementById(`image-preview-edit-${index + 1}`);
+    const clearButtonEdit = document.getElementById(`clear-button-edit-${index + 1}`);
     
     if (event.target.files.length > 0) {
-        const file = event.target.files[0];
-        const reader = new FileReader();
-        
-        reader.onload = function(e) {
-            imagePreview.innerHTML = `<img src="${e.target.result}" class="img-fluid rounded-lg" alt="Image preview" style="max-width: 100%; max-height: 100%;">`;
-            clearButton.style.display = 'block';
-        };
-        
-        reader.readAsDataURL(file);
+      const file = event.target.files[0];
+      const reader = new FileReader();
+      
+      reader.onload = function(e) {
+        imagePreviewEdit.innerHTML = `<img src="${e.target.result}" class="img-fluid rounded-lg" alt="Image preview" style="max-width: 100%; max-height: 100%;">`;
+        clearButtonEdit.style.display = 'block';
+      };
+      
+      reader.readAsDataURL(file);
     }
-});
-document.getElementById('clear-button').addEventListener('click', function() {
-    const imagePreview = document.getElementById('image-preview');
-    const uploadInput = document.getElementById('uploadInput');
-    
-    imagePreview.innerHTML = `<p class="text-gray-500">No image selected</p>`;
-    uploadInput.value = '';
+  });
+  
+  document.getElementById(`clear-button-edit-${index + 1}`).addEventListener('click', function() {
+    const imagePreviewEdit = document.getElementById(`image-preview-edit-${index + 1}`);
+    input.value = '';
     this.style.display = 'none';
-});
-
-
-
-document.getElementById('editInput').addEventListener('change', function(event) {
-    const imagePreviewEdit = document.getElementById('image-preview-edit');
-    const clearButtonEdit = document.getElementById('clear-button-edit');
-    
-    if (event.target.files.length > 0) {
-        const file = event.target.files[0];
-        const reader = new FileReader();
-        
-        reader.onload = function(e) {
-            imagePreviewEdit.innerHTML = `<img src="${e.target.result}" class="img-fluid rounded-lg" alt="Image preview" style="max-width: 100%; max-height: 100%;">`;
-            clearButtonEdit.style.display = 'block';
-        };
-        
-        reader.readAsDataURL(file);
-    }
-});
-document.getElementById('clear-button-edit').addEventListener('click', function() {
-    const imagePreviewEdit = document.getElementById('image-preview-edit');
-    const uploadInputEdit = document.getElementById('editInput');
-    
     imagePreviewEdit.innerHTML = `<p class="text-gray-500">No image selected</p>`;
-    editInput.value = '';
-    this.style.display = 'none';
+  });
 });
-
-
 </script>
 @endsection

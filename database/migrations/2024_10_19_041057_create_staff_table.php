@@ -13,6 +13,8 @@ return new class extends Migration
             $table->unsignedBigInteger('id_divisi');
             $table->unsignedBigInteger('id_mhs');
             $table->string('nama_jabatan');
+            $table->string('foto_pose_staff')->nullable(    );
+            $table->text('tugas_staff');
             $table->timestamps();
 
             $table->foreign('id_divisi')->references('id_divisi')->on('divisi')->onDelete('restrict')->onUpdate('cascade');
