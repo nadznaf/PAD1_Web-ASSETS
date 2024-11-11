@@ -14,7 +14,7 @@ class dataStaffController extends Controller
 {
     public function index()
     {
-        $admin = Auth::guard('admin')->user();
+        $admin = Auth::guard(name: 'admin')->user();
         $dataStaff = Staff::latest()->with('mahasiswa','divisi')->paginate(5);
         $dataKabinet = Kabinet::orderBy('created_at', 'desc')->get(); //Mengambil data kabinet dari waktu pembuatan terbaru
         $dataMahasiswa = Mahasiswa::orderBy('nama_mhs', 'asc')->get(); // Mengambil data mahasiswa dan mengurutkan secara ascending
@@ -35,7 +35,7 @@ class dataStaffController extends Controller
             'id_mahasiswa' => 'required',
             'namaJabatan' => 'required',
             'tugasStaff' => 'required',
-            'fotoPoseStaff' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            'fotoPoseStaff' => 'nullable|image|mimes:jpg,jpeg,png,svg',
         ], 
         // Error message:
         [
@@ -44,8 +44,7 @@ class dataStaffController extends Controller
             'id_divisi.required' => 'Asal divisi harus diisi.',
             'id_mhs.required' => 'Mahasiswa harus diisi.',
             'fotoPoseStaff.image' => 'File harus berupa gambar.',
-            'fotoPoseStaff.mimes' => 'Gambar harus berformat jpg, jpeg, atau png.',
-            'fotoPoseStaff.max' => 'Ukuran gambar maksimal 2MB.',
+            'fotoPoseStaff.mimes' => 'Gambar harus berformat jpg, jpeg, svg, atau png.',
         ]);
 
         

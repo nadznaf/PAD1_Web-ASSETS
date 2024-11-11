@@ -231,7 +231,7 @@
           <div class="alert alert-danger alert-dismissible fade show" role="alert">
               <ul>
                   @foreach ($errors->all() as $error)
-                     <li><strong>DATA GAGAL DIUNGGAH</strong></li>
+                     <li><strong>ERROR</strong></li>
                       <li>{{ $error }}</li>
                       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                   @endforeach
@@ -272,7 +272,6 @@
             <th>DOSEN PEBIMBING</th>
             <th>PERIODE KABINET</th>
             <th>FOTO SAMPUL KABINET</th>
-            <th>COLOR</th>
             <th>ACTION</th>
           </tr>
         </thead>
@@ -294,7 +293,6 @@
             <td>{{ $kabinet->deskripsi_kabinet }}</td>
             <td>{{ $kabinet->dosen->nama_dosen}}</td>
             <td>{{ $kabinet->tahun_awal_kabinet }} - {{ $kabinet->tahun_akhir_kabinet }}</td>
-            <td>{{ $kabinet->color_pallete->primary_color}}</td>
             <td class="text-center">
               <img src="{{ asset('storage/datakabinet/' . $kabinet->foto_sampul_kabinet) }}" class="rounded w-24 h-24 object-cover">
             </td>

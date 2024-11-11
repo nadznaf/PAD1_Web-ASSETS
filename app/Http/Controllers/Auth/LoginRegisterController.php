@@ -3,6 +3,16 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Models\Admin;
+use App\Models\Artikel;
+use App\Models\Aspirasi;
+use App\Models\Divisi;
+use App\Models\Dokumentasi;
+use App\Models\Kabinet;
+use App\Models\Mahasiswa;
+use App\Models\Dosen;
+use App\Models\Pelaksana;
+use App\Models\Proker;
+use App\Models\Staff;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Controller;
@@ -64,8 +74,22 @@ class LoginRegisterController extends Controller
             // Ambil data admin yang sedang login
             $admin = Auth::guard('admin')->user();
 
+            $jumlahMahasiswa = Mahasiswa::count();
+            $jumlahDosen = Dosen::count();
+            $jumlahKabinet = Kabinet::count();
+            $jumlahDivisi = Divisi::count();
+            $jumlahStaff = Staff::count();
+            $jumlahProker = Proker::count();
+            $jumlahPelaksana = Pelaksana::count();
+            $jumlahDokumentasi = Dokumentasi::count();
+            $jumlahArtikel = Artikel::count();
+            $jumlahAspirasi = Aspirasi::count();
+
             // Kirim data admin ke view 'admin.dashboard'
-            return view('admin.dashboard', compact('admin'));
+            return view('admin.dashboard', compact('admin', 
+            'jumlahMahasiswa', 'jumlahDosen', 'jumlahKabinet', 'jumlahDivisi',
+            'jumlahStaff', 'jumlahProker', 'jumlahPelaksana', 'jumlahDokumentasi',
+            'jumlahArtikel', 'jumlahAspirasi'));
         } 
 
         return redirect()->route('login')->withErrors([

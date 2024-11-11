@@ -26,7 +26,7 @@ class dataDivisiController extends Controller
             'deskripsiDivisi' => 'required',
             'tugasDanTanggungJawab' => 'required',
             'id_kabinet' => 'required',
-            'fotoSampulDivisi' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            'fotoSampulDivisi' => 'nullable|image|mimes:jpg,jpeg,png,svg',
         ], 
         // Error message:
         [
@@ -35,8 +35,7 @@ class dataDivisiController extends Controller
             'tugasDanTanggungJawab.required' => 'Tugas divisi harus diisi.',
             'id_kabinet.required' => 'Asal kabinet harus diisi.',
             'fotoSampulDivisi.image' => 'File harus berupa gambar.',
-            'fotoSampulDivisi.mimes' => 'Gambar harus berformat jpg, jpeg, atau png.',
-            'fotoSampulDivisi.max' => 'Ukuran gambar maksimal 2MB.',
+            'fotoSampulDivisi.mimes' => 'Gambar harus berformat jpg, jpeg, svg, atau png.',
         ]);
     
         $data = [

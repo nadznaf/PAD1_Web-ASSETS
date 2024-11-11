@@ -29,15 +29,13 @@ class dataKabinetController extends Controller
             'id_dosen' => 'required',
             'tahunAwalKabinet' => 'required',
             'tahunAkhirKabinet' => 'required',
-            'fotoKabinet' => 'nullable|image|mimes:jpeg,png|max:2048',
-            'logoKabinet' => 'nullable|image|mimes:jpeg,png|max:2048'
+            'fotoKabinet' => 'nullable|image|mimes:jpeg,png,svg,jpg',
+            'logoKabinet' => 'nullable|image|mimes:jpeg,png,svg,jpg'
         ],
         // error messsage:
         [
-            'fotoKabinet.mimes' => 'Gambar harus berformat jpg, jpeg, atau png.',
-            'logoKabinet.mimes' => 'Gambar harus berformat jpg, jpeg, atau png.',
-            'fotoKabinet.max' => 'Ukuran gambar maksimal 2MB.',
-            'logoKabinet.max' => 'Ukuran gambar maksimal 2MB.',
+            'fotoKabinet.mimes' => 'Gambar harus berformat jpg, jpeg, svg, atau png.',
+            'logoKabinet.mimes' => 'Gambar harus berformat jpg, jpeg, svg, atau png.',
         ]);        
         $data = [
             'nama_kabinet' => $request->namaKabinet,
@@ -76,15 +74,13 @@ class dataKabinetController extends Controller
             'id_dosen' => 'nullable',
             'tahunAwalKabinet' => 'nullable',
             'tahunAkhirKabinet' => 'nullable',
-            'fotoSampulKabinet' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
-            'logoKabinet' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'fotoSampulKabinet' => 'nullable|image|mimes:jpeg,png,jpg,svg',
+            'logoKabinet' => 'nullable|image|mimes:jpeg,png,jpg,svg',
         ],
         // error messsage:
         [
-            'fotoKabinet.mimes' => 'Gambar harus berformat jpg, jpeg, atau png.',
-            'logoKabinet.mimes' => 'Gambar harus berformat jpg, jpeg, atau png.',
-            'fotoKabinet.max' => 'Ukuran gambar maksimal 2MB.',
-            'logoKabinet.max' => 'Ukuran gambar maksimal 2MB.',
+            'fotoKabinet.mimes' => 'Gambar harus berformat jpg, jpeg, svg, atau png.',
+            'logoKabinet.mimes' => 'Gambar harus berformat jpg, jpeg, svg, atau png.',
         ]);  
 
         $kabinet->nama_kabinet = $request->namaKabinet;

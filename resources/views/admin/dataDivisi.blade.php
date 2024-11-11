@@ -98,7 +98,7 @@
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 <ul>
                     @foreach ($errors->all() as $error)
-                       <li><strong>DATA GAGAL DIUNGGAH</strong></li>
+                       <li><strong>ERROR</strong></li>
                         <li>{{ $error }}</li>
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     @endforeach
@@ -172,7 +172,7 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            Apakah Anda yakin ingin menghapus data kabinet ini?
+                            Apakah Anda yakin ingin menghapus data divisi ini?
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>

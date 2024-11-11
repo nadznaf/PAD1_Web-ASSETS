@@ -44,5 +44,9 @@ class Proker extends Model
     {
         return $this->hasMany(WaktuProker::class, 'id_proker');
     }
+    public function dokumentasi()
+    {
+        return $this->hasMany(Dokumentasi::class, 'id_proker');
+    }
 
 }

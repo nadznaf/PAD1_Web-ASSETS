@@ -5,14 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class WaktuProker extends Model
+class Dokumentasi extends Model
 {
     use HasFactory;
 
-    protected $table = 'waktu_proker';
-    protected $primaryKey = 'id_waktu_proker';
+    protected $table = 'dokumentasi';
+    protected $primaryKey = 'id_dokumentasi';
+    public $timestamps = true;
 
-    protected $fillable = ['id_proker', 'tanggal_kegiatan'];
+    protected $fillable = [
+        'id_proker',
+        'isi_dokumentasi',
+        'keterangan_hari',
+    ];
 
     public function proker()
     {

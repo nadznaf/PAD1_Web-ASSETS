@@ -23,7 +23,7 @@ class dataMahasiswaController extends Controller
         $validatedData = $request->validate([
             'namaMahasiswa' => 'required',
             'nimMahasiswa' => 'required|unique:mahasiswa,nim_mhs',
-            'fotoMhs' => 'nullable|image|mimes:jpg,jpeg,png',
+            'fotoMhs' => 'nullable|image|mimes:jpg,jpeg,png,svg',
         ], 
         // Error message:
         [
@@ -31,8 +31,7 @@ class dataMahasiswaController extends Controller
             'nimMahasiswa.required' => 'NIM mahasiswa harus diisi.',
             'nimMahasiswa.unique' => 'NIM mahasiswa sudah terdaftar.',
             'fotoMhs.image' => 'File harus berupa gambar.',
-            'fotoMhs.mimes' => 'Gambar harus berformat jpg, jpeg, atau png.',
-            'fotoMhs.max' => 'Ukuran gambar maksimal 2MB.',
+            'fotoMhs.mimes' => 'Gambar harus berformat jpg, jpeg, svg, atau png.',
         ]);
     
         // Jika validasi berhasil, simpan data mahasiswa
@@ -59,14 +58,13 @@ class dataMahasiswaController extends Controller
         $request->validate([
             'namaMhs' => 'nullable',
             'nimMhs' => 'nullable|unique:mahasiswa,nim_mhs,' . $mahasiswa->id_mhs . ',id_mhs',
-            'fotoMhs' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'fotoMhs' => 'nullable|image|mimes:jpeg,png,jpg,svg',
         ],
         // Error message:
         [
             'nimMahasiswa.unique' => 'NIM mahasiswa sudah terdaftar.',
             'fotoMhs.image' => 'File harus berupa gambar.',
-            'fotoMhs.mimes' => 'Gambar harus berformat jpg, jpeg, atau png.',
-            'fotoMhs.max' => 'Ukuran gambar maksimal 2MB.',
+            'fotoMhs.mimes' => 'Gambar harus berformat jpg, jpeg, svg, atau png.',
         ]);   
     
         // Cek jika nama baru berbeda dari yang ada di database

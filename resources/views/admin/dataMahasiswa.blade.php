@@ -83,7 +83,7 @@
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
             <ul>
                 @foreach ($errors->all() as $error)
-                    <li><strong>DATA GAGAL DIUNGGAH</strong></li>
+                    <li><strong>ERROR</strong></li>
                     <li>{{ $error }}</li>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 @endforeach

@@ -1,12 +1,16 @@
 <?php
 
+use App\Http\Controllers\dataArtikelController;
+use App\Http\Controllers\dataDokumentasiController;
 use App\Http\Controllers\dataMahasiswaController;
 use App\Http\Controllers\dataDosenController;
 use App\Http\Controllers\dataKabinetController;
 use App\Http\Controllers\dataDivisiController;
 use App\Http\Controllers\dataColorPalleteController;
+use App\Http\Controllers\dataPelaksanaController;
 use App\Http\Controllers\dataStaffController;
 use App\Http\Controllers\dataProkerController;
+use App\Http\Controllers\dataAspirasiController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\LoginRegisterController;
@@ -125,5 +129,41 @@ Route::middleware('auth:admin')->group(function () {
         Route::put('/dataproker/{proker:id_proker}', [dataProkerController::class, 'update'])->name('dataproker.update');
         Route::delete('/dataproker/{proker:id_proker}', [dataProkerController::class, 'destroy'])->name('dataproker.destroy');
         Route::post('/get-divisi', [dataProkerController::class, 'getDivisi'])->name('get.divisi');
+        Route::post('/get-proker', [dataProkerController::class, 'getProker'])->name('get.proker');
+    });
+});
+
+Route::middleware('auth:admin')->group(function () {
+    Route::prefix('admin')->name('admin.')->group(function () {
+        Route::get('/datadokumentasi', [dataDokumentasiController::class, 'index'])->name('datadokumentasi.index');
+        Route::post('/datadokumentasi', [dataDokumentasiController::class, 'store'])->name('datadokumentasi.store');
+        Route::put('/datadokumentasi/{dokumentasi:id_dokumentasi}', [dataDokumentasiController::class, 'update'])->name('datadokumentasi.update');
+        Route::delete('/datadokumentasi/{dokumentasi:id_dokumentasi}', [dataDokumentasiController::class, 'destroy'])->name('datadokumentasi.destroy');
+    });
+});
+
+Route::middleware('auth:admin')->group(function () {
+    Route::prefix('admin')->name('admin.')->group(function () {
+        Route::get('/artikel', [dataArtikelController::class, 'index'])->name('artikel.index');
+        Route::post('/artikel', [dataArtikelController::class, 'store'])->name('artikel.store');
+        Route::put('/artikel/{artikel:id_artikel}', [dataArtikelController::class, 'update'])->name('artikel.update');
+        Route::delete('/artikel/{artikel:id_artikel}', [dataArtikelController::class, 'destroy'])->name('artikel.destroy');
+    });
+});
+
+Route::middleware('auth:admin')->group(function () {
+    Route::prefix('admin')->name('admin.')->group(function () {
+        Route::get('/datapelaksana', [dataPelaksanaController::class, 'index'])->name('datapelaksana.index');
+        Route::post('/datapelaksana', [dataPelaksanaController::class, 'store'])->name('datapelaksana.store');
+        Route::put('/datapelaksana/{pelaksana:id_pelaksana}', [dataPelaksanaController::class, 'update'])->name('datapelaksana.update');
+        Route::delete('/datapelaksana/{pelaksana:id_pelaksana}', [dataPelaksanaController::class, 'destroy'])->name('datapelaksana.destroy');
+    });
+});
+
+Route::middleware('auth:admin')->group(function () {
+    Route::prefix('admin')->name('admin.')->group(function () {
+        Route::get('/aspirasi', [dataAspirasiController::class, 'index'])->name('aspirasi.index');
+        Route::post('/aspirasi', [dataAspirasiController::class, 'store'])->name('aspirasi.store');
+        Route::delete('/aspirasi/{aspirasi:id_aspirasi}', [dataAspirasiController::class, 'destroy'])->name('aspirasi.destroy');
     });
 });

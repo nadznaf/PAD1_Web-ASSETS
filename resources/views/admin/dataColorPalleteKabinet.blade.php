@@ -74,37 +74,7 @@
                   <p id="hex-code2" class="font-bold text-lg">#000000</p> <!-- Default value -->
                 </div>
                 <br>
-                <label for="color-select">Kode Hex Third Color (Opsional)</label><br><br>
-                <!-- Color Picker and Color Preview will appear here -->
-                <div class="d-flex justify-content-center">
-                  <fieldset>
-                    <input
-                      type="color"
-                      id="color-select3"
-                      name="thirdColor"
-                      class="mx-3 h-48 w-48 hover:cursor-pointer"
-                      onchange="updateHexCode3()"
-                    />
-                  </fieldset>
-                </div>
-                <!-- Elemen untuk menampilkan kode hex -->
-                <div class="d-flex justify-content-center mt-3">
-                  <p id="hex-code3" class="font-bold text-lg">#000000</p> <!-- Default value -->
-                </div>
-                <br>
-                <label for="color-select">Kode Hex Fourth Color (Opsional)</label><br><br>
-                <!-- Color Picker and Color Preview will appear here -->
-                <div class="d-flex justify-content-center">
-                  <fieldset>
-                    <input
-                      type="color"
-                      id="color-select4"
-                      name="fourthColor"
-                      class="mx-3 h-48 w-48 hover:cursor-pointer"
-                      onchange="updateHexCode4()"
-                    />
-                  </fieldset>
-                </div>
+ 
                 <!-- Elemen untuk menampilkan kode hex -->
                 <div class="d-flex justify-content-center mt-3">
                   <p id="hex-code4" class="font-bold text-lg">#000000</p> <!-- Default value -->
@@ -128,7 +98,7 @@
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 <ul>
                     @foreach ($errors->all() as $error)
-                       <li><strong>DATA GAGAL DIUNGGAH</strong></li>
+                       <li><strong>ERROR</strong></li>
                         <li>{{ $error }}</li>
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     @endforeach
@@ -164,8 +134,6 @@
             <th>NAMA KABINET</th>
             <th>PRIMARY COLOR </th>
             <th>SECONDARY COLOR </th>
-            <th>THIRD COLOR </th>
-            <th>FOURTH COLOR</th>
             <th>ACTION</th>
           </tr>
         </thead>
@@ -187,18 +155,6 @@
                 <div class="flex-none w-6 h-6 rounded" style="background-color: {{ $color->secondary_color }}"></div>
                 <span class="ml-2">{{ $color->secondary_color }}</span>
               </div>
-            </td>
-            <td>
-                <div class="d-grid gap-2 d-sm-flex justify-content-sm-center justify-content-xl-start">
-                    <div class="flex-none w-6 h-6 rounded" style="background-color: {{ $color->third_color }}"></div>
-                    <span class="ml-2">{{ $color->third_color }}</span>
-                </div>
-            </td>
-            <td>
-                <div class="d-grid gap-2 d-sm-flex justify-content-sm-center justify-content-xl-start">
-                    <div class="flex-none w-6 h-6 rounded" style="background-color: {{ $color->fourth_color }}"></div>
-                    <span class="ml-2">{{ $color->fourth_color}}</span>
-                </div>
             </td>
             <td>
             <div class="d-grid gap-2 d-sm-flex justify-content-sm-center justify-content-xl-start">
@@ -304,44 +260,6 @@
                                       </p>
                                   </div>
                               </div>
-                                <div class="mb-3">
-                                    <label for="third-color-select-update">Kode Hex Third Color</label><br><br>
-                                    <div class="d-flex justify-content-center">
-                                      <fieldset>
-                                        <input
-                                          type="color"
-                                          id="third-color-select-update-{{$dataColorPallete->firstItem() + $index }}"
-                                          name="thirdColor"
-                                          class="mx-3 h-48 w-48 hover:cursor-pointer"
-                                          value="{{ $color->third_color }}"
-                                        />
-                                      </fieldset>
-                                    </div>
-                                    <!-- Elemen untuk menampilkan kode hex -->
-                                    <div class="d-flex justify-content-center mt-3">
-                                      <p id="third-hex-code-update-{{$dataColorPallete->firstItem() + $index }}" class="font-bold text-lg">
-                                      {{ $color->third_color }}</p> <!-- Default value -->
-                                    </div>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="fourth-color-select-update">Kode Hex Fourth Color</label><br><br>
-                                    <div class="d-flex justify-content-center">
-                                      <fieldset>
-                                        <input
-                                          type="color"
-                                          id="fourth-color-select-update-{{$dataColorPallete->firstItem() + $index }}"
-                                          name="fourthColor"
-                                          class="mx-3 h-48 w-48 hover:cursor-pointer"
-                                          value="{{ $color->fourth_color }}"
-                                        />
-                                      </fieldset>
-                                    </div>
-                                    <!-- Elemen untuk menampilkan kode hex -->
-                                    <div class="d-flex justify-content-center mt-3">
-                                      <p id="fourth-hex-code-update-{{$dataColorPallete->firstItem() + $index }}" class="font-bold text-lg">
-                                      {{ $color->fourth_color }}</p> <!-- Default value -->
-                                    </div>
-                                </div>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>

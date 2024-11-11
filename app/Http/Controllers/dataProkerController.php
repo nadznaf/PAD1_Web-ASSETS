@@ -38,6 +38,12 @@ class dataProkerController extends Controller
             
         return response()->json($divisi);
     }
+    public function getProker(Request $request)
+    {
+        $proker = Proker::where('id_divisi', $request->id_divisi)->get();
+            
+        return response()->json($proker);
+    }
 
     /**
      * Store a new Proker and its WaktuProker.
@@ -86,45 +92,67 @@ class dataProkerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // Validate input
-        dd($request->all());
-        $request->validate([
-            'id_divisi' => 'required',
-            'judulProker' => 'required',
-            'deskripsiProker' => 'required',
-            'deskripsiKegiatanProker' => 'required',
-            'statusProker' => 'required',
-            'tanggal_kegiatan_edit' => 'required|array',
-            'tanggal_kegiatan_edit.*' => 'required|date',
-        ]);
-    
-        // Count the number of tanggal_kegiatan entries
-        $jumlahHariProker = count($request->tanggal_kegiatan_edit);
-    
-        // Update Proker data
-        $proker = Proker::findOrFail($id);
-        $proker->update([
-            'id_divisi' => $request->id_divisi,
-            'judul_proker' => $request->judulProker,
-            'deskripsi_proker' => $request->deskripsiProker,
-            'deskripsi_kegiatan_proker' => $request->deskripsiKegiatanProker,
-            'status_proker' => $request->statusProker,
-            'jumlah_hari_proker' => $jumlahHariProker,
-        ]);
+    // Decode JSON to array
+    $tanggalKegiatanBaru = json_decode($request->tanggal_kegiatan_edit_baru, true);
 
-        dd($request->tanggal_kegiatan_edit);
-    
-        // Delete existing TanggalKegiatan records and save new ones
-        WaktuProker::where('id_proker', $proker->id_proker)->delete();
+    $request->validate([
+        'id_divisi' => 'required',
+        'judulProker' => 'required',
+        'deskripsiProker' => 'required',
+        'deskripsiKegiatanProker' => 'required',
+        'statusProker' => 'required',
+        // 'tanggal_kegiatan_edit' => 'required|array',
+        'tanggal_kegiatan_edit.*' => 'required|date',
+    ]);
+
+    // Count the number of tanggal_kegiatan entries
+    if(is_null($request->tanggal_kegiatan_edit)){
+        $dataTanggalLama = [];
+    }else{
+        $dataTanggalLama = $request->tanggal_kegiatan_edit;
+    }
+
+    $jumlahHariProker = count($dataTanggalLama + $tanggalKegiatanBaru);
+
+    // Update Proker data
+    $proker = Proker::findOrFail($id);
+    $proker->update([
+        'id_divisi' => $request->id_divisi,
+        'judul_proker' => $request->judulProker,
+        'deskripsi_proker' => $request->deskripsiProker,
+        'deskripsi_kegiatan_proker' => $request->deskripsiKegiatanProker,
+        'status_proker' => $request->statusProker,
+        'jumlah_hari_proker' => $jumlahHariProker,
+    ]);
+
+    // Delete existing TanggalKegiatan records
+    WaktuProker::where('id_proker', $proker->id_proker)->delete();
+
+    if (is_null($request->tanggal_kegiatan_edit) == false){
+        // Save new TanggalKegiatan records
         foreach ($request->tanggal_kegiatan_edit as $tanggal) {
             WaktuProker::create([
                 'id_proker' => $proker->id_proker,
                 'tanggal_kegiatan' => $tanggal,
             ]);
         }
-    
-        return redirect()->route('admin.dataproker.index')->with('success', 'Data proker berhasil diperbarui.');
     }
+
+    // Check if decoding was successful
+    if (is_array($tanggalKegiatanBaru)) {
+        foreach ($tanggalKegiatanBaru as $tanggal) {
+            WaktuProker::create([
+                'id_proker' => $proker->id_proker,
+                'tanggal_kegiatan' => $tanggal,
+            ]);
+        }
+    } else {
+       // Handle error if decoding fails
+        return back()->withErrors(['msg' => 'Invalid data for tanggal kegiatan']);
+    }
+
+    return redirect()->route('admin.dataproker.index')->with('success', 'Data proker berhasil diperbarui.');
+}
     
 
     

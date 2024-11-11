@@ -22,14 +22,13 @@ class dataDosenController extends Controller
         $request->validate([
             'namaDosen' => 'required',
             'nikaDosen' => 'required|unique:dosen_pebimbing,nika_dosen',
-            'fotoDosen' => 'nullable|image|mimes:jpeg,png|max:2048',
+            'fotoDosen' => 'nullable|image|mimes:jpeg,png,svg,jpg',
         ],
         // Error message:
         [
             'namaDosen.required' => 'Nama dosen harus diisi.',
             'nikaDosen.unique' => 'NIKA dosen sudah terdaftar.',
-            'fotoDosen.mimes' => 'Gambar harus berformat jpg, jpeg, atau png.',
-            'fotoDosen.max' => 'Ukuran gambar maksimal 2MB.',
+            'fotoDosen.mimes' => 'Gambar harus berformat jpg, jpeg, svg, atau png.',
         ]);
     
         $data = [
@@ -53,13 +52,12 @@ class dataDosenController extends Controller
         $request->validate([
             'namaDosen' => 'nullable',
             'nikaDosen' => 'nullable|unique:dosen_pebimbing,nika_dosen,' . $dosen->id_dosen . ',id_dosen',
-            'fotoDosen' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'fotoDosen' => 'nullable|image|mimes:jpeg,png,jpg,svg',
         ],
         // Error message:
         [
             'nikaDosen.unique' => 'NIKA dosen sudah terdaftar.',
-            'fotoDosen.mimes' => 'Gambar harus berformat jpg, jpeg, atau png.',
-            'fotoDosen.max' => 'Ukuran gambar maksimal 2MB.',
+            'fotoDosen.mimes' => 'Gambar harus berformat jpg, jpeg, svg, atau png.',
         ]);   
     
         // Cek jika nama baru berbeda dari yang ada di database

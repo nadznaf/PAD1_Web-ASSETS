@@ -147,10 +147,10 @@
                     <label for="statusProker" class="form-label">Status Program Kerja</label>
                     <select name="statusProker" id="statusProker" class="form-select" required>
                         <option value="" disabled selected>Pilih Status Program Kerja</option>
-                        <option value="Bersiap" class="btn btn-warning">Bersiap</option>
-                        <option value="Sedang Berjalan" class="btn btn-secondary">Sedang Berjalan</option>
-                        <option value="Selesai" class="btn btn-success">Selesai</option>
-                        <option value="Dibatalkan" class="btn btn-danger">Dibatalkan</option>
+                        <option value="Bersiap">Bersiap</option>
+                        <option value="Sedang Berjalan">Sedang Berjalan</option>
+                        <option value="Selesai">Selesai</option>
+                        <option value="Dibatalkan">Dibatalkan</option>
                     </select>
                     <div class="invalid-feedback">
                         Please select a valid option.
@@ -243,7 +243,7 @@
             <!-- Tampilkan Tanggal Kegiatan -->
             <td>
                 @foreach ($proker->waktu_proker as $tanggal)
-                    {{ \Carbon\Carbon::parse($tanggal->tanggal_kegiatan)->isoFormat('dddd, DD-MM-YYYY') }}<br>
+                    {{ \Carbon\Carbon::parse($tanggal->tanggal_kegiatan)->isoFormat('dddd, DD-MM-YYYY') }}<hr><br>
                 @endforeach
             </td>
             <td>
@@ -261,8 +261,8 @@
           <div class="modal fade" id="editModal{{  $proker->id_proker }}" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
               <div class="modal-dialog">
                   <div class="modal-content">
-                      <form action="{{ route('admin.dataproker.update',  $proker->id_proker) }}" id="editForm" enctype="multipart/form-data" method="POST" class="needs-validation">
-                          @csrf
+                  <form action="{{ route('admin.dataproker.update',  $proker->id_proker) }}" class="editForm" enctype="multipart/form-data" method="POST" class="needs-validation">
+                  @csrf
                           @method('PUT')
                           <div class="modal-header">
                               <h5 class="modal-title" id="editModalLabel">Edit Data Program Kerja</h5>
@@ -404,7 +404,84 @@
 </div>
 
 <script>
-  function addTanggalKegiatan() {
+
+let editTanggalKegiatanContainer = [];
+
+function addTanggalKegiatanInEdit(containerId) {
+  const container = document.getElementById(containerId);
+
+  // Create a div to wrap the input and button
+  const newField = document.createElement('div');
+  newField.className = 'input-group mb-2';
+
+  // Create the date input
+  const newInput = document.createElement('input');
+  newInput.type = 'date';
+  newInput.name = 'tanggal_kegiatan_edit[]'; // Use array name
+  newInput.className = 'form-control';
+  newInput.required = true;
+
+  // Create the delete button
+  const newDelete = document.createElement('button');
+  newDelete.type = 'button';
+  newDelete.className = 'btn btn-danger';
+  newDelete.textContent = 'Hapus';
+  newDelete.onclick = function() {
+    removeTanggalKegiatanInEdit(this);
+  };
+
+  // Append the input and button to the wrapper div
+  newField.appendChild(newInput);
+  newField.appendChild(newDelete);
+
+  // Append the wrapper div to the container
+  container.appendChild(newField);
+
+  // Add the new input to the editTanggalKegiatanContainer array
+  editTanggalKegiatanContainer.push(newInput);
+}
+
+function removeTanggalKegiatanInEdit(button) {
+  const inputField = button.parentElement;
+  const container = inputField.parentElement;
+  container.removeChild(inputField);
+
+  // Remove the input from the editTanggalKegiatanContainer array
+  const index = editTanggalKegiatanContainer.indexOf(inputField.children[0]);
+  if (index !== -1) {
+    editTanggalKegiatanContainer.splice(index, 1);
+  }
+}
+
+// Add a new function to get the values from the editTanggalKegiatanContainer array
+function getEditTanggalKegiatanValues() {
+  return editTanggalKegiatanContainer.map(input => input.value);
+}
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll(".editForm").forEach(function (form) {
+        form.addEventListener("submit", function (e) {
+        // Get the values from the editTanggalKegiatanContainer array
+        const tanggalKegiatanValues = getEditTanggalKegiatanValues();
+
+        // Create a hidden input field to store the tanggal_kegiatan_edit values
+        const tanggalKegiatanInput = document.createElement('input');
+        tanggalKegiatanInput.type = 'hidden';
+        tanggalKegiatanInput.name = 'tanggal_kegiatan_edit_baru';
+        tanggalKegiatanInput.value = JSON.stringify(tanggalKegiatanValues);
+
+        // Append the hidden input field to the form
+        this.appendChild(tanggalKegiatanInput);
+
+        // Submit the form
+        this.submit();
+        });
+    });
+});
+
+
+function addTanggalKegiatan() {
       const container = document.getElementById('tanggal-kegiatan-container');
       
       // Create a div to wrap the input and button
@@ -418,36 +495,6 @@
       newInput.className = 'form-control';
       
       // Create the close button
-      const newDelete = document.createElement('button');
-      newDelete.type = 'button';
-      newDelete.className = 'btn btn-danger';
-      newDelete.textContent = 'Hapus';
-      newDelete.onclick = function() {
-          container.removeChild(newField);
-      };
-
-      // Append the input and button to the wrapper div
-      newField.appendChild(newInput);
-      newField.appendChild(newDelete);
-
-      // Append the wrapper div to the container
-      container.appendChild(newField);
-  }
-
-  function addTanggalKegiatanInEdit(containerId) {
-      const container = document.getElementById(containerId);
-
-      // Create a div to wrap the input and button
-      const newField = document.createElement('div');
-      newField.className = 'input-group mb-2';
-
-      // Create the date input
-      const newInput = document.createElement('input');
-      newInput.type = 'date';
-      newInput.name = 'tanggal_kegiatan_edit[]'; // Use array name
-      newInput.className = 'form-control';
-
-      // Create the delete button
       const newDelete = document.createElement('button');
       newDelete.type = 'button';
       newDelete.className = 'btn btn-danger';
@@ -545,55 +592,5 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-
-
-    //JS function for image preview in Input Modal
-    document.getElementById('uploadInput').addEventListener('change', function(event) {
-      const imagePreview = document.getElementById('image-preview');
-      const clearButton = document.getElementById('clear-button');
-      
-      if (event.target.files.length > 0) {
-          const file = event.target.files[0];
-          const reader = new FileReader();
-          
-          reader.onload = function(e) {
-              imagePreview.innerHTML = `<img src="${e.target.result}" class="img-fluid rounded-lg" alt="Image preview" style="max-width: 100%; max-height: 100%;">`;
-              clearButton.style.display = 'block';
-          };
-          
-          reader.readAsDataURL(file);
-      }
-  });
-
-
-function getElementsByIdPrefix(prefix) {
-  return document.querySelectorAll(`[id^="${prefix}"]`);
-}
-// JS function for image preview in Edit Modal
-document.querySelectorAll('[id^="editInput-"]').forEach((input, index) => {
-  input.addEventListener('change', function(event) {
-    const imagePreviewEdit = document.getElementById(`image-preview-edit-${index + 1}`);
-    const clearButtonEdit = document.getElementById(`clear-button-edit-${index + 1}`);
-    
-    if (event.target.files.length > 0) {
-      const file = event.target.files[0];
-      const reader = new FileReader();
-      
-      reader.onload = function(e) {
-        imagePreviewEdit.innerHTML = `<img src="${e.target.result}" class="img-fluid rounded-lg" alt="Image preview" style="max-width: 100%; max-height: 100%;">`;
-        clearButtonEdit.style.display = 'block';
-      };
-      
-      reader.readAsDataURL(file);
-    }
-  });
-  
-  document.getElementById(`clear-button-edit-${index + 1}`).addEventListener('click', function() {
-    const imagePreviewEdit = document.getElementById(`image-preview-edit-${index + 1}`);
-    input.value = '';
-    this.style.display = 'none';
-    imagePreviewEdit.innerHTML = `<p class="text-gray-500">No image selected</p>`;
-  });
-});
 </script>
 @endsection
