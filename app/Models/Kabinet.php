@@ -28,16 +28,8 @@ class Kabinet extends Model
         return $this->belongsTo(Dosen::class, 'id_dosen', 'id_dosen');
     }
 
-<<<<<<< HEAD
-
-=======
->>>>>>> bc82c7c8f0864a21171b079b8b18d18743e4bbc3
     public function color_pallete()
     {
         return $this->hasOne(ColorPallete::class, 'id_kabinet', 'id_kabinet');
     }
-<<<<<<< HEAD
-=======
-
->>>>>>> bc82c7c8f0864a21171b079b8b18d18743e4bbc3
 }
