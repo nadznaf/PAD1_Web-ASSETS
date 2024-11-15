@@ -14,7 +14,8 @@ class Divisi extends Model
         "id_kabinet",
         "nama_divisi",
         "deskripsi_divisi",
-        "tugas_dan_tanggung_jawab"	
+        "tugas_dan_tanggung_jawab",
+        "foto_sampul_divisi"
     ];
     public function kabinet()
     {

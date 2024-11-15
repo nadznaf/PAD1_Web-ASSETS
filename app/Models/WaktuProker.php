@@ -14,6 +14,7 @@ class WaktuProker extends Model
 
     protected $fillable = ['id_proker', 'tanggal_kegiatan'];
 
+<<<<<<< HEAD
 
     protected $casts = [
         'dates_list' => 'array', // Cast JSON dates_list to array
@@ -21,6 +22,8 @@ class WaktuProker extends Model
         'end_date' => 'date',
     ];
 
+=======
+>>>>>>> bc82c7c8f0864a21171b079b8b18d18743e4bbc3
     public function proker()
     {
         return $this->belongsTo(Proker::class, 'id_proker', 'id_proker');

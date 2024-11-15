@@ -13,7 +13,7 @@ class dataKabinetController extends Controller
     public function index()
     {
         $admin = Auth::guard('admin')->user();
-        $dataKabinet = Kabinet::with('dosen')->paginate(5);
+        $dataKabinet = Kabinet::latest()->with('dosen')->paginate(5);
         $dataDosen = Dosen::all(); // Mengambil data dosen untuk dropdown
         return view('admin.dataKabinet', compact('dataKabinet', 'dataDosen', 'admin'));
     }
@@ -24,14 +24,26 @@ class dataKabinetController extends Controller
             'namaKabinet' => 'required',
             'visiKabinet' => 'required',
             'misiKabinet' => 'required',
+            'maknaKabinet' => 'nullable',
             'deskripsiKabinet' => 'required',
             'id_dosen' => 'required',
             'tahunAwalKabinet' => 'required',
             'tahunAkhirKabinet' => 'required',
+<<<<<<< HEAD
             'fotoKabinet' => 'nullable|image|mimes:jpeg,png|max:2048',
             'logoKabinet' => 'nullable|image|mimes:jpeg,png|max:2048'
         ]);
 
+=======
+            'fotoKabinet' => 'nullable|image|mimes:jpeg,png,svg,jpg',
+            'logoKabinet' => 'nullable|image|mimes:jpeg,png,svg,jpg'
+        ],
+        // error messsage:
+        [
+            'fotoKabinet.mimes' => 'Gambar harus berformat jpg, jpeg, svg, atau png.',
+            'logoKabinet.mimes' => 'Gambar harus berformat jpg, jpeg, svg, atau png.',
+        ]);        
+>>>>>>> bc82c7c8f0864a21171b079b8b18d18743e4bbc3
         $data = [
             'nama_kabinet' => $request->namaKabinet,
             'visi_kabinet' => $request->visiKabinet,
@@ -69,9 +81,14 @@ class dataKabinetController extends Controller
             'id_dosen' => 'nullable',
             'tahunAwalKabinet' => 'nullable',
             'tahunAkhirKabinet' => 'nullable',
-            'fotoSampulKabinet' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
-            'logoKabinet' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
-        ]);
+            'fotoSampulKabinet' => 'nullable|image|mimes:jpeg,png,jpg,svg',
+            'logoKabinet' => 'nullable|image|mimes:jpeg,png,jpg,svg',
+        ],
+        // error messsage:
+        [
+            'fotoKabinet.mimes' => 'Gambar harus berformat jpg, jpeg, svg, atau png.',
+            'logoKabinet.mimes' => 'Gambar harus berformat jpg, jpeg, svg, atau png.',
+        ]);  
 
         $kabinet->nama_kabinet = $request->namaKabinet;
         $kabinet->visi_kabinet = $request->visiKabinet;

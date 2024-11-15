@@ -92,6 +92,78 @@
                 <span class="hide-menu ms-2 ps-1">Data Divisi</span>
               </a>
             </li>
+            <li class="sidebar-item">
+              <a
+                class="sidebar-link sidebar-link success-hover-bg"
+                href="{{ route('admin.datastaff.index') }}"
+                aria-expanded="false"
+              >
+                <span class="aside-icon p-2 bg-light-success rounded-3">
+                  <i class="ti ti-user fs-7 text-secondary"></i>
+                </span>
+                <span class="hide-menu ms-2 ps-1">Data Staff</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a
+                class="sidebar-link sidebar-link success-hover-bg"
+                href="{{ route('admin.dataproker.index') }}"
+                aria-expanded="false"
+              >
+                <span class="aside-icon p-2 bg-light-success rounded-3">
+                  <i class="ti ti-article fs-7 text-secondary"></i>
+                </span>
+                <span class="hide-menu ms-2 ps-1">Data Proker</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a
+                class="sidebar-link sidebar-link success-hover-bg"
+                href="{{ route('admin.datadokumentasi.index') }}"
+                aria-expanded="false"
+              >
+                <span class="aside-icon p-2 bg-light-success rounded-3">
+                  <i class="ti ti-photo fs-7 text-secondary"></i>
+                </span>
+                <span class="hide-menu ms-2 ps-1">Data Dokumentasi Proker</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a
+                class="sidebar-link sidebar-link success-hover-bg"
+                href="{{ route('admin.datapelaksana.index') }}"
+                aria-expanded="false"
+              >
+                <span class="aside-icon p-2 bg-light-success rounded-3">
+                  <i class="ti ti-user fs-7 text-secondary"></i>
+                </span>
+                <span class="hide-menu ms-2 ps-1">Data Pelaksana Proker</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a
+                class="sidebar-link sidebar-link success-hover-bg"
+                href="{{ route('admin.artikel.index') }}"
+                aria-expanded="false"
+              >
+                <span class="aside-icon p-2 bg-light-success rounded-3">
+                  <i class="ti ti-article fs-7 text-secondary"></i>
+                </span>
+                <span class="hide-menu ms-2 ps-1">Data Artikel</span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a
+                class="sidebar-link sidebar-link success-hover-bg"
+                href="{{ route('admin.aspirasi.index') }}"
+                aria-expanded="false"
+              >
+                <span class="aside-icon p-2 bg-light-success rounded-3">
+                  <i class="ti ti-article fs-7 text-secondary"></i>
+                </span>
+                <span class="hide-menu ms-2 ps-1">Data Aspirasi</span>
+              </a>
+            </li>
             <li class="nav-small-cap">
               <i class="ti ti-dots nav-small-cap-icon fs-5"></i>
               <span class="hide-menu">Auth</span>

@@ -12,18 +12,24 @@ class dataDosenController extends Controller
     public function index()
     {
         $admin = Auth::guard('admin')->user();
-        $dataDosen = Dosen::paginate(5);
+        $dataDosen = Dosen::latest()->paginate(5);
         return view('admin.dataDosen', compact('dataDosen', 'admin'));
     }
 
     public function store(Request $request)
     {
 
-        // $request->validate([
-        //     'namaDosen' => 'required',
-        //     'nikaDosen' => 'required|unique:dosen_pebimbing,nika_dosen',
-        //     'fotoDosen' => 'nullable|image|mimes:jpeg,png|max:2048',
-        // ]);
+        $request->validate([
+            'namaDosen' => 'required',
+            'nikaDosen' => 'required|unique:dosen_pebimbing,nika_dosen',
+            'fotoDosen' => 'nullable|image|mimes:jpeg,png,svg,jpg',
+        ],
+        // Error message:
+        [
+            'namaDosen.required' => 'Nama dosen harus diisi.',
+            'nikaDosen.unique' => 'NIKA dosen sudah terdaftar.',
+            'fotoDosen.mimes' => 'Gambar harus berformat jpg, jpeg, svg, atau png.',
+        ]);
     
         $data = [
             'nama_dosen' => $request->namaDosen,
@@ -46,8 +52,13 @@ class dataDosenController extends Controller
         $request->validate([
             'namaDosen' => 'nullable',
             'nikaDosen' => 'nullable|unique:dosen_pebimbing,nika_dosen,' . $dosen->id_dosen . ',id_dosen',
-            'fotoDosen' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-        ]);        
+            'fotoDosen' => 'nullable|image|mimes:jpeg,png,jpg,svg',
+        ],
+        // Error message:
+        [
+            'nikaDosen.unique' => 'NIKA dosen sudah terdaftar.',
+            'fotoDosen.mimes' => 'Gambar harus berformat jpg, jpeg, svg, atau png.',
+        ]);   
     
         // Cek jika nama baru berbeda dari yang ada di database
         if ($request->namaDosen !== $dosen->nama_dosen) {

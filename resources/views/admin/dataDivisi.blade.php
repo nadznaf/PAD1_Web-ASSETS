@@ -33,6 +33,7 @@
                 </div>
                 <br>
                 
+                <!-- Fill dropdown button content using all data retrieved from kabinet's table -->
                 <label for="id_kabinet">Asal Kabinet</label><br>
                 <select name="id_kabinet" class="form-select" required>
                     <option value="" disabled selected>Pilih Kabinet</option>
@@ -47,7 +48,20 @@
                     Input valid.
                 </div>
                 <br>
-                
+                <label>Foto Sampul Divisi</label><br>
+                <div class="d-flex flex-column align-items-center">
+                  <!-- Preview image will appear here -->
+                    <div id="image-preview" class="border border-gray-400 border-dashed rounded-lg mb-3 p-3"
+                        style="width: 200px; height: 200px; display: flex; justify-content: center; align-items: center; cursor: pointer;"
+                        onclick="document.getElementById('uploadInput').click();">
+                        <p class="text-gray-500">No image selected</p>
+                    </div>
+                    <input type="file" name="fotoSampulDivisi" id="uploadInput" accept="image/*" class="form-control" style="display: none;">
+                    <button type="button" class="btn btn-danger mt-2" id="clear-button" style="display: none;">
+                        Clear Image
+                    </button>
+                </div>
+
                 <label for="deskripsiDivisi">Deskripsi Divisi</label><br>
                 <textarea name="deskripsiDivisi" id="deskripsiDivisi" class="form-control" required style="resize: none;" rows="4" cols="50" placeholder="Tuliskan deskripsi divisi di sini."></textarea>
                 <div class="invalid-feedback">
@@ -79,6 +93,19 @@
 
     <div class="card-body">
       <div class="row">
+      <!-- Show Alert message when any error occur (especially when error storing data) -->
+        @if ($errors->any())
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                       <li><strong>ERROR</strong></li>
+                        <li>{{ $error }}</li>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    @endforeach
+                </ul>
+            </div>
+          @endif
+        <!-- Search Data in Table -->
         <div class="col-md-10">
             <div class="input-group">
               <span class="input-group-text" id="basic-addon1">
@@ -98,7 +125,7 @@
       </div>
     </div>
     <br>
-    <!-- dataKabinet Table -->
+    <!-- dataDivisi Table -->
     <div class="table-responsive">
       <table class="table table-bordered">
         <thead>
@@ -106,28 +133,31 @@
             <th>NO.</th>
             <th>NAMA DIVISI</th>
             <th>ASAL KABINET</th>
+            <th>FOTO SAMPUL DIVISI</th>
             <th>DESKRIPSI DIVISI</th>
             <th>TUGAS & TANGGUNG JAWAB DIVISI</th>
             <th>ACTION</th>
           </tr>
         </thead>
+        
+        <!-- Fill Table Body using Retrieved Data from Database-->
         <tbody id="TableBody">
           @foreach($dataDivisi as $index => $divisi)
           <tr>
             <td>{{ $dataDivisi->firstItem() + $index }}</td>
             <td>{{ $divisi->nama_divisi }}</td>
-            <td>{{ $kabinet->nama_kabinet }}</td>
+            <td>{{ $divisi->kabinet->nama_kabinet }}</td>
+            <td class="text-center">
+              <img src="{{ asset('storage/datadivisi/' . $divisi->foto_sampul_divisi) }}" class="rounded w-24 h-24 object-cover">
+            </td>
             <td>{{ $divisi->deskripsi_divisi }}</td>
             <td>{{ $divisi->tugas_dan_tanggung_jawab }}</td>
             <td>
-            <div class="d-grid gap-2 d-sm-flex justify-content-sm-center justify-content-xl-start">
+            <div>
               <!-- Edit Button -->
-              <button type="button" class="btn" id="buttonedit" data-bs-toggle="modal"
+              <button type="button" class="btn W-100" id="buttonedit" data-bs-toggle="modal"
                 data-bs-target="#editModal{{ $divisi->id_divisi}}">
                 Edit
-              </button>
-              <button type="button" class="btn" id="buttonred" data-bs-toggle="modal" data-bs-target="#deleteModal{{ $divisi->id_divisi}}">
-                Delete
               </button>
               </div>
             </td>
@@ -142,7 +172,7 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            Apakah Anda yakin ingin menghapus data kabinet ini?
+                            Apakah Anda yakin ingin menghapus data divisi ini?
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
@@ -173,6 +203,7 @@
                                     <input type="text" class="form-control" name="namaDivisi" value="{{ $divisi->nama_divisi }}">
                                 </div>
                                 <div class="mb-3">
+                                    <!-- Fill dropdown button content using all data retrieved from kabinet's table -->
                                     <label for="id_kabinet">Asal Kabinet</label><br>
                                     <select name="id_kabinet" class="form-select" required>
                                         <!-- Option pertama adalah dosen yang sudah dipilih -->
@@ -185,6 +216,18 @@
                                             @endif
                                         @endforeach
                                     </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label>Foto Sampul Divisi</label><br>
+                                    <div class="d-flex flex-column align-items-center">
+                                        <div id="image-preview-edit-{{$dataDivisi->firstItem() + $index }}" class="border border-gray-400 border-dashed rounded-lg mb-3 p-3"
+                                            style="width: 200px; height: 200px; display: flex; justify-content: center; align-items: center; cursor: pointer;"
+                                            onclick="document.getElementById('editInput-{{$dataDivisi->firstItem() + $index }}').click();">
+                                            <img src="{{ asset('storage/datadivisi/' . $divisi->foto_sampul_divisi) }}" class="rounded" style="object-fit: cover; max-width: 100%; max-height: 100%;">
+                                        </div>
+                                        <input type="file" name="fotoSampulDivisi" id="editInput-{{$dataDivisi->firstItem() + $index }}" accept="image/*" class="form-control" style="display: none;">
+                                        <button type="button" class="btn btn-danger mt-2" id="clear-button-edit-{{$dataDivisi->firstItem() + $index }}">Clear Image</button>
+                                    </div>
                                 </div>
                                 <div class="mb-3">
                                     <label for="deskripsiDivisi">Deskripsi Divisi</label><br>
@@ -245,4 +288,54 @@
     </ul>
   </nav>
 </div>
+<script>
+    //JS function for image preview in Input Modal
+    document.getElementById('uploadInput').addEventListener('change', function(event) {
+      const imagePreview = document.getElementById('image-preview');
+      const clearButton = document.getElementById('clear-button');
+      
+      if (event.target.files.length > 0) {
+          const file = event.target.files[0];
+          const reader = new FileReader();
+          
+          reader.onload = function(e) {
+              imagePreview.innerHTML = `<img src="${e.target.result}" class="img-fluid rounded-lg" alt="Image preview" style="max-width: 100%; max-height: 100%;">`;
+              clearButton.style.display = 'block';
+          };
+          
+          reader.readAsDataURL(file);
+      }
+  });
+
+
+function getElementsByIdPrefix(prefix) {
+  return document.querySelectorAll(`[id^="${prefix}"]`);
+}
+// JS function for image preview in Edit Modal
+document.querySelectorAll('[id^="editInput-"]').forEach((input, index) => {
+  input.addEventListener('change', function(event) {
+    const imagePreviewEdit = document.getElementById(`image-preview-edit-${index + 1}`);
+    const clearButtonEdit = document.getElementById(`clear-button-edit-${index + 1}`);
+    
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      const reader = new FileReader();
+      
+      reader.onload = function(e) {
+        imagePreviewEdit.innerHTML = `<img src="${e.target.result}" class="img-fluid rounded-lg" alt="Image preview" style="max-width: 100%; max-height: 100%;">`;
+        clearButtonEdit.style.display = 'block';
+      };
+      
+      reader.readAsDataURL(file);
+    }
+  });
+  
+  document.getElementById(`clear-button-edit-${index + 1}`).addEventListener('click', function() {
+    const imagePreviewEdit = document.getElementById(`image-preview-edit-${index + 1}`);
+    input.value = '';
+    this.style.display = 'none';
+    imagePreviewEdit.innerHTML = `<p class="text-gray-500">No image selected</p>`;
+  });
+});
+</script>
 @endsection

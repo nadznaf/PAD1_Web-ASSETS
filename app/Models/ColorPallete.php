@@ -13,7 +13,7 @@ class ColorPallete extends Model
         "id_color_pallete",
         "id_kabinet",
         "primary_color",
-        "secondary_color"
+        "secondary_color",
     ];
     public function kabinet()
     {
