@@ -8,8 +8,9 @@ use App\Http\Controllers\dataColorPalleteController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\LoginRegisterController;
-
-
+use App\Http\Controllers\ArtikelController;
+use App\Http\Controllers\AboutController;
+use App\Http\Controllers\KabinetController;
 
 // Route::get('/', function () {
 //     return view('user.home');
@@ -17,10 +18,16 @@ use App\Http\Controllers\Auth\LoginRegisterController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
+Route::get('/artikel', [ArtikelController::class, 'index'])->name('artikel');
 
-Route::get('/kabinet', function () {
-    return view('user.kabinet');
-})->name('kabinet');
+Route::get('/about', [AboutController::class, 'index'])->name('about');
+
+Route::get('/kabinet', [KabinetController::class, 'index'])->name('kabinet');
+
+
+Route::get('/detailMahasiswa', function () {
+    return view('user.detailMahasiswa');
+})->name('detailMahasiswa');
 
 Route::get('/kabinet/{id}', [dataKabinetController::class, 'show'])->name('kabinet.show');
 
@@ -32,9 +39,9 @@ Route::get('/proker', function () {
     return view('user.proker');
 })->name('proker');
 
-Route::get('/artikel', function () {
-    return view('user.artikel');
-})->name('artikel');
+// Route::get('/artikel', function () {
+//     return view('user.artikel');
+// })->name('artikel');
 
 // Route::get('/kabinet/{id}', [artikelController::class, 'show'])->name('kabinet.show');
 
@@ -42,9 +49,9 @@ Route::get('/detailArtikel', function () {
     return view('user.detailArtikel');
 })->name('detailArtikel');
 
-Route::get('/about', function () {
-    return view('user.about');
-})->name('about');
+// Route::get('/about', function () {
+//     return view('user.about');
+// })->name('about');
 
 
 // Route::get('/', [HomeController::class, 'index'])->name('home');

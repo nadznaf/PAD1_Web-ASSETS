@@ -14,6 +14,8 @@ class HomeController extends Controller
 {
     public function index()
     {
+        $dataKabinet = Kabinet::all();
+
         // AMBIL 2 DATA ARTIKEL TERBARU
         $artikelTerbaru = Artikel::orderBy('tanggal_terbit', 'desc')->take(2)->get();
 
@@ -37,12 +39,14 @@ class HomeController extends Controller
                 $dataKabinet = Kabinet::with('dosen')->get();
                 // geeratepake ai buat ambil data artikel 2 terbaru berdasarkan kolom tanggal publish-nya
 
-                return view('user.home', compact('dataKabinet'));
-            }
+        return view('user.home', compact('dataKabinet'));
+    }
 
     public function about()
     {
         // Mengembalikan view untuk halaman about
         return view('user.about');
     }
+
+
 }

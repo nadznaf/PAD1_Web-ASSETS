@@ -16,7 +16,10 @@
         "vite": "^5.0"
     },
     "dependencies": {
+        "@preline/carousel": "^2.5.0",
         "aos": "^2.3.4",
-        "bootstrap": "^5.3.3"
+        "bootstrap": "^5.3.3",
+        "preline": "^2.5.1",
+        "swiper": "^11.1.14"
     }
 }

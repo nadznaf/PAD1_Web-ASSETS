@@ -16,9 +16,7 @@ class CreateWaktuProkerTable extends Migration
         Schema::create('waktu_proker', function (Blueprint $table) {
             $table->id("id_waktu_proker"); // Kolom id sebagai primary key
             $table->unsignedBigInteger('id_proker');
-            $table->date('start_date'); // Tanggal mulai
-            $table->date('end_date'); // Tanggal akhir
-            $table->json('dates_list'); // List tanggal dalam bentuk JSON
+            $table->date('tanggal_kegiatan'); // Tanggal kegiatan
             $table->timestamps(); // Kolom created_at dan updated_at
 
             $table->foreign('id_proker')->references('id_proker')->on('proker')->onDelete('restrict')->onUpdate('cascade');

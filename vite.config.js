@@ -8,4 +8,9 @@ export default defineConfig({
             refresh: true,
         }),
     ],
+    resolve: {
+        alias: {
+            'swiper': 'swiper/swiper-bundle.min.js'
+        }
+    }
 });

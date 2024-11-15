@@ -71,8 +71,8 @@
                   <p id="hex-code2" class="font-bold text-lg">#000000</p> <!-- Default value -->
                 </div>
                 <br>
-                
-            
+
+
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
                 <button type="submit" class="btn" id="button">Tambah</button>
@@ -129,7 +129,7 @@
                     <span class="ml-2">{{ $color->primary_color }}</span>
                 </div>
             </td>
-            <td>
+            <td>`
                 <div class="d-grid gap-2 d-sm-flex justify-content-sm-center justify-content-xl-start">
                     <div class="flex-none w-6 h-6 rounded" style="background-color: {{ $color->secondary_color }}"></div>
                     <span class="ml-2">{{ $color->secondary_color }}</span>
@@ -189,7 +189,7 @@
                                     <select name="id_kabinet" class="form-select" required>
                                         <!-- Option pertama adalah dosen yang sudah dipilih -->
                                         <option value="{{ $color->id_kabinet }}" selected>{{ $color->kabinet->nama_kabinet }}</option>
-                                        
+
                                         <!-- Iterasi untuk menampilkan dosen lain selain dosen yang sudah dipilih -->
                                         @foreach ($dataKabinet as $kabinet)
                                             @if ($kabinet->id_kabinet != $color->id_kabinet)
