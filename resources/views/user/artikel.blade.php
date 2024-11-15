@@ -131,7 +131,7 @@
 
             <!-- "Lihat lainnya..." Button -->
             <div class="mx-4 md:mx-16 flex justify-end">
-                <button id="toggle-button" class="text-blue-600 mt-4" onclick="toggleArticles()">Lihat lainnya...</button>
+                <button id="toggle-button" class="text-assets mt-4 hover:text-second_a" onclick="toggleArticles()">Lihat lainnya...</button>
             </div>
         </div>
 

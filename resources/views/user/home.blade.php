@@ -141,86 +141,86 @@
     <div class="p-16">
         <div class="grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-4">
             {{-- foreach --}}
-            <div class="flex flex-col bg-bg_aspiration border border-second_a shadow-md rounded-xl">
+            <div class="group flex flex-col bg-bg_aspiration border-2 hover:border-4 border-border_aspiration hover:bg-assets shadow-md rounded-xl">
                 <div class="p-4 md:p-7">
                     <div class="shrink-0 group block">
                         <div class="flex items-center">
-                            <img class="inline-block shrink-0 size-[40px] rounded-full" src="{{ asset('assets/profile.svg') }}" alt="Avatar" aria-placeholder="black">
+                            <img class="inline-block shrink-0 size-[40px] rounded-full" src="{{ asset('assets/profile.svg') }}" alt="Avatar">
                             <div class="ms-3">
-                                <h3 class="font-semibold text-black text-base">Nama</h3>
+                                <h3 class="font-semibold text-black group-hover:text-white text-base">Nama</h3>
                                 <p class="text-xs font-medium text-judul_aspiration uppercase">judul</p>
                             </div>
                         </div>
                     </div>
-                    <p class="mt-4 text-black text-center font-light">
+                    <p class="mt-4 text-black group-hover:text-white text-center font-light">
                         "With supporting text below as a natural lead-in to additional content."
                     </p>
                 </div>
             </div>
 
-            <div class="flex flex-col bg-bg_aspiration border border-second_a shadow-md rounded-xl">
+            <div class="group flex flex-col bg-bg_aspiration border-2 hover:border-4 border-border_aspiration hover:bg-assets shadow-md rounded-xl">
                 <div class="p-4 md:p-7">
                     <div class="shrink-0 group block">
                         <div class="flex items-center">
-                            <img class="inline-block shrink-0 size-[40px] rounded-full" src="{{ asset('assets/profile.svg') }}" alt="Avatar" aria-placeholder="black">
+                            <img class="inline-block shrink-0 size-[40px] rounded-full" src="{{ asset('assets/profile.svg') }}" alt="Avatar">
                             <div class="ms-3">
-                                <h3 class="font-semibold text-black text-base">Nama</h3>
+                                <h3 class="font-semibold text-black group-hover:text-white text-base">Nama</h3>
                                 <p class="text-xs font-medium text-judul_aspiration uppercase">judul</p>
                             </div>
                         </div>
                     </div>
-                    <p class="mt-4 text-black text-center font-light">
+                    <p class="mt-4 text-black group-hover:text-white text-center font-light">
                         "With supporting text below as a natural lead-in to additional content."
                     </p>
                 </div>
             </div>
 
-            <div class="flex flex-col bg-bg_aspiration border border-second_a shadow-md rounded-xl">
+            <div class="group flex flex-col bg-bg_aspiration border-2 hover:border-4 border-border_aspiration hover:bg-assets shadow-md rounded-xl">
                 <div class="p-4 md:p-7">
                     <div class="shrink-0 group block">
                         <div class="flex items-center">
-                            <img class="inline-block shrink-0 size-[40px] rounded-full" src="{{ asset('assets/profile.svg') }}" alt="Avatar" aria-placeholder="black">
+                            <img class="inline-block shrink-0 size-[40px] rounded-full" src="{{ asset('assets/profile.svg') }}" alt="Avatar">
                             <div class="ms-3">
-                                <h3 class="font-semibold text-black text-base">Nama</h3>
+                                <h3 class="font-semibold text-black group-hover:text-white text-base">Nama</h3>
                                 <p class="text-xs font-medium text-judul_aspiration uppercase">judul</p>
                             </div>
                         </div>
                     </div>
-                    <p class="mt-4 text-black text-center font-light">
+                    <p class="mt-4 text-black group-hover:text-white text-center font-light">
                         "With supporting text below as a natural lead-in to additional content."
                     </p>
                 </div>
             </div>
 
-            <div class="flex flex-col bg-bg_aspiration border border-second_a shadow-md rounded-xl">
+            <div class="group flex flex-col bg-bg_aspiration border-2 hover:border-4 border-border_aspiration hover:bg-assets shadow-md rounded-xl">
                 <div class="p-4 md:p-7">
                     <div class="shrink-0 group block">
                         <div class="flex items-center">
-                            <img class="inline-block shrink-0 size-[40px] rounded-full" src="{{ asset('assets/profile.svg') }}" alt="Avatar" aria-placeholder="black">
+                            <img class="inline-block shrink-0 size-[40px] rounded-full" src="{{ asset('assets/profile.svg') }}" alt="Avatar">
                             <div class="ms-3">
-                                <h3 class="font-semibold text-black text-base">Nama</h3>
+                                <h3 class="font-semibold text-black group-hover:text-white text-base">Nama</h3>
                                 <p class="text-xs font-medium text-judul_aspiration uppercase">judul</p>
                             </div>
                         </div>
                     </div>
-                    <p class="mt-4 text-black text-center font-light">
+                    <p class="mt-4 text-black group-hover:text-white text-center font-light">
                         "With supporting text below as a natural lead-in to additional content."
                     </p>
                 </div>
             </div>
 
-            <div class="flex flex-col bg-bg_aspiration border border-second_a shadow-md rounded-xl">
+            <div class="group flex flex-col bg-bg_aspiration border-2 hover:border-4 border-border_aspiration hover:bg-assets shadow-md rounded-xl">
                 <div class="p-4 md:p-7">
                     <div class="shrink-0 group block">
                         <div class="flex items-center">
-                            <img class="inline-block shrink-0 size-[40px] rounded-full" src="{{ asset('assets/profile.svg') }}" alt="Avatar" aria-placeholder="black">
+                            <img class="inline-block shrink-0 size-[40px] rounded-full" src="{{ asset('assets/profile.svg') }}" alt="Avatar">
                             <div class="ms-3">
-                                <h3 class="font-semibold text-black text-base">Nama</h3>
+                                <h3 class="font-semibold text-black group-hover:text-white text-base">Nama</h3>
                                 <p class="text-xs font-medium text-judul_aspiration uppercase">judul</p>
                             </div>
                         </div>
                     </div>
-                    <p class="mt-4 text-black text-center font-light">
+                    <p class="mt-4 text-black group-hover:text-white text-center font-light">
                         "With supporting text below as a natural lead-in to additional content."
                     </p>
                 </div>

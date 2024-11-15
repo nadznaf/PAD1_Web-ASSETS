@@ -29,21 +29,16 @@ class dataKabinetController extends Controller
             'id_dosen' => 'required',
             'tahunAwalKabinet' => 'required',
             'tahunAkhirKabinet' => 'required',
-<<<<<<< HEAD
             'fotoKabinet' => 'nullable|image|mimes:jpeg,png|max:2048',
             'logoKabinet' => 'nullable|image|mimes:jpeg,png|max:2048'
         ]);
 
-=======
-            'fotoKabinet' => 'nullable|image|mimes:jpeg,png,svg,jpg',
-            'logoKabinet' => 'nullable|image|mimes:jpeg,png,svg,jpg'
-        ],
         // error messsage:
         [
             'fotoKabinet.mimes' => 'Gambar harus berformat jpg, jpeg, svg, atau png.',
             'logoKabinet.mimes' => 'Gambar harus berformat jpg, jpeg, svg, atau png.',
-        ]);        
->>>>>>> bc82c7c8f0864a21171b079b8b18d18743e4bbc3
+        ];
+
         $data = [
             'nama_kabinet' => $request->namaKabinet,
             'visi_kabinet' => $request->visiKabinet,
@@ -88,7 +83,7 @@ class dataKabinetController extends Controller
         [
             'fotoKabinet.mimes' => 'Gambar harus berformat jpg, jpeg, svg, atau png.',
             'logoKabinet.mimes' => 'Gambar harus berformat jpg, jpeg, svg, atau png.',
-        ]);  
+        ]);
 
         $kabinet->nama_kabinet = $request->namaKabinet;
         $kabinet->visi_kabinet = $request->visiKabinet;
