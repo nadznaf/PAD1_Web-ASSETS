@@ -139,5 +139,4 @@ class dataKabinetController extends Controller
 
         return redirect()->route('admin.datakabinet.index')->with('success', 'Data kabinet berhasil dihapus.');
     }
- 
 }

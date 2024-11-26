@@ -9,9 +9,7 @@ use App\Models\Proker;
 use App\Models\Dokumentasi;
 
 
-class KabinetController extends Controller
-{
-
+class KabinetController extends Controller {
     // DETAIL STRUKTUR KABINET
     public function strukturKabinet($id)
     {
