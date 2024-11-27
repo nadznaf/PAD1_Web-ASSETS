@@ -98,11 +98,26 @@
             <hr class="w-80 h-px my-8 bg-black">
         </div>
 
-        <div class="grid grid-cols-2 mx-8 mb-16 md:grid-cols-6 gap-4">
+        <div class="grid grid-cols-2 mx-8 md:grid-cols-6 gap-4">
+            <div class="group col-span-1 justify-items-center text-center" data-modal-target="default-modal" data-modal-toggle="default-modal">
+                <img src="assets/panit_series1.svg" class="w-28 h-28 rounded-full" alt="panit_series1">
+                <p class="mt-4 font-bold text-xl group-hover:underline">Ahmad Luthfi Abdillah</p>
+                <p class="text-lg">Ketua Pelaksana</p>
+            </div>
+            <div class="group col-span-1 justify-items-center text-center" data-modal-target="default-modal" data-modal-toggle="default-modal">
+                <img src="assets/panit_series1.svg" class="w-28 h-28 rounded-full" alt="panit_series1">
+                <p class="mt-4 font-bold text-xl group-hover:underline">Risma</p>
+                <p class="text-lg">Sekretaris</p>
+            </div>
+            <div class="group col-span-1 justify-items-center text-center" data-modal-target="default-modal" data-modal-toggle="default-modal">
+                <img src="assets/panit_series1.svg" class="w-28 h-28 rounded-full" alt="panit_series1">
+                <p class="mt-4 font-bold text-xl group-hover:underline">Luthfi Lisana</p>
+                <p class="text-lg">Bendahara</p>
+            </div>
             <div class="col-span-1 justify-items-center text-center">
                 <img src="assets/panit_series1.svg" class="w-28 h-28 rounded-full" alt="panit_series1">
                 <p class="mt-4 font-bold text-xl">Ahmad Luthfi Abdillah</p>
-                <p class="text-xl">Ketua Pelaksana</p>
+                <p class="text-lg">Ketua Pelaksana</p>
             </div>
             <div class="col-span-1 justify-items-center text-center">
                 <img src="assets/panit_series1.svg" class="w-28 h-28 rounded-full" alt="panit_series1">
@@ -143,15 +158,80 @@
                 <img src="assets/panit_series1.svg" class="w-28 h-28 rounded-full" alt="panit_series1">
                 <p class="mt-4 font-bold text-xl">Ahmad Luthfi Abdillah</p>
                 <p class="text-xl">Ketua Pelaksana</p>
-            </div><div class="col-span-1 justify-items-center text-center">
-                <img src="assets/panit_series1.svg" class="w-28 h-28 rounded-full" alt="panit_series1">
-                <p class="mt-4 font-bold text-xl">Ahmad Luthfi Abdillah</p>
-                <p class="text-xl">Ketua Pelaksana</p>
-            </div><div class="col-span-1 justify-items-center text-center">
-                <img src="assets/panit_series1.svg" class="w-28 h-28 rounded-full" alt="panit_series1">
-                <p class="mt-4 font-bold text-xl">Ahmad Luthfi Abdillah</p>
-                <p class="text-xl">Ketua Pelaksana</p>
             </div>
+
+
+        </div>
+
+        <!-- Additional Articles (Hidden by Default) -->
+        <div id="extra-proker" class="hidden mt-6">
+            <div class="grid grid-cols-2 mx-8 md:grid-cols-6 gap-4">
+                <div class="group col-span-1 justify-items-center text-center" data-modal-target="default-modal" data-modal-toggle="default-modal">
+                    <img src="assets/panit_series1.svg" class="w-28 h-28 rounded-full" alt="panit_series1">
+                    <p class="mt-4 font-bold text-xl group-hover:underline">Ahmad Luthfi Abdillah</p>
+                    <p class="text-lg">Ketua Pelaksana</p>
+                </div>
+                <div class="group col-span-1 justify-items-center text-center" data-modal-target="default-modal" data-modal-toggle="default-modal">
+                    <img src="assets/panit_series1.svg" class="w-28 h-28 rounded-full" alt="panit_series1">
+                    <p class="mt-4 font-bold text-xl group-hover:underline">Risma</p>
+                    <p class="text-lg">Sekretaris</p>
+                </div>
+                <div class="group col-span-1 justify-items-center text-center" data-modal-target="default-modal" data-modal-toggle="default-modal">
+                    <img src="assets/panit_series1.svg" class="w-28 h-28 rounded-full" alt="panit_series1">
+                    <p class="mt-4 font-bold text-xl group-hover:underline">Luthfi Lisana</p>
+                    <p class="text-lg">Bendahara</p>
+                </div>
+                <div class="col-span-1 justify-items-center text-center">
+                    <img src="assets/panit_series1.svg" class="w-28 h-28 rounded-full" alt="panit_series1">
+                    <p class="mt-4 font-bold text-xl">Ahmad Luthfi Abdillah</p>
+                    <p class="text-lg">Ketua Pelaksana</p>
+                </div>
+                <div class="col-span-1 justify-items-center text-center">
+                    <img src="assets/panit_series1.svg" class="w-28 h-28 rounded-full" alt="panit_series1">
+                    <p class="mt-4 font-bold text-xl">Ahmad Luthfi Abdillah</p>
+                    <p class="text-xl">Ketua Pelaksana</p>
+                </div>
+                <div class="col-span-1 justify-items-center text-center">
+                    <img src="assets/panit_series1.svg" class="w-28 h-28 rounded-full" alt="panit_series1">
+                    <p class="mt-4 font-bold text-xl">Ahmad Luthfi Abdillah</p>
+                    <p class="text-xl">Ketua Pelaksana</p>
+                </div>
+                <div class="col-span-1 justify-items-center text-center">
+                    <img src="assets/panit_series1.svg" class="w-28 h-28 rounded-full" alt="panit_series1">
+                    <p class="mt-4 font-bold text-xl">Ahmad Luthfi Abdillah</p>
+                    <p class="text-xl">Ketua Pelaksana</p>
+                </div>
+                <div class="col-span-1 justify-items-center text-center">
+                    <img src="assets/panit_series1.svg" class="w-28 h-28 rounded-full" alt="panit_series1">
+                    <p class="mt-4 font-bold text-xl">Ahmad Luthfi Abdillah</p>
+                    <p class="text-xl">Ketua Pelaksana</p>
+                </div>
+                <div class="col-span-1 justify-items-center text-center">
+                    <img src="assets/panit_series1.svg" class="w-28 h-28 rounded-full" alt="panit_series1">
+                    <p class="mt-4 font-bold text-xl">Ahmad Luthfi Abdillah</p>
+                    <p class="text-xl">Ketua Pelaksana</p>
+                </div>
+                <div class="col-span-1 justify-items-center text-center">
+                    <img src="assets/panit_series1.svg" class="w-28 h-28 rounded-full" alt="panit_series1">
+                    <p class="mt-4 font-bold text-xl">Ahmad Luthfi Abdillah</p>
+                    <p class="text-xl">Ketua Pelaksana</p>
+                </div>
+                <div class="col-span-1 justify-items-center text-center">
+                    <img src="assets/panit_series1.svg" class="w-28 h-28 rounded-full" alt="panit_series1">
+                    <p class="mt-4 font-bold text-xl">Ahmad Luthfi Abdillah</p>
+                    <p class="text-xl">Ketua Pelaksana</p>
+                </div>
+                <div class="col-span-1 justify-items-center text-center">
+                    <img src="assets/panit_series1.svg" class="w-28 h-28 rounded-full" alt="panit_series1">
+                    <p class="mt-4 font-bold text-xl">Ahmad Luthfi Abdillah</p>
+                    <p class="text-xl">Ketua Pelaksana</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- "Lihat lainnya..." Button -->
+        <div class="mt-8 mx-4 md:mx-16 flex justify-center">
+            <button id="toggle-button" class="text-amara mt-4 hover:text-font" onclick="toggleProker()">Lihat lainnya...</button>
         </div>
     </div>
 
@@ -163,46 +243,50 @@
             <hr class="w-80 h-px my-8 bg-black">
         </div>
         <div class="grid grid-cols-2 mx-8 mb-16 md:grid-cols-3 gap-4">
-            <div>
-                <img class="h-auto max-w-full rounded-lg" src="{{ asset('assets/home_assets.svg') }}" alt="dokum_img1">
+            <div class="flex justify-center">
+                <img class="h-fit max-w-full rounded-lg" src="{{ asset('assets/home_assets.svg') }}" alt="dokum_img1">
             </div>
-            <div>
-                <img class="h-auto max-w-full rounded-lg" src="{{ asset('assets/pilihan_amara.svg') }}" alt="dokum_img">
+            <div class="flex justify-center">
+                <img class="h-fit max-w-full rounded-lg" src="{{ asset('assets/yodhim.svg') }}" alt="dokum_img">
             </div>
-            <div>
+            <div class="flex justify-center">
                 <img class="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-2.jpg" alt="">
             </div>
-            <div>
+            <div class="flex justify-center">
                 <img class="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-3.jpg" alt="">
             </div>
-            <div>
+            <div class="flex justify-center">
                 <img class="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-4.jpg" alt="">
             </div>
-            <div>
-                <img class="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-5.jpg" alt="">
+            <div class="flex justify-center">
+                <img class="h-fit max-w-full rounded-lg" src="{{ asset('assets/home_assets.svg') }}" alt="dokum_img1">
             </div>
-            <div>
-                <img class="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-6.jpg" alt="">
+            <div class="flex justify-center">
+                <img class="h-fit max-w-full rounded-lg" src="{{ asset('assets/yodhim.svg') }}" alt="dokum_img">
             </div>
-            <div>
-                <img class="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-7.jpg" alt="">
+            <div class="flex justify-center">
+                <img class="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-2.jpg" alt="">
             </div>
-            <div>
-                <img class="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-8.jpg" alt="">
-            </div>
-            <div>
-                <img class="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-9.jpg" alt="">
-            </div>
-            <div>
-                <img class="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-10.jpg" alt="">
-            </div>
-            <div>
-                <img class="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-11.jpg" alt="">
+            <div class="flex justify-center">
+                <img class="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-3.jpg" alt="">
             </div>
         </div>
 
 
     </div>
 
+    <script>
+        function toggleProker() {
+            var extraProker = document.getElementById("extra-proker");
+            var toggleButton = document.getElementById("toggle-button");
+            if (extraProker.classList.contains("hidden")) {
+                extraProker.classList.remove("hidden");
+                toggleButton.innerText = "Tampilkan lebih sedikit...";
+            } else {
+                extraProker.classList.add("hidden");
+                toggleButton.innerText = "Lihat lainnya...";
+            }
+        }
+    </script>
 </div>
 @endsection

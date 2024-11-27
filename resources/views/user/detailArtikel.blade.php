@@ -9,7 +9,7 @@
             {{-- {{ $article->image }} --}}
         </div>
         <div class="flex flex-col">
-            <div class="mt-16 justify-items-center mx-32">
+            <div class="mt-16 justify-items-center mx-8 lg:mx-32 md:mx-20">
                 <p class="text-judul_aspiration mt-2 mb-6">
                     Sabtu, 16 November 2024 | Oleh:
                         {{-- {{ $article->date }} --}}
@@ -18,7 +18,7 @@
                         {{-- {{ $article->author }} --}}
                     </span>
                 </p>
-                <h2 class="text-3xl font-bold text-dark text-center underline mb-16 md:px-32">
+                <h2 class="text-3xl font-bold text-dark text-center underline mb-16 md:px-16">
                     Mahasiswa TRPL Raih Juara 1 dalam Bidang Data Science pada ICONIC IT 2024
                     {{-- {{ $article->title }} --}}
                 </h2>
@@ -41,9 +41,9 @@
                     {{-- {{ $article->content }} --}}
                 </div>
             </div>
-            <div class="my-16 mx-32">
+            <div class="my-16 mx-8 md:mx-20 lg:mx-32">
                 <p class=" text-font">Referensi:</p>
-                <p class=" text-font">https://trpl.sv.ugm.ac.id/2024/09/28/mahasiswa-trpl-raih-juara-1-dalam-bidang-data-science-pada-iconic-it-2024/</p>
+                <a href="https://trpl.sv.ugm.ac.id/2024/09/28/mahasiswa-trpl-raih-juara-1-dalam-bidang-data-science-pada-iconic-it-2024/" target="_blank" class=" text-font hover:underline">Mahasiswa TRPL Raih Juara 1 dalam Bidang Data Science pada ICONIC IT 2024</p>
             </div>
         </div>
     </div>

@@ -6,11 +6,11 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
         .body { font-family='Inter' !important}
-
+        
     </style>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet"href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
-    @vite(['./public/css/style.css', './public/js/app.js'])
+    @vite(['./public/css/style.css', './public/js/script.js'])
     <title>@yield('title')</title>
 </head>
 <body>
@@ -23,7 +23,8 @@
 
     @include('partials.footer')
 
-    <script src="{{ asset('node_modules/preline/plugin/dist/preline.js') }}"></script>
+
+    <script src="./node_modules/preline/dist/preline.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
     <script src="{{ asset('public/js/script.js') }}"></script>

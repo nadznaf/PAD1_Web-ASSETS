@@ -11,11 +11,11 @@
     </div>
 
     <!-- Main Content Section -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mx-6 mb-24 md:mx-32 my-8 md:my-16">
-        <div class="text-center">
-            <img src="{{ asset('storage/datakabinet/' . $kabinet->logo_kabinet) }}" class="w-full h-auto" alt="Amara Logo">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mx-8 lg:mx-32 my-16">
+        <div class="text-center flex align-middle m-8 md:m-0">
+            <img src="{{ asset('storage/datakabinet/' . $kabinet->logo_kabinet) }}" class="w-full h-auto" alt="Kabinet Logo">
         </div>
-        <div class="flex flex-col justify-center space-y-6">
+        <div class="flex flex-col justify-center space-y-6 m-8">
             <div class="flex items-start">
                 <div class="w-6 h-6 bg-amara rounded-full mr-4"></div>
                 <div>
@@ -41,69 +41,127 @@
     </div>
 
     <!-- Divisi Kepengurusan Section -->
-    <div class="text-center mx-6 md:mx-auto max-w-2xl lg:max-w-4xl">
+    <div class="text-center mt-32 mb-8 mx-6 md:mx-auto">
         <h2 class="mt-2 text-2xl md:text-4xl font-semibold text-amara uppercase">Divisi Kepengurusan {{ $kabinet->nama_kabinet }}</h2>
-        <p class="mt-4 md:mt-6 mb-8 text-base md:text-lg font-normal text-amara">{{ $kabinet->deskripsi_kabinet }}</p>
+        <p class="mt-4 md:mt-6 text-base md:text-lg font-normal text-amara">{{ $kabinet->deskripsi_kabinet }}</p>
     </div>
-    {{-- pengurus harian --}}
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16 px-6 md:px-12 justify-items-center">
-        <figure class="relative transition-all duration-300 cursor-pointer filter grayscale hover:grayscale-0" data-modal-target="default-modal" data-modal-toggle="default-modal">
-            <img class="rounded-lg" src="{{ asset('assets/yodhim.svg') }}" alt="Ketua Kabinet">
-            <figcaption class="absolute bottom-4 px-4 text-white">
-                <p class="font-bold text-xl">Ketua Kabinet</p>
-                <p class="text-lg">Yodhimas Geffananda</p>
-            </figcaption>
-        </figure>
-        <figure class="relative transition-all duration-300 cursor-pointer filter grayscale hover:grayscale-0" data-modal-target="default-modal" data-modal-toggle="default-modal">
-            <img class="rounded-lg" src="{{ asset('assets/rioga.svg') }}" alt="Ketua Kabinet">
-            <figcaption class="absolute bottom-4 px-4 text-white">
-                <p class="font-bold text-xl">Sekretaris Jenderal</p>
-                <p class="text-lg">Rioga Natayuda</p>
-            </figcaption>
-        </figure>
-        <figure class="relative transition-all duration-300 cursor-pointer filter grayscale hover:grayscale-0" data-modal-target="default-modal" data-modal-toggle="default-modal">
-            <img class="rounded-lg" src="{{ asset('assets/risma.svg') }}" alt="Ketua Kabinet">
-            <figcaption class="absolute bottom-4 px-4 text-white">
-                <p class="font-bold text-xl">Sekretaris</p>
-                <p class="text-lg">Risma Saputri</p>
-                <p class="text-lg">Charizza Thunjung</p>
-            </figcaption>
-        </figure>
-        <figure class="relative transition-all duration-300 cursor-pointer filter grayscale hover:grayscale-0" data-modal-target="default-modal" data-modal-toggle="default-modal">
-            <img class="rounded-lg" src="{{ asset('assets/luthfi.svg') }}" alt="Ketua Kabinet">
-            <figcaption class="absolute bottom-4 px-4 text-white">
-                <p class="font-bold text-xl">Bendahara</p>
-                <p class="text-lg">Luthfi Lisana</p>
-                <p class="text-lg">Marwah Kamila</p>
-            </figcaption>
-        </figure>
+
+    {{-- slider ph --}}
+    <!-- Slider -->
+    <div data-hs-carousel='{
+        "loadingClasses": "opacity-0",
+        "slidesQty": {
+        "xs": 1,
+        "md": 2,
+        "lg": 4
+        },
+        "isDraggable": true
+    }' class="relative">
+        <div class="hs-carousel w-full h-full overflow-hidden bg-white rounded-lg p-0">
+                <div class="hs-carousel-body relative top-0 bottom-0 start-0 flex justify-center flex-nowrap opacity-0 cursor-grab transition-transform duration-700 hs-carousel-dragging:transition-none hs-carousel-dragging:cursor-grabbing">
+                    <div class="hs-carousel-slide flex justify-center px-1">
+                        <figure class="relative transition-all duration-300 cursor-pointer filter grayscale hover:grayscale-0" data-modal-target="default-modal" data-modal-toggle="default-modal">
+                            <img src="{{ asset('assets/yodhim.svg') }}" class="rounded-lg object-bottom" alt="Ketua Kabinet">
+                            <figcaption class="absolute bottom-4 px-4 pb-4 text-white">
+                                <p class="font-semibold text-4xl">Ketua Kabinet</p>
+                                <p class="text-2xl">Yodhimas Geffananda</p>
+                            </figcaption>
+                        </figure>
+                    </div>
+                    <div class="hs-carousel-slide flex justify-center px-1">
+                        <figure class="relative transition-all duration-300 cursor-pointer filter grayscale hover:grayscale-0" data-modal-target="default-modal" data-modal-toggle="default-modal">
+                            <img class="rounded-lg" src="{{ asset('assets/rioga.svg') }}" alt="Sekretaris Jenderal Kabinet">
+                            <figcaption class="absolute bottom-4 px-4 pb-4 text-white">
+                                <p class="font-semibold text-4xl">Sekretaris Jenderal</p>
+                                <p class="text-2xl">Rioga Natayuda</p>
+                            </figcaption>
+                        </figure>
+                    </div>
+                    <div class="hs-carousel-slide flex justify-center px-1">
+                        <figure class="relative transition-all duration-300 cursor-pointer filter grayscale hover:grayscale-0" data-modal-target="default-modal" data-modal-toggle="default-modal">
+                            <img class="rounded-lg" src="{{ asset('assets/risma.svg') }}" alt="Sekretaris 1 Kabinet">
+                            <figcaption class="absolute bottom-4 px-4 pb-4 text-white">
+                                <p class="font-semibold text-4xl">Sekretaris 1</p>
+                                <p class="text-2xl">Risma Saputri</p>
+                            </figcaption>
+                        </figure>
+                    </div>
+                    <div class="hs-carousel-slide flex justify-center px-1">
+                        <figure class="relative transition-all duration-300 cursor-pointer filter grayscale hover:grayscale-0" data-modal-target="default-modal" data-modal-toggle="default-modal">
+                            <img class="rounded-lg" src="{{ asset('assets/charizza.svg') }}" alt="Sekretaris 2 Kabinet">
+                            <figcaption class="absolute bottom-4 px-4 pb-4 text-white">
+                                <p class="font-semibold text-4xl">Sekretaris 2</p>
+                                <p class="text-2xl">Charizza Thunjung</p>
+                            </figcaption>
+                        </figure>
+                    </div>
+                    <div class="hs-carousel-slide flex justify-center px-1">
+                        <figure class="relative transition-all duration-300 cursor-pointer filter grayscale hover:grayscale-0" data-modal-target="default-modal" data-modal-toggle="default-modal">
+                            <img class="rounded-lg" src="{{ asset('assets/luthfi.svg') }}" alt="Bendahara 1 Kabinet">
+                            <figcaption class="absolute bottom-4 px-4 pb-4 text-white">
+                                <p class="font-semibold text-4xl">Bendahara 1</p>
+                                <p class="text-2xl">Luthfi Lisana</p>
+                            </figcaption>
+                        </figure>
+                    </div>
+                    <div class="hs-carousel-slide flex justify-center px-1">
+                        <figure class="relative transition-all duration-300 cursor-pointer filter grayscale hover:grayscale-0" data-modal-target="default-modal" data-modal-toggle="default-modal">
+                            <img class="rounded-lg" src="{{ asset('assets/marwah.svg') }}" alt="Bendahara 2 Kabinet">
+                            <figcaption class="absolute bottom-4 px-4 pb-4 text-white">
+                                <p class="font-semibold text-4xl">Bendahara 2</p>
+                                <p class="text-2xl">Marwah Kamila</p>
+                            </figcaption>
+                        </figure>
+                    </div>
+                </div>
+
+        </div>
+
+        <button type="button" class="hs-carousel-prev hs-carousel-disabled:opacity-50 hs-carousel-disabled:pointer-events-none absolute inset-y-0 start-0 inline-flex justify-center items-center w-[46px] h-full rounded-l-xl text-dark backdrop-blur-sm bg-white/30">
+        <span class="text-2xl" aria-hidden="true">
+            <svg class="shrink-0 size-5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m15 18-6-6 6-6"></path>
+            </svg>
+        </span>
+        <span class="sr-only">Previous</span>
+        </button>
+        <button type="button" class="hs-carousel-next hs-carousel-disabled:opacity-50 hs-carousel-disabled:pointer-events-none absolute inset-y-0 end-0 inline-flex justify-center items-center w-[46px] h-full rounded-r-xl text-dark backdrop-blur-sm bg-white/30">
+        <span class="sr-only">Next</span>
+        <span class="text-2xl" aria-hidden="true">
+            <svg class="shrink-0 size-5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m9 18 6-6-6-6"></path>
+            </svg>
+        </span>
+        </button>
     </div>
+    <!-- End Slider -->
+
     {{-- divisi --}}
-    <div class="grid grid-cols-2 mx-8 mb-16 md:grid-cols-5 gap-4">
+    <div class="grid grid-cols-2 mx-8 mb-16 pt-16 lg:grid-cols-5 md:grid-cols-3 gap-4">
         <div class="col-span-1 justify-items-center text-center">
-            <img src="{{ asset('assets/charizza.svg') }}" class="w-36 h-36 rounded-full" alt="divisi">
+            <img src="{{ asset('assets/psdm.jpg') }}" class="w-36 h-36 rounded-full" alt="divisi">
             <p class="mt-4 font-bold text-xl uppercase">psdm</p>
         </div>
         <div class="col-span-1 justify-items-center text-center">
-            <img src="{{ asset('assets/marwah.svg') }}" class="w-36 h-36 rounded-full" alt="divisi">
+            <img src="{{ asset('assets/humpub.jpg') }}" class="w-36 h-36 rounded-full" alt="divisi">
             <p class="mt-4 font-bold text-xl uppercase">humpub</p>
         </div>
         <div class="col-span-1 justify-items-center text-center">
-            <img src="{{ asset('assets/charizza.svg') }}" class="w-36 h-36 rounded-full" alt="divisi">
+            <img src="{{ asset('assets/kastrad.jpg') }}" class="w-36 h-36 rounded-full" alt="divisi">
             <p class="mt-4 font-bold text-xl uppercase">kastrad</p>
         </div>
         <div class="col-span-1 justify-items-center text-center">
-            <img src="{{ asset('assets/marwah.svg') }}" class="w-36 h-36 rounded-full" alt="divisi">
+            <img src="{{ asset('assets/medkraf.jpg') }}" class="w-36 h-36 rounded-full" alt="divisi">
             <p class="mt-4 font-bold text-xl uppercase">medkraf</p>
         </div>
         <div class="col-span-1 justify-items-center text-center">
-            <img src="{{ asset('assets/charizza.svg') }}" class="w-36 h-36 rounded-full" alt="divisi">
+            <img src="{{ asset('assets/minkat.jpg') }}" class="w-36 h-36 rounded-full" alt="divisi">
             <p class="mt-4 font-bold text-xl uppercase">minkat</p>
         </div>
     </div>
     <div class="flex justify-center mb-32">
         <a href="{{ route('kepengurusan') }}" type="button" class="text-white bg-black hover:bg-amara hover:text-black font-medium rounded-full text-sm px-5 py-2.5 text-center">
-            Lihat Semua
+            Selengkapnya
         </a>
     </div>
 

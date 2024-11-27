@@ -8,11 +8,11 @@
     @vite('public/css/stylesAdmin.css')
     <style>
       @import url(https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200);
-      
+
       @import url(https://fonts.googleapis.com/css2?family=Lato&display=swap);
-      
+
       @import url(https://fonts.googleapis.com/css2?family=Open+Sans&display=swap);
-      
+
       @import url(https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200);
 
       body{
@@ -21,7 +21,7 @@
     </style>
   </head>
   <body>
-    <div id="webcrumbs"> 
+    <div id="webcrumbs">
       <div class="container">
         <div class="left-section">
           <div class="flex flex-col items-left">
@@ -32,7 +32,7 @@
             <p class="text-sm">Admin Software Engineer</p>
           </div>
         </div>
-        
+
         <div class="right-section">
           <h2 class="text-3xl font-title mb-2">Log In</h2>
           <p class="text-sm mb-6">
@@ -64,7 +64,7 @@
                   <span class="text-danger">{{ $errors->first('email') }}</span>
               @endif
             </div>
-            
+
             <div class="relative">
               <span class="material-symbols-outlined absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500">
                 lock
@@ -77,7 +77,7 @@
             </button>
           </form>
         </div>
-      </div> 
+      </div>
     </div>
   </body>
 </html>

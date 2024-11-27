@@ -42,27 +42,27 @@
         </div>
     </div>
     <div class="p-8 md:p-16">
-        <a href="{{ route('detailArtikel') }}" class="flex flex-col items-center mb-16 bg-white rounded-lg md:flex-row md:max-w-full hover:bg-gray-100">
-            <img class="object-cover w-full h-80 rounded-lg md:w-1/2" src="{{ asset('assets/artikel1.svg') }}" alt="Artikel's pict">
-            <div class="flex flex-col justify-between p-4 leading-normal">
+        <a href="{{ route('detailArtikel') }}" class="group flex flex-col items-center mb-16 bg-white rounded-lg md:flex-row md:max-w-full">
+            <img class="object-cover w-full h-80 rounded-lg md:w-1/3" src="{{ asset('assets/artikel1.svg') }}" alt="Artikel's pict">
+            <div class="flex flex-col justify-between p-4 ms-4 leading-normal">
                 <p class="mb-4 font-normal text-font">Tanggal publish</p>
-                <h5 class="mb-2 text-2xl font-bold tracking-tight text-assets">Mahasiswa TRPL 2021 Berkesempatan Magang Berbasis Riset di Asia University</h5>
+                <h5 class="mb-2 text-2xl font-bold text-assets group-hover:text-second_a">Mahasiswa TRPL 2021 Berkesempatan Magang Berbasis Riset di Asia University</h5>
                 <p class="mb-3 font-normal text-description">Niki Hidayati dan Ninis Dyah Yulianingsih, dua mahasiswa Program Studi Teknologi Rekayasa Perangkat Lunak...</p>
             </div>
         </a>
-        <a href="{{ route('detailArtikel') }}" class="flex flex-col-reverse items-center mb-16 bg-white rounded-lg md:flex-row md:max-w-full hover:bg-gray-100">
+        <a href="{{ route('detailArtikel') }}" class="group flex flex-col-reverse items-center mb-16 bg-white rounded-lg md:flex-row md:max-w-full">
             <div class="flex flex-col justify-between p-4 leading-normal">
                 <p class="mb-4 font-normal text-font">Tanggal publish</p>
-                <h5 class="mb-2 text-2xl font-bold tracking-tight text-assets">Mahasiswa TRPL UGM Raih Juara 2 dan People’s Choice Award di Samsung Innovation Campus 2023/2024</h5>
+                <h5 class="mb-2 text-2xl font-bold text-assets group-hover:text-second_a">Mahasiswa TRPL UGM Raih Juara 2 dan People’s Choice Award di Samsung Innovation Campus 2023/2024</h5>
                 <p class="mb-3 font-normal text-description">Mahasiswa Universitas Gadjah Mada dari Program Studi Teknologi Rekayasa Perangkat Lunak (TRPL).. </p>
             </div>
-            <img class="object-cover w-full h-80 rounded-lg md:w-1/2" src="{{ asset('assets/artikel2.svg') }}" alt="Artikel's pict">
+            <img class="object-cover w-full h-80 rounded-lg md:w-1/3" src="{{ asset('assets/artikel2.svg') }}" alt="Artikel's pict">
         </a>
-        <a href="{{ route('detailArtikel') }}" class="flex flex-col items-center mb-16 bg-white rounded-lg md:flex-row md:max-w-full hover:bg-gray-100">
-            <img class="object-cover w-full h-80 rounded-lg md:w-1/2" src="{{ asset('assets/artikel3.svg') }}" alt="Artikel's pict">
-            <div class="flex flex-col justify-between p-4 leading-normal">
+        <a href="{{ route('detailArtikel') }}" class="group flex flex-col items-center mb-16 bg-white rounded-lg md:flex-row md:max-w-full">
+            <img class="object-cover w-full h-80 rounded-lg md:w-1/3" src="{{ asset('assets/artikel3.svg') }}" alt="Artikel's pict">
+            <div class="flex flex-col justify-between p-4 ms-4 leading-normal">
                 <p class="mb-4 font-normal text-font">Tanggal publish</p>
-                <h5 class="mb-2 text-2xl font-bold tracking-tight text-assets">Mahasiswa TRPL Raih Juara 1 dalam Bidang Data Science pada ICONIC IT 2024</h5>
+                <h5 class="mb-2 text-2xl font-bold text-assets group-hover:text-second_a">Mahasiswa TRPL Raih Juara 1 dalam Bidang Data Science pada ICONIC IT 2024</h5>
                 <p class="mb-3 font-normal text-description">Pada 24 September 2024, tiga mahasiswa Universitas Gadjah Mada dari program studi Teknologi R...</p>
             </div>
         </a>
@@ -76,37 +76,37 @@
         </div>
         <div class="space-y-4">
             <!-- Article List -->
-            <div class="grid grid-cols-8 items-center md:gap-4 gap-1">
+            <div class="group grid grid-cols-8 items-center md:gap-4 gap-1">
                 <div class="col-span-1">
                     <img src="{{ asset('assets/artikel1.svg') }}" class="object-cover h-8 w-8 md:h-20 md:w-20 rounded-3xl" alt="Artikel 1">
                 </div>
                 <div class="col-span-7">
                     <a href="{{ route('detailArtikel') }}" class="block">
-                        <h5 class="text-xl font-semibold text-assets">Mahasiswa TRPL Raih Juara 1 dalam Bidang Data Science pada ICONIC IT 2024</h5>
+                        <h5 class="text-xl font-semibold text-assets group-hover:text-second_a">Mahasiswa TRPL Raih Juara 1 dalam Bidang Data Science pada ICONIC IT 2024</h5>
                     </a>
                     <p class="text-gray-500 text-sm">Sabtu, 28 September 2024</p>
                 </div>
             </div>
 
-            <div class="grid grid-cols-8 items-center md:gap-4 gap-1">
+            <div class="group grid grid-cols-8 items-center md:gap-4 gap-1">
                 <div class="col-span-1">
                     <img src="{{ asset('assets/artikel2.svg') }}" class="object-cover h-8 w-8 md:h-20 md:w-20 rounded-3xl" alt="Artikel 2">
                 </div>
                 <div class="col-span-7">
                     <a href="{{ route('detailArtikel') }}" class="block">
-                        <h5 class="text-xl font-semibold text-assets">Mahasiswa TRPL UGM Raih Juara 2 dan People’s Choice Award di Samsung Innovation Campus 2023/2024</h5>
+                        <h5 class="text-xl font-semibold text-assets group-hover:text-second_a">Mahasiswa TRPL UGM Raih Juara 2 dan People’s Choice Award di Samsung Innovation Campus 2023/2024</h5>
                     </a>
                     <p class="text-gray-500 text-sm">Kamis, 17 Oktober 2024</p>
                 </div>
             </div>
 
-            <div class="grid grid-cols-8 items-center md:gap-4 gap-1">
+            <div class="group grid grid-cols-8 items-center md:gap-4 gap-1">
                 <div class="col-span-1">
                     <img src="{{ asset('assets/artikel3.svg') }}" class="object-cover h-8 w-8 md:h-20 md:w-20 rounded-3xl" alt="Artikel 3">
                 </div>
                 <div class="col-span-7">
                     <a href="{{ route('detailArtikel') }}" class="block">
-                        <h5 class="text-xl font-semibold text-assets">Mahasiswa TRPL 2021 Berkesempatan Magang Berbasis Riset di Asia University</h5>
+                        <h5 class="text-xl font-semibold text-assets group-hover:text-second_a">Mahasiswa TRPL 2021 Berkesempatan Magang Berbasis Riset di Asia University</h5>
                     </a>
                     <p class="text-gray-500 text-sm">Kamis, 17 Oktober 2024</p>
                 </div>
@@ -116,13 +116,13 @@
             <div id="extra-articles" class="hidden">
                 <!-- Add more article items here with the same structure -->
                 <!-- Example of an additional article -->
-                <div class="grid grid-cols-8 items-center md:gap-4 gap-1">
+                <div class="group grid grid-cols-8 items-center md:gap-4 gap-1">
                     <div class="col-span-1">
                         <img src="{{ asset('assets/artikel1.svg') }}" class="object-cover h-8 w-8 md:h-20 md:w-20 rounded-3xl" alt="Artikel 4">
                     </div>
                     <div class="col-span-7">
                         <a href="{{ route('detailArtikel') }}" class="block">
-                            <h5 class="text-xl font-semibold text-assets">Mahasiswa TRPL Berhasil dalam Kompetisi Inovasi Teknologi</h5>
+                            <h5 class="text-xl font-semibold text-assets group-hover:text-second_a">Mahasiswa TRPL Berhasil dalam Kompetisi Inovasi Teknologi</h5>
                         </a>
                         <p class="text-gray-500 text-sm">Minggu, 24 September 2024</p>
                     </div>
