@@ -69,6 +69,16 @@
                 </div>
                 <br>
 
+                <label for="tanggalTerbit">Tanggal Terbit  Artikel</label>
+                  <input type="date" class="form-control" name="tanggalTerbit" required>
+                <div class="invalid-feedback">
+                    Input tangggal artikel secara valid!
+                </div>
+                <div class="valid-feedback">
+                    Input valid.
+                </div>
+                <br>
+
                 <label for="tautanArtikel">Tautan Sumber Resmi Artikel (Opsional)</label><br>
                 <input type="text" name="tautanArtikel" placeholder="Tuliskan tautan resmi artikel, jika artikel yang dibuat mengikuti artikel yang telah terbit" class="form-control"
                   required>
@@ -105,11 +115,7 @@
             </div>
           @endif
         <!-- Search Data in Table -->
-<<<<<<< HEAD
         <div class="col-md-8">
-=======
-        <div class="col-md-10">
->>>>>>> 3a175ae9b407bc5ac71f8872492413fc8249071f
             <div class="input-group">
               <span class="input-group-text" id="basic-addon1">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" class="w-5 h-5">
@@ -119,11 +125,7 @@
               <input type="text" id="searchInput" class="form-control" placeholder="Search in this Category..." onkeyup="searchTable()">
             </div>
         </div>
-<<<<<<< HEAD
         <div class="col-md-4">
-=======
-        <div class="col-md-2">
->>>>>>> 3a175ae9b407bc5ac71f8872492413fc8249071f
           <!-- Button trigger modal -->
           <button type="button" id="button" class="btn w-100" data-bs-toggle="modal" data-bs-target="#insertData">
             Tambah Data
@@ -235,6 +237,12 @@
                                     <textarea name="kontenArtikel" id="kontenArtikel" value="{{$artikel->konten_artikel}}" class="form-control" required style="resize: none;" rows="20" cols="1000">{{$artikel->konten_artikel}}</textarea>
                                 </div>
                                 <div class="mb-3">
+                                  <label for="tanggalTerbit">Tanggal Terbit  Artikel</label>
+                                  <input type="date" class="form-control" name="tanggalTerbit" 
+                                  value="{{ \Carbon\Carbon::parse($artikel->tanggal_terbit)->format('Y-m-d') }}" required>
+                                </div>
+
+                                <div class="mb-3">
                                     <label for="tautanArtikel">Tautan Sumber Resmi Artikel (Opsional)</label><br>
                                     <input type="text" name="tautanArtikel" value="{{$artikel->tautan_artikel_resmi}}" class="form-control"
                                     required>
@@ -308,7 +316,14 @@
           reader.readAsDataURL(file);
       }
   });
-
+  document.getElementById('clear-button').addEventListener('click', function() {
+      const imagePreview = document.getElementById('image-preview');
+      const uploadInput = document.getElementById('uploadInput');
+      
+      imagePreview.innerHTML = `<p class="text-gray-500">No image selected</p>`;
+      uploadInput.value = '';
+      this.style.display = 'none';
+  });
 
 function getElementsByIdPrefix(prefix) {
   return document.querySelectorAll(`[id^="${prefix}"]`);

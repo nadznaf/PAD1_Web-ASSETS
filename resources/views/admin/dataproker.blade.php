@@ -122,6 +122,22 @@
                 </div>
 
                 <div class="mb-3">
+                  <label>Foto Sampul Program Kerja</label><br>
+                  <div class="d-flex flex-column align-items-center">
+                    <!-- Preview image will appear here -->
+                      <div id="image-preview" class="border border-gray-400 border-dashed rounded-lg mb-3 p-3"
+                          style="width: 200px; height: 200px; display: flex; justify-content: center; align-items: center; cursor: pointer;"
+                          onclick="document.getElementById('uploadInput').click();">
+                          <p class="text-gray-500">No image selected</p>
+                      </div>
+                      <input type="file" name="fotoSampulProker" id="uploadInput" accept="image/*" class="form-control" style="display: none;">
+                      <button type="button" class="btn btn-danger mt-2" id="clear-button" style="display: none;">
+                          Clear Image
+                      </button>
+                  </div>
+                </div>
+
+                <div class="mb-3">
                     <label for="deskripsiProker">Penjelasan Mengenai Program Kerja</label><br>
                     <textarea name="deskripsiProker" id="deskripsiProker" class="form-control" required style="resize: none;" rows="4" cols="50" placeholder="Tuliskan penjelasan mengenai program kerja"></textarea>
                     <div class="invalid-feedback">
@@ -192,11 +208,7 @@
             </div>
           @endif
         <!-- Search Data in Table -->
-<<<<<<< HEAD
         <div class="col-md-8">
-=======
-        <div class="col-md-10">
->>>>>>> 3a175ae9b407bc5ac71f8872492413fc8249071f
             <div class="input-group">
               <span class="input-group-text" id="basic-addon1">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" class="w-5 h-5">
@@ -206,11 +218,7 @@
               <input type="text" id="searchInput" class="form-control" placeholder="Search in this Category..." onkeyup="searchTable()">
             </div>
         </div>
-<<<<<<< HEAD
         <div class="col-md-4">
-=======
-        <div class="col-md-2">
->>>>>>> 3a175ae9b407bc5ac71f8872492413fc8249071f
           <!-- Button trigger modal -->
           <button type="button" id="button" class="btn w-100" data-bs-toggle="modal" data-bs-target="#insertData">
             Tambah Data
@@ -227,6 +235,7 @@
             <th>NO.</th>
             <th>JUDUL PROKER</th>
             <th>PENYELENGGARA</th>
+            <th>FOTO SAMPUL PROKER</th>
             <th>PENJELASAN PROKER</th>
             <th>DESKRIPSI KEGIATAN</th>
             <th>STATUS PROKER</th>
@@ -245,6 +254,9 @@
                 <strong>Kabinet Penyelenggara:</strong> <br>{{ $proker->divisi->nama_divisi }} <br> <hr>
                 <strong>Divisi Penyelenggara:</strong> <br>{{ $proker->divisi->kabinet->nama_kabinet }} <br>  
             </td>            
+            <td class="text-center">
+              <img src="{{ asset('storage/dataproker/' . $proker->foto_sampul_proker) }}" class="rounded w-24 h-24 object-cover">
+            </td>
             <td>{{ $proker->deskripsi_proker }}</td>
             <td>{{ $proker->deskripsi_kegiatan_proker }}</td>
             <td>{{ $proker->status_proker}}</td>
@@ -308,6 +320,19 @@
                                 <div class="mb-3">
                                     <label for="judulProker" class="form-label">Judul Program Kerja</label>
                                     <input type="text" class="form-control" name="judulProker" value={{$proker->judul_proker}}>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label>Foto Sampul Proker</label><br>
+                                    <div class="d-flex flex-column align-items-center">
+                                        <div id="image-preview-edit-{{$dataProker->firstItem() + $index }}" class="border border-gray-400 border-dashed rounded-lg mb-3 p-3"
+                                            style="width: 200px; height: 200px; display: flex; justify-content: center; align-items: center; cursor: pointer;"
+                                            onclick="document.getElementById('editInput-{{$dataProker->firstItem() + $index }}').click();">
+                                            <img src="{{ asset('storage/dataproker/' . $proker->foto_sampul_proker) }}" class="rounded" style="object-fit: cover; max-width: 100%; max-height: 100%;">
+                                        </div>
+                                        <input type="file" name="fotoSampulProker" id="editInput-{{$dataProker->firstItem() + $index }}" accept="image/*" class="form-control" style="display: none;">
+                                        <button type="button" class="btn btn-danger mt-2" id="clear-button-edit-{{$dataProker->firstItem() + $index }}">Clear Image</button>
+                                    </div>
                                 </div>
 
                                 <div class="mb-3">
@@ -600,5 +625,61 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+
+    //JS function for image preview in Input Modal
+    document.getElementById('uploadInput').addEventListener('change', function(event) {
+      const imagePreview = document.getElementById('image-preview');
+      const clearButton = document.getElementById('clear-button');
+      
+      if (event.target.files.length > 0) {
+          const file = event.target.files[0];
+          const reader = new FileReader();
+          
+          reader.onload = function(e) {
+              imagePreview.innerHTML = `<img src="${e.target.result}" class="img-fluid rounded-lg" alt="Image preview" style="max-width: 100%; max-height: 100%;">`;
+              clearButton.style.display = 'block';
+          };
+          
+          reader.readAsDataURL(file);
+      }
+  });
+  document.getElementById('clear-button').addEventListener('click', function() {
+      const imagePreview = document.getElementById('image-preview');
+      const uploadInput = document.getElementById('uploadInput');
+      
+      imagePreview.innerHTML = `<p class="text-gray-500">No image selected</p>`;
+      uploadInput.value = '';
+      this.style.display = 'none';
+  });
+
+function getElementsByIdPrefix(prefix) {
+  return document.querySelectorAll(`[id^="${prefix}"]`);
+}
+// JS function for image preview in Edit Modal
+document.querySelectorAll('[id^="editInput-"]').forEach((input, index) => {
+  input.addEventListener('change', function(event) {
+    const imagePreviewEdit = document.getElementById(`image-preview-edit-${index + 1}`);
+    const clearButtonEdit = document.getElementById(`clear-button-edit-${index + 1}`);
+    
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      const reader = new FileReader();
+      
+      reader.onload = function(e) {
+        imagePreviewEdit.innerHTML = `<img src="${e.target.result}" class="img-fluid rounded-lg" alt="Image preview" style="max-width: 100%; max-height: 100%;">`;
+        clearButtonEdit.style.display = 'block';
+      };
+      
+      reader.readAsDataURL(file);
+    }
+  });
+  
+  document.getElementById(`clear-button-edit-${index + 1}`).addEventListener('click', function() {
+    const imagePreviewEdit = document.getElementById(`image-preview-edit-${index + 1}`);
+    input.value = '';
+    this.style.display = 'none';
+    imagePreviewEdit.innerHTML = `<p class="text-gray-500">No image selected</p>`;
+  });
+});
 </script>
 @endsection

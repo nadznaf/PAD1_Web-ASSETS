@@ -73,7 +73,6 @@ class LoginRegisterController extends Controller
         if (Auth::guard('admin')->check()) {
             // Ambil data admin yang sedang login
             $admin = Auth::guard('admin')->user();
-<<<<<<< HEAD
     
             // Hitung jumlah untuk setiap model
             $counts = [
@@ -93,35 +92,11 @@ class LoginRegisterController extends Controller
             return view('admin.dashboard', compact('admin', 'counts'));
         }
     
-=======
-
-            $jumlahMahasiswa = Mahasiswa::count();
-            $jumlahDosen = Dosen::count();
-            $jumlahKabinet = Kabinet::count();
-            $jumlahDivisi = Divisi::count();
-            $jumlahStaff = Staff::count();
-            $jumlahProker = Proker::count();
-            $jumlahPelaksana = Pelaksana::count();
-            $jumlahDokumentasi = Dokumentasi::count();
-            $jumlahArtikel = Artikel::count();
-            $jumlahAspirasi = Aspirasi::count();
-
-            // Kirim data admin ke view 'admin.dashboard'
-            return view('admin.dashboard', compact('admin', 
-            'jumlahMahasiswa', 'jumlahDosen', 'jumlahKabinet', 'jumlahDivisi',
-            'jumlahStaff', 'jumlahProker', 'jumlahPelaksana', 'jumlahDokumentasi',
-            'jumlahArtikel', 'jumlahAspirasi'));
-        } 
-
->>>>>>> 3a175ae9b407bc5ac71f8872492413fc8249071f
         return redirect()->route('login')->withErrors([
             'email_admin' => 'Please login to access the dashboard.'
         ])->onlyInput('email_admin');
     }
-<<<<<<< HEAD
     
-=======
->>>>>>> 3a175ae9b407bc5ac71f8872492413fc8249071f
 
     public function logout(Request $request)
     {

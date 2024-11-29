@@ -12,6 +12,7 @@ return new class extends Migration
             $table->id('id_proker');
             $table->unsignedBigInteger('id_divisi');
             $table->string('judul_proker');
+            $table->string('foto_sampul_proker');
             $table->text('deskripsi_proker');
             $table->text('deskripsi_kegiatan_proker');
             $table->integer('jumlah_hari_proker');

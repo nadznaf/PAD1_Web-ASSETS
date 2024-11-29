@@ -8,6 +8,8 @@ use App\Models\Divisi;
 use App\Models\Proker;
 use App\Models\WaktuProker;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+
 
 class dataProkerController extends Controller
 {
@@ -53,37 +55,55 @@ class dataProkerController extends Controller
         // Validate input
         $request->validate([
             'id_divisi' => 'required',
-            'judulProker' => 'required',
-            'deskripsiProker' => 'required',
-            'deskripsiKegiatanProker' => 'required',
-            'statusProker' => 'required',
-            'tanggal_kegiatan' => 'required|array',
+            'judulProker' => 'required|string|max:255',
+            'deskripsiProker' => 'required|string',
+            'deskripsiKegiatanProker' => 'required|string',
+            'statusProker' => 'required', // Contoh nilai status
+            'tanggal_kegiatan' => 'required|array|min:1',
             'tanggal_kegiatan.*' => 'required|date',
+            'fotoSampulArtikel' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg', // Validasi file gambar
         ]);
-
-        // Count the number of tanggal_kegiatan entries
-        $jumlahHariProker = count($request->tanggal_kegiatan);
-
-        // Save Proker data
-        $proker = Proker::create([
-            'id_divisi' => $request->id_divisi,
-            'judul_proker' => $request->judulProker,
-            'deskripsi_proker' => $request->deskripsiProker,
-            'deskripsi_kegiatan_proker' => $request->deskripsiKegiatanProker,
-            'status_proker' => $request->statusProker,
-            'jumlah_hari_proker' => $jumlahHariProker,
-        ]);
-
-        // Save each tanggal_kegiatan
-        foreach ($request->tanggal_kegiatan as $tanggal) {
-            WaktuProker::create([
-                'id_proker' => $proker->id_proker,
-                'tanggal_kegiatan' => $tanggal,
+    
+        try {
+            // Hitung jumlah hari proker berdasarkan tanggal kegiatan
+            $jumlahHariProker = count($request->tanggal_kegiatan);
+    
+            // Handle file upload jika ada
+            $path = null;
+            if ($request->hasFile('fotoSampulProker')) {
+                $path = $request->file('fotoSampulProker')->store('dataproker', 'public');
+            }
+    
+            // Simpan data Proker
+            $proker = Proker::create([
+                'id_divisi' => $request->id_divisi,
+                'judul_proker' => $request->judulProker,
+                'deskripsi_proker' => $request->deskripsiProker,
+                'deskripsi_kegiatan_proker' => $request->deskripsiKegiatanProker,
+                'status_proker' => $request->statusProker,
+                'jumlah_hari_proker' => $jumlahHariProker,
+                'foto_sampul_proker' => $path ? basename($path) : null,
             ]);
+    
+            // Simpan tanggal kegiatan
+            foreach ($request->tanggal_kegiatan as $tanggal) {
+                WaktuProker::create([
+                    'id_proker' => $proker->id_proker,
+                    'tanggal_kegiatan' => $tanggal,
+                ]);
+            }
+    
+            return redirect()->route('admin.dataproker.index')
+                ->with('success', 'Data proker berhasil ditambahkan.');
+        } catch (\Exception $e) {
+            // Log error untuk debugging
+            \Log::error('Error storing Proker: ' . $e->getMessage());
+    
+            return redirect()->route('admin.dataproker.index')
+                ->with('error', 'Terjadi kesalahan saat menambahkan data proker.');
         }
-
-        return redirect()->route('admin.dataproker.index')->with('success', 'Data proker berhasil ditambahkan.');
     }
+    
 
     
 
@@ -116,6 +136,18 @@ class dataProkerController extends Controller
 
     // Update Proker data
     $proker = Proker::findOrFail($id);
+
+    // Cek jika ada upload foto baru
+    if ($request->hasFile('fotoSampulProker')) {
+        // Hapus foto lama jika ada
+        if ($proker->foto_profil_mhs) {
+            Storage::delete('public/dataproker/' . $proker->foto_sampul_proker);
+        }        
+        // Simpan foto baru
+        $file = $request->file('fotoMhsEdit');
+        $path = $file->store('datamahasiswa', 'public');
+        $proker->foto_sampul_proker = basename($path);
+    }
     $proker->update([
         'id_divisi' => $request->id_divisi,
         'judul_proker' => $request->judulProker,

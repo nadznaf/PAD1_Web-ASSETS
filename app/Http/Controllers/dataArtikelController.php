@@ -26,6 +26,7 @@ class dataArtikelController extends Controller
             'kontenArtikel' => 'required|string',
             'fotoSampulArtikel' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg',
             'tautanArtikel' => 'nullable',
+            'tanggal_terbit' => 'nullable|date',
         ]);
 
         $artikel = new Artikel();
@@ -33,7 +34,7 @@ class dataArtikelController extends Controller
         $artikel->nama_penulis = $request->penulisArtikel;
         $artikel->konten_artikel = $request->kontenArtikel;
         $artikel->tautan_artikel_resmi = $request->tautanArtikel;
-        $artikel->tanggal_terbit = now(); // Mengisi dengan waktu saat ini
+        $artikel->tanggal_terbit = $request->tanggalTerbit; 
 
         if ($request->hasFile('fotoSampulArtikel')) {
             $path = $request->file('fotoSampulArtikel')->store('artikel', 'public');

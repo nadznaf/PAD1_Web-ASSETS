@@ -93,11 +93,7 @@
             </div>
           @endif
         <!-- Search Data in Table -->
-<<<<<<< HEAD
         <div class="col-md-8">
-=======
-        <div class="col-md-10">
->>>>>>> 3a175ae9b407bc5ac71f8872492413fc8249071f
             <div class="input-group">
               <span class="input-group-text" id="basic-addon1">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" class="w-5 h-5">
@@ -107,11 +103,7 @@
               <input type="text" id="searchInput" class="form-control" placeholder="Search in this Category..." onkeyup="searchTable()">
             </div>
         </div>
-<<<<<<< HEAD
         <div class="col-md-4">
-=======
-        <div class="col-md-2">
->>>>>>> 3a175ae9b407bc5ac71f8872492413fc8249071f
           <!-- Button trigger modal -->
           <button type="button" id="button" class="btn w-100" data-bs-toggle="modal" data-bs-target="#insertData">
             Tambah Data

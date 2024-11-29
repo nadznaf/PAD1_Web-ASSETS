@@ -26,6 +26,7 @@ class Proker extends Model
         'id_divisi',
         'judul_proker',
         'deskripsi_proker',
+        'foto_sampul_proker',
         'deskripsi_kegiatan_proker',
         'jumlah_hari_proker',
         'status_proker',

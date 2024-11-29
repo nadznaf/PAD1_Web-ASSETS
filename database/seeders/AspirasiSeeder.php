@@ -16,7 +16,7 @@ class AspirasiSeeder extends Seeder
             Aspirasi::create([
                 'nama_pengirim' => $faker->name,
                 'judul_aspirasi' => $faker->sentence,
-                'isi_aspirasi' => $faker->paragraphs(1, true),
+                'isi_aspirasi' => substr($faker->paragraphs(1, true), 0, 255), // Batasi panjang ke 255 karakter
             ]);
         }
     }

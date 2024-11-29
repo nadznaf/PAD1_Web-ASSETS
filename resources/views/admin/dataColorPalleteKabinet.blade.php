@@ -108,7 +108,6 @@
             </div>
           @endif
         <!-- Search Data in Table -->
-<<<<<<< HEAD
         <div class="col-md-8">
             <div class="input-group">
               <span class="input-group-text" id="basic-addon1">
@@ -120,19 +119,6 @@
             </div>
         </div>
         <div class="col-md-4">
-=======
-        <div class="col-sm-10 col-12">
-          <div class="input-group">
-            <span class="input-group-text" id="basic-addon1">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" class="w-5 h-5">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35M17 11a6 6 0 11-12 0 6 6 0 0112 0z" />
-              </svg>
-            </span>
-            <input type="text" id="searchInput" class="form-control" placeholder="Search in this Category..." onkeyup="searchTable()">
-          </div>
-        </div>
-        <div class="col-sm-2 col-12 mt-2 mt-sm-0 d-flex justify-content-sm-end">
->>>>>>> 3a175ae9b407bc5ac71f8872492413fc8249071f
           <!-- Button trigger modal -->
           <button type="button" id="button" class="btn w-100" data-bs-toggle="modal" data-bs-target="#insertData">
             Tambah Data
@@ -166,17 +152,11 @@
                     <span class="ml-2">{{ $color->primary_color }}</span>
                 </div>
             </td>
-            <td>`
+            <td>
                 <div class="d-grid gap-2 d-sm-flex justify-content-sm-center justify-content-xl-start">
                     <div class="flex-none w-6 h-6 rounded" style="background-color: {{ $color->secondary_color }}"></div>
                     <span class="ml-2">{{ $color->secondary_color }}</span>
                 </div>
-            <td>
-              <div class="d-grid gap-2 d-sm-flex justify-content-sm-center justify-content-xl-start">
-                <div class="flex-none w-6 h-6 rounded" style="background-color: {{ $color->secondary_color }}"></div>
-                <span class="ml-2">{{ $color->secondary_color }}</span>
-              </div>
-            </td>
             <td>
             <div class="d-grid gap-2 d-sm-flex justify-content-sm-center justify-content-xl-start">
               <!-- Edit Button -->

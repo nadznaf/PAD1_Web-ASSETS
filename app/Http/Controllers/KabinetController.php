@@ -19,19 +19,48 @@ class KabinetController extends Controller {
         // Ambil data kabinet berdasarkan ID
         $kabinet = Kabinet::findOrFail($id);
 
+        
+        // Ambil divisi "Pengurus Harian"
+        $divisiPengurusHarian = $kabinet->divisi->where('nama_divisi', 'Pengurus Harian')->first();
+
+        // Cek apakah divisi "Pengurus Harian" ditemukan
+        if ($divisiPengurusHarian) {
+            // Ambil data staff dan ubah menjadi array key-value
+            $pengurusHarian = $divisiPengurusHarian->staff->mapWithKeys(function ($staff) {
+                return [$staff->nama_jabatan => $staff];
+            })->toArray();
+        } else {
+            // Jika tidak ada divisi "Pengurus Harian", set array kosong
+            $pengurusHarian = [];
+        }
+
         // Ambil data divisi, termasuk relasi ke proker dan staff
         $dataDivisi = Divisi::with(['proker', 'staff.mahasiswa'])->where('id_kabinet', $id)->get();
 
         // Kirim data ke view
-        return view('user.kepengurusan', compact('kabinet', 'dataDivisi', 'dataKabinet'));
+        return view('user.kepengurusan', compact('kabinet', 'pengurusHarian','dataDivisi', 'dataKabinet'));
     }
 
     // DETAIL KABINET
     public function show($id)
     {
-        // Ambil data kabinet berdasarkan ID
-        $kabinet = Kabinet::findOrFail($id);
-    
+        // Ambil data kabinet berdasarkan ID         
+        $kabinet = Kabinet::with(['dosen', 'color_pallete', 'divisi.staff'])->findOrFail($id);
+
+        // Ambil divisi "Pengurus Harian"
+        $divisiPengurusHarian = $kabinet->divisi->where('nama_divisi', 'Pengurus Harian')->first();
+
+        // Cek apakah divisi "Pengurus Harian" ditemukan
+        if ($divisiPengurusHarian) {
+            // Ambil data staff dan ubah menjadi array key-value
+            $pengurusHarian = $divisiPengurusHarian->staff->mapWithKeys(function ($staff) {
+                return [$staff->nama_jabatan => $staff];
+            })->toArray();
+        } else {
+            // Jika tidak ada divisi "Pengurus Harian", set array kosong
+            $pengurusHarian = [];
+        }
+
         // Ambil data divisi berdasarkan id_kabinet
         $dataDivisi = Divisi::with(['staff.mahasiswa'])->where('id_kabinet', $id)->get();
     
@@ -50,6 +79,6 @@ class KabinetController extends Controller {
         // Mengambil seluruh data kabinet untuk isi pada bagian Navbar
         $dataKabinet = Kabinet::orderBy('tahun_awal_kabinet', 'desc')->get();
     
-        return view('user.kabinet', compact('kabinet', 'dataDivisi', 'dataProker', 'dataDokumentasi', 'dataKabinet'));
+        return view('user.kabinet', compact('kabinet', 'pengurusHarian', 'dataDivisi', 'dataProker', 'dataDokumentasi', 'dataKabinet'));
     }   
 }

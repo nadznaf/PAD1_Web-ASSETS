@@ -18,11 +18,7 @@
               <h1 class="modal-title fs-5" id="staticBackdropLabel">Tambah Data Artikel</h1>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-<<<<<<< HEAD
             <form action="{{route('aspirasi.store')}}" id="uploadForm" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
-=======
-            <form action="{{route("admin.aspirasi.store")}}" id="uploadForm" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
->>>>>>> 3a175ae9b407bc5ac71f8872492413fc8249071f
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             @csrf
               <div class="modal-body">
