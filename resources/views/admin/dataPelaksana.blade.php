@@ -96,7 +96,7 @@
                         Please select a valid option.
                     </div>
                 </div>
-                
+
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
                 <button type="submit" class="btn" id="button">Tambah</button>
@@ -122,7 +122,7 @@
             </div>
           @endif
         <!-- Search Data in Table -->
-        <div class="col-md-8">
+        <div class="col-md-10">
             <div class="input-group">
               <span class="input-group-text" id="basic-addon1">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" class="w-5 h-5">
@@ -132,7 +132,7 @@
               <input type="text" id="searchInput" class="form-control" placeholder="Search in this Category..." onkeyup="searchTable()">
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-2">
           <!-- Button trigger modal -->
           <button type="button" id="button" class="btn w-100" data-bs-toggle="modal" data-bs-target="#insertData">
             Tambah Data
@@ -153,7 +153,7 @@
             <th>ACTION</th>
           </tr>
         </thead>
-        
+
         <!-- Fill Table Body using Retrieved Data from Database-->
         <tbody id="TableBody">
           @foreach($dataPelaksana as $index => $pelaksana)
@@ -232,7 +232,7 @@
                                   <select name="id_kabinet" id="id_kabinet_edit-{{ $dataPelaksana->firstItem() + $index }}" class="form-select" required>
                                       <option value="" disabled selected>Pilih Asal Kabinet</option>
                                       @foreach($dataKabinet as $kabinet)
-                                        <option value="{{ $kabinet->id_kabinet }}">{{ $kabinet->nama_kabinet }}</option>                                      
+                                        <option value="{{ $kabinet->id_kabinet }}">{{ $kabinet->nama_kabinet }}</option>
                                       @endforeach
                                   </select>
                                   <div class="invalid-feedback">
@@ -348,7 +348,7 @@
         $('#id_kabinet').change(function() {
             const id_kabinet = $(this).val();
             const divisiSelect = $('#id_divisi');
-            
+
             if (id_kabinet) {
                 $.ajax({
                     url: '{{ route("admin.get.divisi") }}',
@@ -359,11 +359,11 @@
                     },
                     success: function(data) {
                         let options = '<option value="" disabled selected>Pilih Asal Divisi ...</option>';
-                        
+
                         data.forEach(function(divisi) {
                             options += `<option value="${divisi.id_divisi}">${divisi.nama_divisi}</option>`;
                         });
-                        
+
                         divisiSelect.html(options);
                     }
                 });
@@ -373,14 +373,14 @@
         });
         // Form validation
         const forms = document.querySelectorAll('.needs-validation');
-        
+
         Array.from(forms).forEach(form => {
             form.addEventListener('submit', event => {
                 if (!form.checkValidity()) {
                     event.preventDefault();
                     event.stopPropagation();
                 }
-                
+
                 form.classList.add('was-validated');
             }, false);
         });
@@ -396,7 +396,7 @@
         $('#id_divisi').change(function() {
             const id_divisi = $(this).val();
             const prokerSelect = $('#id_proker');
-            
+
             if (id_divisi) {
                 $.ajax({
                     url: '{{ route("admin.get.proker") }}',
@@ -407,11 +407,11 @@
                     },
                     success: function(data) {
                         let options = '<option value="" disabled selected>Pilih Program Kerja ...</option>';
-                        
+
                         data.forEach(function(proker) {
                             options += `<option value="${proker.id_proker}">${proker.judul_proker}</option>`;
                         });
-                        
+
                         prokerSelect.html(options);
                     }
                 });
@@ -421,14 +421,14 @@
         });
         // Form validation
         const forms = document.querySelectorAll('.needs-validation');
-        
+
         Array.from(forms).forEach(form => {
             form.addEventListener('submit', event => {
                 if (!form.checkValidity()) {
                     event.preventDefault();
                     event.stopPropagation();
                 }
-                
+
                 form.classList.add('was-validated');
             }, false);
         });
@@ -444,7 +444,7 @@
             $(`#id_kabinet_edit-${index + 1}`).change(function() {
                 const id_kabinet = $(this).val();
                 const divisiSelect = $(`#id_divisi_edit-${index + 1}`);
-                
+
                 if (id_kabinet) {
                     $.ajax({
                         url: '{{ route("admin.get.divisi") }}',
@@ -455,11 +455,11 @@
                         },
                         success: function(data) {
                             let options = '<option value="" disabled selected>Pilih Asal Divisi</option>';
-                            
+
                             data.forEach(function(divisi) {
                                 options += `<option value="${divisi.id_divisi}">${divisi.nama_divisi}</option>`;
                             });
-                            
+
                             divisiSelect.html(options);
                         }
                     });
@@ -477,7 +477,7 @@
             $(`#id_divisi_edit-${index + 1}`).change(function() {
                 const id_divisi = $(this).val();
                 const prokerSelect = $(`#id_proker_edit-${index + 1}`);
-                
+
                 if (id_divisi) {
                     $.ajax({
                         url: '{{ route("admin.get.proker") }}',
@@ -488,11 +488,11 @@
                         },
                         success: function(data) {
                             let options = '<option value="" disabled selected>Pilih Program Kerja</option>';
-                            
+
                             data.forEach(function(proker) {
                                 options += `<option value="${proker.id_proker}">${proker.judul_proker}</option>`;
                             });
-                            
+
                             prokerSelect.html(options);
                         }
                     });

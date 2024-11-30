@@ -24,6 +24,6 @@ class ProkerController extends Controller
             ->first(); // Ambil hanya satu data (ketua pelaksana seharusnya unik)
 
         // Kirim data ke view GANTI NAMA VIEW user.home ke NAMA FILE DETAIL PROKER YANG SESUAI
-        return view('user.home', compact('proker', 'ketuaPelaksana', 'dataKabinet'));
+        return view('user.proker', compact('proker', 'ketuaPelaksana', 'dataKabinet'));
     }
 }

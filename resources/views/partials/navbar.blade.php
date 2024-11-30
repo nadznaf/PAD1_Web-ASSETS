@@ -29,13 +29,13 @@
                         <!-- Dropdown menu -->
                         <div id="dropdownNavbar" class="z-10 hidden font-normal bg-white divide-y rounded-lg shadow w-44 ">
                             <ul class="py-2 text-sm text-gray-400" aria-labelledby="dropdownLargeButton">
-                                {{-- @foreach ($dataKabinet as $index => $kabinet)
+                                @foreach ($dataKabinet as $index => $kabinet)
                                     <li>
                                         <a href="{{ route('kabinet.show', $kabinet->id_kabinet) }}" class="block px-4 py-2 hover:text-second_a text-assets">
                                             {{ $kabinet->nama_kabinet }}
                                         </a>
                                     </li>
-                                @endforeach --}}
+                                @endforeach
                             </ul>
                         </div>
                     </li>

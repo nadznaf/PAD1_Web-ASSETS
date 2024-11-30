@@ -32,7 +32,7 @@
                     Input valid.
                 </div>
                 <br>
-                
+
                 <!-- Fill dropdown button content using all data retrieved from kabinet's table -->
                 <label for="id_kabinet">Asal Kabinet</label><br>
                 <select name="id_kabinet" class="form-select" required>
@@ -106,7 +106,7 @@
             </div>
           @endif
         <!-- Search Data in Table -->
-        <div class="col-md-8">
+        <div class="col-md-10">
             <div class="input-group">
               <span class="input-group-text" id="basic-addon1">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" class="w-5 h-5">
@@ -116,7 +116,7 @@
               <input type="text" id="searchInput" class="form-control" placeholder="Search in this Category..." onkeyup="searchTable()">
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-2">
           <!-- Button trigger modal -->
           <button type="button" id="button" class="btn w-100" data-bs-toggle="modal" data-bs-target="#insertData">
             Tambah Data
@@ -139,7 +139,7 @@
             <th>ACTION</th>
           </tr>
         </thead>
-        
+
         <!-- Fill Table Body using Retrieved Data from Database-->
         <tbody id="TableBody">
           @foreach($dataDivisi as $index => $divisi)
@@ -208,7 +208,7 @@
                                     <select name="id_kabinet" class="form-select" required>
                                         <!-- Option pertama adalah dosen yang sudah dipilih -->
                                         <option value="{{ $divisi->id_kabinet }}" selected>{{ $divisi->kabinet->nama_kabinet }}</option>
-                                        
+
                                         <!-- Iterasi untuk menampilkan dosen lain selain dosen yang sudah dipilih -->
                                         @foreach ($dataKabinet as $kabinet)
                                             @if ($kabinet->id_kabinet != $divisi->id_kabinet)
@@ -293,16 +293,16 @@
     document.getElementById('uploadInput').addEventListener('change', function(event) {
       const imagePreview = document.getElementById('image-preview');
       const clearButton = document.getElementById('clear-button');
-      
+
       if (event.target.files.length > 0) {
           const file = event.target.files[0];
           const reader = new FileReader();
-          
+
           reader.onload = function(e) {
               imagePreview.innerHTML = `<img src="${e.target.result}" class="img-fluid rounded-lg" alt="Image preview" style="max-width: 100%; max-height: 100%;">`;
               clearButton.style.display = 'block';
           };
-          
+
           reader.readAsDataURL(file);
       }
   });
@@ -316,20 +316,20 @@ document.querySelectorAll('[id^="editInput-"]').forEach((input, index) => {
   input.addEventListener('change', function(event) {
     const imagePreviewEdit = document.getElementById(`image-preview-edit-${index + 1}`);
     const clearButtonEdit = document.getElementById(`clear-button-edit-${index + 1}`);
-    
+
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
       const reader = new FileReader();
-      
+
       reader.onload = function(e) {
         imagePreviewEdit.innerHTML = `<img src="${e.target.result}" class="img-fluid rounded-lg" alt="Image preview" style="max-width: 100%; max-height: 100%;">`;
         clearButtonEdit.style.display = 'block';
       };
-      
+
       reader.readAsDataURL(file);
     }
   });
-  
+
   document.getElementById(`clear-button-edit-${index + 1}`).addEventListener('click', function() {
     const imagePreviewEdit = document.getElementById(`image-preview-edit-${index + 1}`);
     input.value = '';

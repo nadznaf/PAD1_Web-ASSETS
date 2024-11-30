@@ -112,7 +112,7 @@
                         Input valid.
                     </div>
                 </div>
-                
+
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
                 <button type="submit" class="btn" id="button">Tambah</button>
@@ -138,7 +138,7 @@
             </div>
           @endif
         <!-- Search Data in Table -->
-        <div class="col-md-8">
+        <div class="col-md-10">
             <div class="input-group">
               <span class="input-group-text" id="basic-addon1">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" class="w-5 h-5">
@@ -148,7 +148,7 @@
               <input type="text" id="searchInput" class="form-control" placeholder="Search in this Category..." onkeyup="searchTable()">
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-2">
           <!-- Button trigger modal -->
           <button type="button" id="button" class="btn w-100" data-bs-toggle="modal" data-bs-target="#insertData">
             Tambah Data
@@ -172,7 +172,7 @@
             <th>ACTION</th>
           </tr>
         </thead>
-        
+
         <!-- Fill Table Body using Retrieved Data from Database-->
         <tbody id="TableBody">
           @foreach($dataStaff as $index => $staff)
@@ -256,7 +256,7 @@
                                   <select name="id_kabinet" id="id_kabinet_edit-{{ $dataStaff->firstItem() + $index }}" class="form-select" required>
                                       <option value="" disabled selected>Pilih Asal Kabinet</option>
                                       @foreach($dataKabinet as $kabinet)
-                                        <option value="{{ $kabinet->id_kabinet }}">{{ $kabinet->nama_kabinet }}</option>                                      
+                                        <option value="{{ $kabinet->id_kabinet }}">{{ $kabinet->nama_kabinet }}</option>
                                       @endforeach
                                   </select>
                                   <div class="invalid-feedback">
@@ -311,7 +311,7 @@
                             </div>
                             <div class="mb-3">
                               <label for="tugasStaff">Tugas Staff</label><br>
-                              <textarea name="tugasStaff" id="tugasStaff" class="form-control" required style="resize: none;" rows="4" cols="50">{{$staff->tugas_staff}}</textarea>        
+                              <textarea name="tugasStaff" id="tugasStaff" class="form-control" required style="resize: none;" rows="4" cols="50">{{$staff->tugas_staff}}</textarea>
                           </div>
                           <div class="modal-footer">
                               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
@@ -371,7 +371,7 @@
         $('#id_kabinet').change(function() {
             const id_kabinet = $(this).val();
             const divisiSelect = $('#id_divisi');
-            
+
             if (id_kabinet) {
                 $.ajax({
                     url: '{{ route("admin.get.divisi") }}',
@@ -382,11 +382,11 @@
                     },
                     success: function(data) {
                         let options = '<option value="" disabled selected>Pilih Asal Divisi ...</option>';
-                        
+
                         data.forEach(function(divisi) {
                             options += `<option value="${divisi.id_divisi}">${divisi.nama_divisi}</option>`;
                         });
-                        
+
                         divisiSelect.html(options);
                     }
                 });
@@ -396,14 +396,14 @@
         });
         // Form validation
         const forms = document.querySelectorAll('.needs-validation');
-        
+
         Array.from(forms).forEach(form => {
             form.addEventListener('submit', event => {
                 if (!form.checkValidity()) {
                     event.preventDefault();
                     event.stopPropagation();
                 }
-                
+
                 form.classList.add('was-validated');
             }, false);
         });
@@ -420,7 +420,7 @@ document.addEventListener('DOMContentLoaded', function() {
         $(`#id_kabinet_edit-${index + 1}`).change(function() {
             const id_kabinet = $(this).val();
             const divisiSelect = $(`#id_divisi_edit-${index + 1}`);
-            
+
             if (id_kabinet) {
                 $.ajax({
                     url: '{{ route("admin.get.divisi") }}',
@@ -431,11 +431,11 @@ document.addEventListener('DOMContentLoaded', function() {
                     },
                     success: function(data) {
                         let options = '<option value="" disabled selected>Pilih Asal Divisi</option>';
-                        
+
                         data.forEach(function(divisi) {
                             options += `<option value="${divisi.id_divisi}">${divisi.nama_divisi}</option>`;
                         });
-                        
+
                         divisiSelect.html(options);
                     }
                 });
@@ -452,16 +452,16 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('uploadInput').addEventListener('change', function(event) {
       const imagePreview = document.getElementById('image-preview');
       const clearButton = document.getElementById('clear-button');
-      
+
       if (event.target.files.length > 0) {
           const file = event.target.files[0];
           const reader = new FileReader();
-          
+
           reader.onload = function(e) {
               imagePreview.innerHTML = `<img src="${e.target.result}" class="img-fluid rounded-lg" alt="Image preview" style="max-width: 100%; max-height: 100%;">`;
               clearButton.style.display = 'block';
           };
-          
+
           reader.readAsDataURL(file);
       }
   });
@@ -475,20 +475,20 @@ document.querySelectorAll('[id^="editInput-"]').forEach((input, index) => {
   input.addEventListener('change', function(event) {
     const imagePreviewEdit = document.getElementById(`image-preview-edit-${index + 1}`);
     const clearButtonEdit = document.getElementById(`clear-button-edit-${index + 1}`);
-    
+
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
       const reader = new FileReader();
-      
+
       reader.onload = function(e) {
         imagePreviewEdit.innerHTML = `<img src="${e.target.result}" class="img-fluid rounded-lg" alt="Image preview" style="max-width: 100%; max-height: 100%;">`;
         clearButtonEdit.style.display = 'block';
       };
-      
+
       reader.readAsDataURL(file);
     }
   });
-  
+
   document.getElementById(`clear-button-edit-${index + 1}`).addEventListener('click', function() {
     const imagePreviewEdit = document.getElementById(`image-preview-edit-${index + 1}`);
     input.value = '';

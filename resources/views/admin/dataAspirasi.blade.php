@@ -18,7 +18,7 @@
               <h1 class="modal-title fs-5" id="staticBackdropLabel">Tambah Data Artikel</h1>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="{{route('aspirasi.store')}}" id="uploadForm" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
+            <form action="{{route("admin.aspirasi.store")}}" id="uploadForm" method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             @csrf
               <div class="modal-body">
@@ -43,7 +43,7 @@
                     Input valid.
                 </div>
                 <br>
-                
+
                 <label for="isi_aspirasi">Isi Aspirasi</label><br>
                 <textarea name="isi_aspirasi" id="isi_aspirasi" class="form-control" required style="resize: none;" rows="10" cols="500" placeholder="Tuliskan isi aspirasi di sini."></textarea>
                 <div class="invalid-feedback">
@@ -103,7 +103,7 @@
             <th>ACTION</th>
           </tr>
         </thead>
-        
+
         <!-- Fill Table Body using Retrieved Data from Database-->
         <tbody id="TableBody">
           @foreach($dataAspirasi as $index => $aspirasi)

@@ -1,7 +1,6 @@
 {{-- Footer start --}}
-<footer id="footer" class="{{ request()->routeIs('kabinet.show') ? 'bg-amara': 'bg-assets'}}">
-    {{-- style="background-color: {{ $kabinet->color->primary_color }}" --}}
-    <div class="container px-6 py-8 mx-auto w-full">
+<footer id="footer" class="bg-assets">
+    <div class="container px-8 py-8 mx-auto w-full">
         <div class="flex flex-col items-center text-center">
             <a href="#">
                 <img class="w-auto h-8 mb-4" src="{{ asset('assets/assets_logo_white.svg') }}" alt="Assets Logo">

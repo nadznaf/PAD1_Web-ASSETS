@@ -21,4 +21,12 @@ class Divisi extends Model
     {
         return $this->belongsTo(Kabinet::class, 'id_kabinet', 'id_kabinet');
     }
+    public function staff()
+    {
+        return $this->hasMany(Staff::class, 'id_staff', 'id_staff');
+    }
+    public function proker()
+    {
+        return $this->hasMany(Staff::class, 'id_divisi', 'id_divisi');
+    }
 }

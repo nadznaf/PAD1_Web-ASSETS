@@ -43,8 +43,8 @@
                 style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)">
             </div>
         </div>
-        <div class="mx-auto px-6 mb-8 max-w-2xl text-center lg:max-w-4xl" data-aos="fade-up" data-aos-duration="300">
-            <h2 class="mt-2 text-4xl font-bold text-assets sm:text-5xl">Kabinet</h2>
+        <div class="mx-auto px-6 mb-24 max-w-2xl text-center lg:max-w-4xl" data-aos="fade-up" data-aos-duration="300">
+            <h2 class="mt-2 text-4xl font-bold text-font sm:text-5xl">Kabinet</h2>
             <p class="mt-6 text-l font-bold tracking-tight text-assets sm:text-xl">
                 Choose a Cabinet to learn more about ASSETS
             </p>
@@ -66,21 +66,13 @@
             <div class="hs-carousel h-full overflow-hidden">
                 <div class="relative min-h-72 -mx-1">
                     <div class="hs-carousel-body absolute top-0 bottom-0 start-0 flex flex-nowrap transition-transform duration-700 opacity-0">
-                        <div class="hs-carousel-slide px-1 justify-center flex">
-                            <a href="/kabinet/3">
-                                <img src="{{ asset('assets/pilihan_iris.svg') }}" alt="Kabinet" class="w-fit h-full object-cover filter grayscale hover:grayscale-0">
+                        @foreach ($dataKabinet as $index => $kabinet)
+                        <div class="hs-carousel-slide cursor-zoom-in px-1 justify-center flex">
+                            <a href="{{ route('kabinet.show', $kabinet->id_kabinet) }}">
+                                <img src="{{ asset('storage/datakabinet/' . $kabinet->foto_sampul_kabinet) }}" alt="Kabinet" class="w-fit h-full object-cover filter grayscale hover:grayscale-0">
                             </a>
                         </div>
-                        <div class="hs-carousel-slide px-1 justify-center flex">
-                            <a href="/kabinet/2">
-                                <img src="{{ asset('assets/pilihan_orion.svg') }}" alt="Kabinet" class="w-fit h-full object-cover filter grayscale hover:grayscale-0">
-                            </a>
-                        </div>
-                        <div class="hs-carousel-slide px-1 justify-center flex">
-                            <a href="/kabinet/1">
-                                <img src="{{ asset('assets/pilihan_amara.svg') }}" alt="Kabinet" class="w-fit h-full object-cover filter grayscale hover:grayscale-0">
-                            </a>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -105,74 +97,62 @@
             <div class="hs-carousel-pagination flex justify-center absolute bottom-3 start-0 end-0 space-x-2"></div>
         </div>
         <!-- End Slider -->
-
-            {{-- @foreach($dataKabinet as $index => $kabinet)
-            <figure class="basis-1/3 max-w-sm transition-all duration-300 cursor-pointer filter grayscale bg-gradient-to-b from-black to-amara hover:grayscale-0">
-                <div class="bg-gradient-to-b from-black to-amara "></div>
-                <a href="{{ route('kabinet') }}">
-                    <img class="rounded-xl" src="{{ asset('storage/datakabinet/' . $kabinet->foto_sampul_kabinet) }}" alt="Kabinet">
-                </a>
-                <figcaption class="absolute px-4 text-lg text-white bottom-6">
-                    <p>Kabinet Amara</p>
-                </figcaption>
-            </figure>
-            @endforeach --}}
     </div>
 
 
     {{-- Pilih kabinet end --}}
 
     {{-- Newest Proker Start --}}
-    <div class="p-8 md:p-16">
-        <div class="mx-auto mt-16 py-8 px-6 max-w-2xl text-center lg:max-w-4xl" data-aos="fade-up" data-aos-duration="300">
-            <h2 class="mt-2 text-4xl font-extrabold text-assets">Program Kerja Terbaru</h2>
+    <div class="p-8 md:mx-24">
+        <div class="mx-auto mt-16 py-8 px-6 max-w-2xl text-center lg:max-w-4xl" data-aos="fade-up" data-aos-duration="1000">
+            <h2 class="mt-2 text-4xl font-bold text-font">Program Kerja Terbaru</h2>
         </div>
-        <a href="{{ route('proker') }}" class="flex flex-col items-center mb-8 bg-white rounded-lg md:flex-row md:max-w-full md:m-8" data-aos="fade-left" data-aos-duration="3000">
-            <img class="object-cover w-full h-80 rounded-lg md:w-1/2" src="{{ asset('assets/series_img1.svg') }}" alt="Proker's pict">
-            <div class="flex flex-col justify-between p-4 leading-normal">
-                <p class="mb-8 font-normal text-second_a">Bulan</p>
-                <h5 class="mb-2 text-2xl font-bold tracking-tight text-assets hover:text-dark hover:underline">Nama Proker</h5>
-                <p class="mb-3 font-normal text-second_a">Deskripsi proker. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sed ante porta ligula condimentum condimentum. Pellentesque sollicitudin et nulla id laoreet. Pellentesque.</p>
+        <a href="{{ route('proker.show', $prokerTerbaru[0]->id_proker) }}" class="group flex flex-col md:items-center mt-16 mb-8 rounded-lg md:flex-row md:max-w-full" data-aos="fade-left" data-aos-duration="3000">
+            <img class="object-cover w-full h-80 rounded-2xl md:w-2/5" src="{{ asset('assets/series_img1.svg') }}" alt="Proker">
+            <div class="flex flex-col justify-between p-4 md:ps-8 leading-normal md:w-3/5">
+                <p class="mb-8 font-semibold text-font">Bulan</p>
+                <h5 class="mb-2 text-2xl font-bold text-assets group-hover:text-second_a uppercase">{{ $prokerTerbaru[0]->judul_proker }}</h5>
+                <p class="mb-3 font-normal text-description">{{ $prokerTerbaru[0]->deskripsi_proker }}</p>
             </div>
         </a>
-        <a href="{{ route('proker') }}" class="flex flex-col-reverse items-center mb-8 bg-white rounded-lg md:flex-row md:max-w-full md:m-8" data-aos="fade-right" data-aos-duration="3000">
-            <div class="flex flex-col justify-between p-4 leading-normal">
-                <p class="mb-8 font-normal text-second_a">Bulan</p>
-                <h5 class="mb-2 text-2xl font-bold tracking-tight text-assets hover:text-dark hover:underline">Nama Proker</h5>
-                <p class="mb-3 font-normal text-second_a">Deskripsi proker. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sed ante porta ligula condimentum condimentum. Pellentesque sollicitudin et nulla id laoreet. Pellentesque.</p>
+        <a href="{{ route('proker.show', $prokerTerbaru[1]->id_proker) }}" class="group flex flex-col-reverse md:items-center mt-16 mb-8 rounded-lg md:flex-row md:max-w-full" data-aos="fade-right" data-aos-duration="3000">
+            <div class="flex flex-col justify-between p-4 md:pe-8 leading-normal md:w-3/5">
+                <p class="mb-8 font-semmibold text-font">Bulan</p>
+                <h5 class="mb-2 text-2xl font-bold text-assets group-hover:text-second_a uppercase">{{ $prokerTerbaru[1]->judul_proker }}</h5>
+                <p class="mb-3 font-normal text-description">{{ $prokerTerbaru[1]->deskripsi_proker }}</p>
             </div>
-            <img class="object-cover w-full h-80 rounded-lg md:w-1/2" src="{{ asset('assets/series_img1.svg') }}" alt="Proker's pict">
+            <img class="object-cover w-full h-80 rounded-2xl md:w-2/5" src="{{ asset('assets/series_img1.svg') }}" alt="Proker">
         </a>
     </div>
     {{-- Newest Proker End --}}
 
     {{-- Newest Article Start --}}
-    <div class="p-8 md:p-16">
-        <div class="mx-auto py-8 px-6 max-w-2xl text-center lg:max-w-4xl" data-aos="fade-up" data-aos-duration="300">
-            <h2 class="mt-2 text-4xl font-extrabold text-assets">Artikel Terbaru</h2>
+    <div class="p-8 md:mx-24">
+        <div class="mx-auto mt-16 py-8 px-6 max-w-2xl text-center lg:max-w-4xl" data-aos="fade-up" data-aos-duration="1000">
+            <h2 class="mt-2 text-4xl font-bold text-font">Artikel Terbaru</h2>
         </div>
-        <a href="{{ route('detailArtikel') }}" class="flex flex-col items-center mb-8 bg-white rounded-lg md:flex-row md:max-w-full md:m-8" data-aos="fade-left" data-aos-duration="3000">
-            <img class="object-cover w-full h-80 rounded-lg md:w-1/2" src="{{ asset('assets/article1.jpeg') }}" alt="Artikel's pict">
-            <div class="flex flex-col justify-between p-4 leading-normal">
-                <p class="mb-8 font-normal text-second_a">Tanggal publish</p>
-                <h5 class="mb-2 text-2xl font-bold text-assets hover:text-dark hover:underline">Judul Artikel</h5>
-                <p class="mb-3 font-normal text-second_a">Deskripsi artikel. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sed ante porta ligula condimentum condimentum. Pellentesque sollicitudin et nulla id laoreet. Pellentesque.</p>
+        <a href="{{ route('detailArtikel') }}" class="group flex flex-col md:items-center mt-16 mb-8 rounded-lg md:flex-row md:max-w-full" data-aos="fade-left" data-aos-duration="3000">
+            <img class="object-cover w-full h-80 rounded-2xl md:w-2/5" src="{{ asset('storage/artikel/' . $artikelTerbaru[0]->foto_sampul_artikel) }}" alt="Artikel's pict">
+            <div class="flex flex-col justify-between p-4 md:ps-8 leading-normal md:w-3/5">
+                <p class="mb-8 font-semibold text-font">Tanggal publish</p>
+                <h5 class="mb-2 text-2xl font-bold text-assets group-hover:text-second_a">{{ $artikelTerbaru[0]->judul_artikel }}</h5>
+                <p class="mb-3 font-normal text-description">Deskripsi artikel. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sed ante porta ligula condimentum condimentum. Pellentesque sollicitudin et nulla id laoreet. Pellentesque.</p>
             </div>
         </a>
-        <a href="{{ route('detailArtikel') }}" class="flex flex-col-reverse items-center mb-8 bg-white rounded-lg md:flex-row md:max-w-full md:m-8" data-aos="fade-right" data-aos-duration="3000">
-            <div class="flex flex-col justify-between p-4 leading-normal">
-                <p class="mb-8 font-normal text-second_a">Tanggal publish</p>
-                <h5 class="mb-2 text-2xl font-bold text-assets hover:text-dark hover:underline">Judul Artikel</h5>
-                <p class="mb-3 font-normal text-second_a">Deskripsi artikel. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sed ante porta ligula condimentum condimentum. Pellentesque sollicitudin et nulla id laoreet. Pellentesque.</p>
+        <a href="{{ route('detailArtikel') }}" class="group flex flex-col-reverse md:items-center mt-16 mb-8 bg-white rounded-lg md:flex-row md:max-w-full" data-aos="fade-right" data-aos-duration="3000">
+            <div class="flex flex-col justify-between p-4 md:pe-8 leading-normal md:w-3/5">
+                <p class="mb-8 font-semibold text-font">Tanggal publish</p>
+                <h5 class="mb-2 text-2xl font-bold text-assets group-hover:text-second_a">{{ $artikelTerbaru[1]->judul_artikel }}</h5>
+                <p class="mb-3 font-normal text-description">Deskripsi artikel. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sed ante porta ligula condimentum condimentum. Pellentesque sollicitudin et nulla id laoreet. Pellentesque.</p>
             </div>
-            <img class="object-cover w-full h-80 rounded-lg md:w-1/2" src="{{ asset('assets/article1.jpeg') }}" alt="Artikel's pict">
+            <img class="object-cover w-full h-80 rounded-2xl md:w-1/2" src="{{ asset('storage/artikel/' . $artikelTerbaru[1]->foto_sampul_artikel) }}" alt="Artikel's pict">
         </a>
     </div>
     {{-- Newest Article End --}}
 
     {{-- Aspiration Cards Start --}}
-    <div class="mx-auto py-8 px-6 max-w-2xl text-center lg:max-w-4xl" data-aos="fade-up" data-aos-duration="300">
-        <h2 class="mt-2 text-4xl font-extrabold text-assets">Aspirasi</h2>
+    <div class="mx-auto py-8 px-6 max-w-2xl text-center lg:max-w-4xl" data-aos="fade-up" data-aos-duration="1000">
+        <h2 class="mt-2 text-4xl font-bold text-font">Aspirasi</h2>
     </div>
     <div class="p-16">
         <div class="grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-4">

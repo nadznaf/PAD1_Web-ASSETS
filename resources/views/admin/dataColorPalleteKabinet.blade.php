@@ -108,17 +108,17 @@
             </div>
           @endif
         <!-- Search Data in Table -->
-        <div class="col-md-8">
-            <div class="input-group">
-              <span class="input-group-text" id="basic-addon1">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" class="w-5 h-5">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35M17 11a6 6 0 11-12 0 6 6 0 0112 0z" />
-                </svg>
-              </span>
-              <input type="text" id="searchInput" class="form-control" placeholder="Search in this Category..." onkeyup="searchTable()">
-            </div>
+        <div class="col-sm-10 col-12">
+          <div class="input-group">
+            <span class="input-group-text" id="basic-addon1">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" class="w-5 h-5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35M17 11a6 6 0 11-12 0 6 6 0 0112 0z" />
+              </svg>
+            </span>
+            <input type="text" id="searchInput" class="form-control" placeholder="Search in this Category..." onkeyup="searchTable()">
+          </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-sm-2 col-12 mt-2 mt-sm-0 d-flex justify-content-sm-end">
           <!-- Button trigger modal -->
           <button type="button" id="button" class="btn w-100" data-bs-toggle="modal" data-bs-target="#insertData">
             Tambah Data

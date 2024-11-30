@@ -30,7 +30,7 @@ class LoginRegisterController extends Controller
         $request->validate([
             'email_admin' => 'required|email|max:250|unique:admin',
             'password' => 'required|confirmed|min:8'
-        ]);        
+        ]);
 
         $admin = Admin::create([
             'email_admin' => $request->email_admin,
@@ -54,15 +54,15 @@ class LoginRegisterController extends Controller
             'email_admin' => 'required|email|max:250',
             'password' => 'required|min:8'
         ]);
-    
+
         $remember = $request->has('remember-device');
-    
+
         if (Auth::guard('admin')->attempt($credentials, $remember)) {
             $request->session()->regenerate();
             return redirect()->intended(route('admin.dashboard'))
                 ->withSuccess('You have successfully logged in!');
         }
-    
+
         return back()->withErrors([
             'email_admin' => 'The provided credentials do not match our records.',
         ])->onlyInput('email_admin');
@@ -73,30 +73,29 @@ class LoginRegisterController extends Controller
         if (Auth::guard('admin')->check()) {
             // Ambil data admin yang sedang login
             $admin = Auth::guard('admin')->user();
-    
-            // Hitung jumlah untuk setiap model
-            $counts = [
-                'jumlahMahasiswa' => Mahasiswa::count(),
-                'jumlahDosen' => Dosen::count(),
-                'jumlahKabinet' => Kabinet::count(),
-                'jumlahDivisi' => Divisi::count(),
-                'jumlahStaff' => Staff::count(),
-                'jumlahProker' => Proker::count(),
-                'jumlahPelaksana' => Pelaksana::count(),
-                'jumlahDokumentasi' => Dokumentasi::count(),
-                'jumlahArtikel' => Artikel::count(),
-                'jumlahAspirasi' => Aspirasi::count(),
-            ];
-    
-            // Kirim data ke view
-            return view('admin.dashboard', compact('admin', 'counts'));
+
+            $jumlahMahasiswa = Mahasiswa::count();
+            $jumlahDosen = Dosen::count();
+            $jumlahKabinet = Kabinet::count();
+            $jumlahDivisi = Divisi::count();
+            $jumlahStaff = Staff::count();
+            $jumlahProker = Proker::count();
+            $jumlahPelaksana = Pelaksana::count();
+            $jumlahDokumentasi = Dokumentasi::count();
+            $jumlahArtikel = Artikel::count();
+            $jumlahAspirasi = Aspirasi::count();
+
+            // Kirim data admin ke view 'admin.dashboard'
+            return view('admin.dashboard', compact('admin',
+            'jumlahMahasiswa', 'jumlahDosen', 'jumlahKabinet', 'jumlahDivisi',
+            'jumlahStaff', 'jumlahProker', 'jumlahPelaksana', 'jumlahDokumentasi',
+            'jumlahArtikel', 'jumlahAspirasi'));
         }
-    
+
         return redirect()->route('login')->withErrors([
             'email_admin' => 'Please login to access the dashboard.'
         ])->onlyInput('email_admin');
     }
-    
 
     public function logout(Request $request)
     {

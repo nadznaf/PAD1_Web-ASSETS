@@ -3,19 +3,31 @@
 @section('title', 'Kepengurusan')
 
 @section('content')
+<style>
+    #warnaKabinet {
+        background-color: {{ $kabinet->color_pallete->primary_color }} !important;
+    }
+    :root {
+        --primary-color: {{ $kabinet->color_pallete->primary_color }};
+    }
+    #teksWarnaKabinet {
+        color: {{ $kabinet->color_pallete->primary_color }} !important;
+    }
+    #footer {
+        background-color: {{ $kabinet->color_pallete->primary_color }} !important;
+    }
+</style>
 <div class="bg-white">
     {{-- top judul --}}
     <div class="mb-24 mx-4 md:mx-32 p-4 md:p-16 text-center">
-        <h2 class="mt-2 text-2xl md:text-4xl font-bold text-black uppercase">Kepengurusan amara 2024</h2>
-        {{-- {{ $kabinet->nama_kabinet }} {{ $kabinet->tahun_awal_kabinet }} --}}
-        <p class="mt-4 md:mt-6 text-base md:text-lg font-light text-description">Struktur kepengurusan Kabinet Amara terdiri dari berbagai divisi yang berfokus pada bidang-bidang penting seperti pengembangan sumber daya anggota, pengembangan bakat, program kerja kreatif, serta manajemen organisasi.</p>
-        {{-- {{ $kabinet->deskripsi_kabinet }} --}}
+        <h2 class="mt-2 text-2xl md:text-4xl font-bold text-black uppercase">Kepengurusan kabinet {{ $kabinet->nama_kabinet }}</h2>
+        <p class="mt-4 md:mt-6 text-base md:text-lg font-light text-description">{{ $kabinet->deskripsi_kabinet }}</p></p>
     </div>
 
     {{-- spesifik kabinet --}}
-    <div class="bg-amara grid xs:grid-rows-3 p-16 justify-items-center lg:px-32 lg:grid-cols-3 lg:gap-8 ">
+    <div id="warnaKabinet" class="grid xs:grid-rows-3 p-16 justify-items-center lg:px-32 lg:grid-cols-3 lg:gap-8 ">
         <div class="grid-rows-1 mb-4 lg:grid-cols-1 justify-items-center">
-            <h3 class="text-white font-bold text-3xl" data-aos="">2023-2024</h3>
+            <h3 class="text-white font-bold text-3xl" data-aos="">{{ $kabinet->tahun_awal_kabinet }} - {{ $kabinet->tahun_akhir_kabinet }}</h3>
             <p class="text-white font-light">Tahun kepengurusan</p>
         </div>
         <div class="grid-rows-1 mb-4 lg:grid-cols-1 justify-items-center">
@@ -30,30 +42,29 @@
 
     {{-- logo kabinet --}}
     <div class="flex justify-center my-32 px-8 md:my-40">
-        <img src="{{ asset('assets/amara_logo.svg') }}" class="w-434 h-103" alt="Assets Logo">
-        {{-- {{ asset('storage/datakabinet/' . $kabinet->logo_kabinet) }} --}}
+        <img src="{{ asset('storage/datakabinet/' . $kabinet->logo_kabinet) }}" class="w-434 h-103" alt="Kabinet Logo">
     </div>
 
     {{-- ketua --}}
     <div class="grid grid-cols-3 justify-between">
-        <div class="grid grid-cols-1 bg-gradient-to-r from-amara to-white px-0 md:px-32 py-8 gap-8"></div>
-        <h2 class="text-2xl grid grid-col-1 font-extralight text-amara md:text-5xl lg:text-7xl text-center items-center">Ketua</h2>
-        <div class="grid grid-col-1 bg-gradient-to-l from-amara to-white px-0 md:px-32 py-8 gap-8"></div>
+        <div class="grid grid-cols-1 bg-gradient-to-r from-[var(--primary-color)] to-white px-0 md:px-32 py-8 gap-8"></div>
+        <h2 id="teksWarnaKabinet" class="text-2xl grid grid-col-1 font-extralight md:text-5xl lg:text-7xl text-center items-center">Ketua</h2>
+        <div class="grid grid-col-1 bg-gradient-to-l from-[var(--primary-color)] to-white px-0 md:px-32 py-8 gap-8"></div>
     </div>
     <div class="flex flex-col items-center mx-8 md:mx-16 my-16 bg-white rounded-lg md:flex-row" data-modal-target="default-modal" data-modal-toggle="default-modal">
         <img class="object-cover w-full h-96 rounded-lg md:mr-8 md:w-1/2" src="{{ asset('assets/yodhim.svg') }}" alt="Ketua">
         <div class="flex flex-col justify-between p-4 leading-normal">
-            <h5 class="mb-2 text-2xl md:text-4xl font-semibold text-amara hover:text-dark">Yodhimas Geffananda</h5>
+            <h5 id="teksWarnaKabinet" class="mb-2 text-2xl md:text-4xl font-semibold hover:text-dark">Yodhimas Geffananda</h5>
             <p class="mb-8 font-normal italic text-font">Ketua ASSETS Kabinet AMARA</p>
-            <h5 class="mb-2 text-xl md:text-2xl font-semibold text-amara">Tugas dan Tanggung Jawab</h5>
+            <h5 id="teksWarnaKabinet" class="mb-2 text-xl md:text-2xl font-semibold">Tugas dan Tanggung Jawab</h5>
             <p class="mb-3 font-normal text-black">Deskripsi proker. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sed ante porta ligula condimentum condimentum. Pellentesque sollicitudin et nulla id laoreet. Pellentesque.</p>
         </div>
     </div>
     <div class="flex flex-col-reverse items-center mx-8 md:mx-16 my-16 bg-white rounded-lg md:flex-row" data-modal-target="default-modal" data-modal-toggle="default-modal">
         <div class="flex flex-col justify-between p-4 leading-normal">
-            <h5 class="mb-2 text-2xl md:text-4xl font-semibold text-amara hover:text-dark">Rioga Natayudha</h5>
+            <h5 id="teksWarnaKabinet" class="mb-2 text-2xl md:text-4xl font-semibold hover:text-dark">Rioga Natayudha</h5>
             <p class="mb-8 font-normal italic text-font">Sekretaris Jendral</p>
-            <h5 class="mb-2 text-xl md:text-2xl font-semibold text-amara">Tugas dan Tanggung Jawab</h5>
+            <h5 id="teksWarnaKabinet" class="mb-2 text-xl md:text-2xl font-semibold">Tugas dan Tanggung Jawab</h5>
             <p class="mb-3 font-normal text-black">Deskripsi proker. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sed ante porta ligula condimentum condimentum. Pellentesque sollicitudin et nulla id laoreet. Pellentesque.</p>
         </div>
         <img class="object-cover w-full h-96 rounded-lg md:ml-16 md:w-1/2" src="{{ asset('assets/rioga.svg') }}" alt="Sekjen">
@@ -61,24 +72,24 @@
 
     {{-- Sekretaris --}}
     <div class="grid grid-cols-3 justify-between mt-4">
-        <div class="grid grid-cols-1 bg-gradient-to-r from-amara to-white px-0 md:px-32 py-8 gap-8"></div>
-        <h2 class="text-2xl grid grid-col-1 font-extralight text-amara md:text-5xl lg:text-7xl text-center items-center">Sekretaris</h2>
-        <div class="grid grid-col-1 bg-gradient-to-l from-amara to-white px-0 md:px-32 py-8 gap-8"></div>
+        <div class="grid grid-cols-1 bg-gradient-to-r from-[var(--primary-color)] to-white px-0 md:px-32 py-8 gap-8"></div>
+        <h2 id="teksWarnaKabinet" class="text-2xl grid grid-col-1 font-extralight md:text-5xl lg:text-7xl text-center items-center">Sekretaris</h2>
+        <div class="grid grid-col-1 bg-gradient-to-l from-[var(--primary-color)] to-white px-0 md:px-32 py-8 gap-8"></div>
     </div>
     <div class="flex flex-col items-center mx-8 md:mx-16 my-16 bg-white rounded-lg md:flex-row" data-modal-target="default-modal" data-modal-toggle="default-modal">
         <img class="object-cover w-full h-96 rounded-lg md:mr-8 md:w-1/2" src="{{ asset('assets/risma.svg') }}" alt="Ketua">
         <div class="flex flex-col justify-between p-4 leading-normal">
-            <h5 class="mb-2 text-2xl md:text-4xl font-semibold text-amara hover:text-dark">Risma Saputri</h5>
+            <h5 id="teksWarnaKabinet" class="mb-2 text-2xl md:text-4xl font-semibold hover:text-dark">Risma Saputri</h5>
             <p class="mb-8 font-normal italic text-font">Sekretaris 1 Kabinet AMARA</p>
-            <h5 class="mb-2 text-xl md:text-2xl font-semibold text-amara">Tugas dan Tanggung Jawab</h5>
+            <h5 id="teksWarnaKabinet" class="mb-2 text-xl md:text-2xl font-semibold">Tugas dan Tanggung Jawab</h5>
             <p class="mb-3 font-normal text-black">Deskripsi proker. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sed ante porta ligula condimentum condimentum. Pellentesque sollicitudin et nulla id laoreet. Pellentesque.</p>
         </div>
     </div>
     <div class="flex flex-col-reverse items-center mx-8 md:mx-16 my-16 bg-white rounded-lg md:flex-row" data-modal-target="default-modal" data-modal-toggle="default-modal">
         <div class="flex flex-col justify-between p-4 leading-normal">
-            <h5 class="mb-2 text-2xl md:text-4xl font-semibold text-amara hover:text-dark">Charizza Thunjung</h5>
+            <h5 id="teksWarnaKabinet" class="mb-2 text-2xl md:text-4xl font-semibold hover:text-dark">Charizza Thunjung</h5>
             <p class="mb-8 font-normal italic text-font">Sekretaris 2 Kabinet AMARA</p>
-            <h5 class="mb-2 text-xl md:text-2xl font-semibold text-amara">Tugas dan Tanggung Jawab</h5>
+            <h5 id="teksWarnaKabinet" class="mb-2 text-xl md:text-2xl font-semibold">Tugas dan Tanggung Jawab</h5>
             <p class="mb-3 font-normal text-black">Deskripsi proker. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sed ante porta ligula condimentum condimentum. Pellentesque sollicitudin et nulla id laoreet. Pellentesque.</p>
         </div>
         <img class="object-cover w-full h-96 rounded-lg md:ml-16 md:w-1/2" src="{{ asset('assets/charizza.svg') }}" alt="Sekjen">
@@ -86,24 +97,24 @@
 
     {{-- bendahara --}}
     <div class="grid grid-cols-3 justify-between mt-4">
-        <div class="grid grid-cols-1 bg-gradient-to-r from-amara to-white md:px-32 py-8 gap-8"></div>
-        <h2 class="text-2xl grid grid-col-1 font-extralight text-amara md:text-5xl lg:text-7xl text-center items-center">Bendahara</h2>
-        <div class="grid grid-col-1 bg-gradient-to-l from-amara to-white md:px-32 py-8 gap-8"></div>
+        <div class="grid grid-cols-1 bg-gradient-to-r from-[var(--primary-color)] to-white px-0 md:px-32 py-8 gap-8"></div>
+        <h2 id="teksWarnaKabinet" class="text-2xl grid grid-col-1 font-extralight md:text-5xl lg:text-7xl text-center items-center">Bendahara</h2>
+        <div class="grid grid-col-1 bg-gradient-to-l from-[var(--primary-color)] to-white px-0 md:px-32 py-8 gap-8"></div>
     </div>
     <div class="flex flex-col items-center mx-8 md:mx-16 my-16 bg-white rounded-lg md:flex-row" data-modal-target="default-modal" data-modal-toggle="default-modal">
         <img class="object-cover w-full h-96 rounded-lg md:mr-8 md:w-1/2" src="{{ asset('assets/luthfi.svg') }}" alt="Ketua">
         <div class="flex flex-col justify-between p-4 leading-normal">
-            <h5 class="mb-2 text-2xl md:text-4xl font-semibold text-amara hover:text-dark">Luthfi Lisana S</h5>
+            <h5 id="teksWarnaKabinet" class="mb-2 text-2xl md:text-4xl font-semibold hover:text-dark">Luthfi Lisana S</h5>
             <p class="mb-8 font-normal italic text-font">Bendahara 1 Kabinet AMARA</p>
-            <h5 class="mb-2 text-xl md:text-2xl font-semibold text-amara">Tugas dan Tanggung Jawab</h5>
+            <h5 id="teksWarnaKabinet" class="mb-2 text-xl md:text-2xl font-semibold">Tugas dan Tanggung Jawab</h5>
             <p class="mb-3 font-normal text-black">Deskripsi proker. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sed ante porta ligula condimentum condimentum. Pellentesque sollicitudin et nulla id laoreet. Pellentesque.</p>
         </div>
     </div>
     <div class="flex flex-col-reverse items-center mx-8 md:mx-16 my-16 bg-white rounded-lg md:flex-row" data-modal-target="default-modal" data-modal-toggle="default-modal">
         <div class="flex flex-col justify-between p-4 leading-normal">
-            <h5 class="mb-2 text-2xl md:text-4xl font-semibold text-amara hover:text-dark">Marwah Kamila A</h5>
+            <h5 id="teksWarnaKabinet" class="mb-2 text-2xl md:text-4xl font-semibold hover:text-dark">Marwah Kamila A</h5>
             <p class="mb-8 font-normal italic text-font">Bendahara 2 Kabinet AMARA</p>
-            <h5 class="mb-2 text-xl md:text-2xl font-semibold text-amara">Tugas dan Tanggung Jawab</h5>
+            <h5 id="teksWarnaKabinet" class="mb-2 text-xl md:text-2xl font-semibold">Tugas dan Tanggung Jawab</h5>
             <p class="mb-3 font-normal text-black">Deskripsi proker. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sed ante porta ligula condimentum condimentum. Pellentesque sollicitudin et nulla id laoreet. Pellentesque.</p>
         </div>
         <img class="object-cover w-full h-96 rounded-lg md:ml-16 md:w-1/2" src="{{ asset('assets/marwah.svg') }}" alt="Sekjen">
@@ -111,15 +122,15 @@
 
     {{-- divisi --}}
     <div class="grid grid-cols-3 justify-between mt-4">
-        <div class="grid grid-cols-1 bg-gradient-to-r from-amara to-white md:px-32 py-8 gap-8"></div>
-        <h2 class="text-2xl grid grid-col-1 font-extralight text-amara md:text-5xl lg:text-7xl text-center items-center">Divisi</h2>
-        <div class="grid grid-col-1 bg-gradient-to-l from-amara to-white md:px-32 py-8 gap-8"></div>
+        <div class="grid grid-cols-1 bg-gradient-to-r from-[var(--primary-color)] to-white px-0 md:px-32 py-8 gap-8"></div>
+        <h2 id="teksWarnaKabinet" class="text-2xl grid grid-col-1 font-extralight md:text-5xl lg:text-7xl text-center items-center">Divisi</h2>
+        <div class="grid grid-col-1 bg-gradient-to-l from-[var(--primary-color)] to-white px-0 md:px-32 py-8 gap-8"></div>
     </div>
 
     {{-- divisi psdm --}}
     <div class="text-center mt-16 mx-6 md:mx-auto max-w-2xl lg:max-w-4xl">
         <h2 class="mt-2 text-2xl md:text-4xl font-semibold text-black uppercase">psdm</h2>
-        <p class="mt-4 md:mt-6 mb-8 text-base md:text-lg font-normal text-amara">Pengembangan Sumber Daya Manusia</p>
+        <p id="teksWarnaKabinet" class="mt-4 md:mt-6 mb-8 text-base md:text-lg font-normal">Pengembangan Sumber Daya Manusia</p>
     </div>
     <div class="flex min-h-full items-center justify-center overflow-x-hidden px-4 py-8 bg-black">
         <div class="group flex justify-center gap-1 px-4">
@@ -264,16 +275,16 @@
     {{-- proker psdm start --}}
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 m-6 md:m-8">
         <div class="m-8">
-            <h5 class="text-amara text-base font-semibold mb-4">Task</h5>
+            <h5 class="text-amara text-base font-semibold mb-4">Tugas dan Tanggung Jawab</h5>
             <p class="font-light text-justify">
                 Mengembangkan kualitas sumber daya manusia yang ada.
             </p>
         </div>
         <div class="m-8">
-            <h5 class="text-red-500 text-base font-semibold mb-4">Proker</h5>
+            <h5 class="text-amara text-base font-semibold mb-4">Program kerja</h5>
             <div class="grid grid-rows-4 gap-2">
                 <!-- Item 1 -->
-                <a href="{{ route('proker') }}">
+                <a href="{{ route('proker.show', $kabinet->id_kabinet) }}">
                     <div class="flex justify-between items-center">
                         <p class="text-black hover:underline">SERIES 2024</p>
                         <div class="bg-yellow-200 text-yellow-700 rounded-xl w-20 text-center py-1 text-xs">

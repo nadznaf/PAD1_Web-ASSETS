@@ -182,7 +182,7 @@
                   </div>
                   <button type="button" class="btn btn-primary" onclick="addTanggalKegiatan()">Tambah Tanggal</button>
               </div>
-                
+
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
                 <button type="submit" class="btn" id="button">Tambah</button>
@@ -208,7 +208,7 @@
             </div>
           @endif
         <!-- Search Data in Table -->
-        <div class="col-md-8">
+        <div class="col-md-10">
             <div class="input-group">
               <span class="input-group-text" id="basic-addon1">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" class="w-5 h-5">
@@ -218,7 +218,7 @@
               <input type="text" id="searchInput" class="form-control" placeholder="Search in this Category..." onkeyup="searchTable()">
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-2">
           <!-- Button trigger modal -->
           <button type="button" id="button" class="btn w-100" data-bs-toggle="modal" data-bs-target="#insertData">
             Tambah Data
@@ -243,7 +243,7 @@
             <th>ACTION</th>
           </tr>
         </thead>
-        
+
         <!-- Fill Table Body using Retrieved Data from Database-->
         <tbody id="TableBody">
           @foreach($dataProker as $index => $proker)
@@ -251,11 +251,8 @@
             <td>{{ $dataProker->firstItem() + $index }}</td>
             <td>{{ $proker->judul_proker}}</td>
             <td>
-                <strong>Kabinet Penyelenggara:</strong> <br>{{ $proker->divisi->nama_divisi }} <br> <hr>
-                <strong>Divisi Penyelenggara:</strong> <br>{{ $proker->divisi->kabinet->nama_kabinet }} <br>  
-            </td>            
-            <td class="text-center">
-              <img src="{{ asset('storage/dataproker/' . $proker->foto_sampul_proker) }}" class="rounded w-24 h-24 object-cover">
+                <strong>Kabinet Penyelenggara:</strong> <br>{{ $proker->divisi->kabinet->nama_kabinet }}<br> <hr>
+                <strong>Divisi Penyelenggara:</strong> <br>{{ $proker->divisi->nama_divisi }}<br>
             </td>
             <td>{{ $proker->deskripsi_proker }}</td>
             <td>{{ $proker->deskripsi_kegiatan_proker }}</td>
@@ -296,7 +293,7 @@
                                     <select name="id_kabinet" id="id_kabinet_edit-{{ $dataProker->firstItem() + $index }}" class="form-select" required>
                                         <option value="" disabled selected>Pilih Asal Kabinet</option>
                                         @foreach($dataKabinet as $kabinet)
-                                            <option value="{{ $kabinet->id_kabinet }}">{{ $kabinet->nama_kabinet }}</option>                                      
+                                            <option value="{{ $kabinet->id_kabinet }}">{{ $kabinet->nama_kabinet }}</option>
                                         @endforeach
                                     </select>
                                     <div class="invalid-feedback">
@@ -373,13 +370,13 @@
                                     <div id="edit-tanggal-kegiatan-container-{{ $dataProker->firstItem() + $index }}">
                                         @foreach ($proker->waktu_proker as $tanggal)
                                             <div class="input-group mb-2">
-                                                <input type="date" class="form-control" name="tanggal_kegiatan_edit[]" 
+                                                <input type="date" class="form-control" name="tanggal_kegiatan_edit[]"
                                                       value="{{ \Carbon\Carbon::parse($tanggal->tanggal_kegiatan)->format('Y-m-d') }}" required>
                                                 <button type="button" class="btn btn-danger" onclick="this.parentElement.remove()">Hapus</button>
                                             </div>
                                         @endforeach
                                     </div>
-                                    <button type="button" class="btn btn-primary" 
+                                    <button type="button" class="btn btn-primary"
                                             onclick="addTanggalKegiatanInEdit('edit-tanggal-kegiatan-container-{{ $dataProker->firstItem() + $index }}')">
                                         Tambah Tanggal
                                     </button>
@@ -516,7 +513,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function addTanggalKegiatan() {
       const container = document.getElementById('tanggal-kegiatan-container');
-      
+
       // Create a div to wrap the input and button
       const newField = document.createElement('div');
       newField.className = 'input-group mb-2';
@@ -526,7 +523,7 @@ function addTanggalKegiatan() {
       newInput.type = 'date';
       newInput.name = 'tanggal_kegiatan[]';
       newInput.className = 'form-control';
-      
+
       // Create the close button
       const newDelete = document.createElement('button');
       newDelete.type = 'button';
@@ -550,7 +547,7 @@ function addTanggalKegiatan() {
         $('#id_kabinet').change(function() {
             const id_kabinet = $(this).val();
             const divisiSelect = $('#id_divisi');
-            
+
             if (id_kabinet) {
                 $.ajax({
                     url: '{{ route("admin.get.divisi") }}',
@@ -561,11 +558,11 @@ function addTanggalKegiatan() {
                     },
                     success: function(data) {
                         let options = '<option value="" disabled selected>Pilih Asal Divisi ...</option>';
-                        
+
                         data.forEach(function(divisi) {
                             options += `<option value="${divisi.id_divisi}">${divisi.nama_divisi}</option>`;
                         });
-                        
+
                         divisiSelect.html(options);
                     }
                 });
@@ -575,14 +572,14 @@ function addTanggalKegiatan() {
         });
         // Form validation
         const forms = document.querySelectorAll('.needs-validation');
-        
+
         Array.from(forms).forEach(form => {
             form.addEventListener('submit', event => {
                 if (!form.checkValidity()) {
                     event.preventDefault();
                     event.stopPropagation();
                 }
-                
+
                 form.classList.add('was-validated');
             }, false);
         });
@@ -599,7 +596,7 @@ document.addEventListener('DOMContentLoaded', function() {
         $(`#id_kabinet_edit-${index + 1}`).change(function() {
             const id_kabinet = $(this).val();
             const divisiSelect = $(`#id_divisi_edit-${index + 1}`);
-            
+
             if (id_kabinet) {
                 $.ajax({
                     url: '{{ route("admin.get.divisi") }}',
@@ -610,11 +607,11 @@ document.addEventListener('DOMContentLoaded', function() {
                     },
                     success: function(data) {
                         let options = '<option value="" disabled selected>Pilih Asal Divisi</option>';
-                        
+
                         data.forEach(function(divisi) {
                             options += `<option value="${divisi.id_divisi}">${divisi.nama_divisi}</option>`;
                         });
-                        
+
                         divisiSelect.html(options);
                     }
                 });
@@ -630,23 +627,23 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('uploadInput').addEventListener('change', function(event) {
       const imagePreview = document.getElementById('image-preview');
       const clearButton = document.getElementById('clear-button');
-      
+
       if (event.target.files.length > 0) {
           const file = event.target.files[0];
           const reader = new FileReader();
-          
+
           reader.onload = function(e) {
               imagePreview.innerHTML = `<img src="${e.target.result}" class="img-fluid rounded-lg" alt="Image preview" style="max-width: 100%; max-height: 100%;">`;
               clearButton.style.display = 'block';
           };
-          
+
           reader.readAsDataURL(file);
       }
   });
   document.getElementById('clear-button').addEventListener('click', function() {
       const imagePreview = document.getElementById('image-preview');
       const uploadInput = document.getElementById('uploadInput');
-      
+
       imagePreview.innerHTML = `<p class="text-gray-500">No image selected</p>`;
       uploadInput.value = '';
       this.style.display = 'none';
@@ -660,20 +657,20 @@ document.querySelectorAll('[id^="editInput-"]').forEach((input, index) => {
   input.addEventListener('change', function(event) {
     const imagePreviewEdit = document.getElementById(`image-preview-edit-${index + 1}`);
     const clearButtonEdit = document.getElementById(`clear-button-edit-${index + 1}`);
-    
+
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
       const reader = new FileReader();
-      
+
       reader.onload = function(e) {
         imagePreviewEdit.innerHTML = `<img src="${e.target.result}" class="img-fluid rounded-lg" alt="Image preview" style="max-width: 100%; max-height: 100%;">`;
         clearButtonEdit.style.display = 'block';
       };
-      
+
       reader.readAsDataURL(file);
     }
   });
-  
+
   document.getElementById(`clear-button-edit-${index + 1}`).addEventListener('click', function() {
     const imagePreviewEdit = document.getElementById(`image-preview-edit-${index + 1}`);
     input.value = '';
