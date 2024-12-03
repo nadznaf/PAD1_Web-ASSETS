@@ -18,7 +18,6 @@
 
     <main class="overflow-x-hidden">
         @yield('content')
-        @include('user.detailMahasiswa')
     </main>
 
     @include('partials.footer')

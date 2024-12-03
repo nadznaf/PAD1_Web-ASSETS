@@ -47,14 +47,14 @@
             <div class="flex flex-col justify-between p-4 md:ps-8 leading-normal md:w-3/5">
                 <p class="mb-8 font-semibold text-font">{{ \Carbon\Carbon::parse($dataArtikel[0]->tanggal_terbit)->isoFormat('dddd, DD-MM-YYYY') }}</p>
                 <h5 class="mb-2 text-2xl font-bold text-assets group-hover:text-second_a">{{ $dataArtikel[0]->judul_artikel }}</h5>
-                <p class="mb-3 font-normal text-description">{{ $dataArtikel[0]->konten_artikel }}</p>
+                <p class="deskripsiSingkat mb-3 font-normal text-description">{{ $dataArtikel[0]->konten_artikel }}</p>
             </div>
         </a>
         <a href="{{ route('artikel.show', $dataArtikel[1]->id_artikel) }}" class="group flex flex-col-reverse md:items-center mt-16 mb-8 bg-white rounded-lg md:flex-row md:max-w-full" data-aos="fade-right" data-aos-duration="3000">
             <div class="flex flex-col justify-between p-4 md:pe-8 leading-normal md:w-3/5">
                 <p class="mb-8 font-semibold text-font">{{ \Carbon\Carbon::parse($dataArtikel[1]->tanggal_terbit)->isoFormat('dddd, DD-MM-YYYY') }}</p>
                 <h5 class="mb-2 text-2xl font-bold text-assets group-hover:text-second_a">{{ $dataArtikel[1]->judul_artikel }}</h5>
-                <p class="mb-3 font-normal text-description">{{ $dataArtikel[1]->konten_artikel }}</p>
+                <p class="deskripsiSingkat mb-3 font-normal text-description">{{ $dataArtikel[1]->konten_artikel }}</p>
             </div>
             <img class="object-cover w-full h-80 rounded-lg md:w-1/2" src="{{ asset('storage/artikel/' . $dataArtikel[1]->foto_sampul_artikel) }}" alt="Artikel's pict">
         </a>
@@ -63,7 +63,7 @@
             <div class="flex flex-col justify-between p-4 md:ps-8 leading-normal md:w-3/5">
                 <p class="mb-8 font-semibold text-font">{{ \Carbon\Carbon::parse($dataArtikel[2]->tanggal_terbit)->isoFormat('dddd, DD-MM-YYYY') }}</p>
                 <h5 class="mb-2 text-2xl font-bold text-assets group-hover:text-second_a">{{ $dataArtikel[2]->judul_artikel }}</h5>
-                <p class="mb-3 font-normal text-description">{{ $dataArtikel[2]->konten_artikel }}</p>
+                <p class="deskripsiSingkat mb-3 font-normal text-description">{{ $dataArtikel[2]->konten_artikel }}</p>
             </div>
         </a>
     </div>
@@ -75,56 +75,38 @@
             <hr class="w-96 h-px my-8 bg-black">
         </div>
         <div class="space-y-4">
-            <div class="group grid grid-cols-8 items-center md:gap-4 gap-1">
-                <div class="col-span-1">
-                    <img src="{{ asset('storage/artikel/' . $dataArtikel[0]->foto_sampul_artikel) }}" class="object-cover h-8 w-8 md:h-20 md:w-20 rounded-3xl" alt="Artikel 1">
-                </div>
-                <div class="col-span-7">
-                    <a href="{{ route('detailArtikel') }}" class="block">
-                        <h5 class="text-xl font-semibold text-assets group-hover:text-second_a">{{ $dataArtikel[2]->judul_artikel }}</h5>
-                    </a>
-                    <p class="text-gray-500 text-sm">{{ \Carbon\Carbon::parse($dataArtikel[0]->tanggal_terbit)->isoFormat('dddd, DD-MM-YYYY') }}</p>
-                </div>
-            </div>
-
-            <div class="group grid grid-cols-8 items-center md:gap-4 gap-1">
-                <div class="col-span-1">
-                    <img src="{{ asset('storage/artikel/' . $dataArtikel[1]->foto_sampul_artikel) }}" class="object-cover h-8 w-8 md:h-20 md:w-20 rounded-3xl" alt="Artikel 2">
-                </div>
-                <div class="col-span-7">
-                    <a href="{{ route('detailArtikel') }}" class="block">
-                        <h5 class="text-xl font-semibold text-assets group-hover:text-second_a">{{ $dataArtikel[1]->judul_artikel }}</h5>
-                    </a>
-                    <p class="text-gray-500 text-sm">{{ \Carbon\Carbon::parse($dataArtikel[1]->tanggal_terbit)->isoFormat('dddd, DD-MM-YYYY') }}</p>
-                </div>
-            </div>
-
-            <div class="group grid grid-cols-8 items-center md:gap-4 gap-1">
-                <div class="col-span-1">
-                    <img src="{{ asset('storage/artikel/' . $dataArtikel[2]->foto_sampul_artikel) }}" class="object-cover h-8 w-8 md:h-20 md:w-20 rounded-3xl" alt="Artikel 3">
-                </div>
-                <div class="col-span-7">
-                    <a href="{{ route('detailArtikel') }}" class="block">
-                        <h5 class="text-xl font-semibold text-assets group-hover:text-second_a">{{ $dataArtikel[2]->judul_artikel }}</h5>
-                    </a>
-                    <p class="text-gray-500 text-sm">{{ \Carbon\Carbon::parse($dataArtikel[2]->tanggal_terbit)->isoFormat('dddd, DD-MM-YYYY') }}</p>
-                </div>
-            </div>
-
-            <!-- Additional Articles (Hidden by Default) -->
-            <div id="extra-articles" class="hidden space-y-4">
-                @foreach ($dataArtikel as $index => $artikel)
+            @foreach ($dataArtikel as $index => $artikel)
+                @if ($index < 3)
                 <div class="group grid grid-cols-8 items-center md:gap-4 gap-1">
                     <div class="col-span-1">
-                        <img src="{{ asset('storage/artikel/' . $artikel->foto_sampul_artikel) }}" class="object-cover h-8 w-8 md:h-20 md:w-20 rounded-3xl" alt="Artikel 4">
+                        <img src="{{ asset('storage/artikel/' . $artikel->foto_sampul_artikel) }}" class="object-cover h-8 w-8 md:h-20 md:w-20 rounded-3xl" alt="Artikel 1">
                     </div>
                     <div class="col-span-7">
-                        <a href="{{ route('detailArtikel') }}" class="block">
+                        <a href="{{ route('artikel.show', $artikel->id_artikel) }}" class="block">
                             <h5 class="text-xl font-semibold text-assets group-hover:text-second_a">{{ $artikel->judul_artikel }}</h5>
                         </a>
                         <p class="text-gray-500 text-sm">{{ \Carbon\Carbon::parse($artikel->tanggal_terbit)->isoFormat('dddd, DD-MM-YYYY') }}</p>
                     </div>
                 </div>
+                @endif
+            @endforeach
+
+            <!-- Additional Articles (Hidden by Default) -->
+            <div id="extra-articles" class="hidden space-y-4">
+                @foreach ($dataArtikel as $index => $artikel)
+                    @if ($index > 2)
+                        <div class="group grid grid-cols-8 items-center md:gap-4 gap-1">
+                            <div class="col-span-1">
+                                <img src="{{ asset('storage/artikel/' . $artikel->foto_sampul_artikel) }}" class="object-cover h-8 w-8 md:h-20 md:w-20 rounded-3xl" alt="Artikel 4">
+                            </div>
+                            <div class="col-span-7">
+                                <a href="{{ route('artikel.show', $artikel->id_artikel) }}" class="block">
+                                    <h5 class="text-xl font-semibold text-assets group-hover:text-second_a">{{ $artikel->judul_artikel }}</h5>
+                                </a>
+                                <p class="text-gray-500 text-sm">{{ \Carbon\Carbon::parse($artikel->tanggal_terbit)->isoFormat('dddd, DD-MM-YYYY') }}</p>
+                            </div>
+                        </div>
+                    @endif
                 @endforeach
             </div>
         </div>
@@ -145,6 +127,21 @@
                     toggleButton.innerText = "Lihat lainnya...";
                 }
             }
+
+            document.addEventListener('DOMContentLoaded', function () {
+            // Ambil semua elemen dengan kelas 'deskripsiSingkat'
+            const deskripsiElements = document.querySelectorAll('.deskripsiSingkat');
+            const maxLength = 200; // Batas jumlah karakter
+
+                // Iterasi setiap elemen
+                deskripsiElements.forEach(function (deskripsiElement) {
+                    const fullText = deskripsiElement.textContent;
+
+                    if (fullText.length > maxLength) {
+                        deskripsiElement.textContent = fullText.substring(0, maxLength) + ' ...';
+                    }
+                });
+            });
         </script>
     </div>
 </section>

@@ -32,4 +32,9 @@ class Kabinet extends Model
     {
         return $this->hasOne(ColorPallete::class, 'id_kabinet', 'id_kabinet');
     }
+
+    public function divisi()
+    {
+        return $this->hasMany(Divisi::class, 'id_kabinet', 'id_kabinet');
+    }
 }

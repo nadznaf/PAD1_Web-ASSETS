@@ -254,6 +254,9 @@
                 <strong>Kabinet Penyelenggara:</strong> <br>{{ $proker->divisi->kabinet->nama_kabinet }}<br> <hr>
                 <strong>Divisi Penyelenggara:</strong> <br>{{ $proker->divisi->nama_divisi }}<br>
             </td>
+            <td>
+                <img src="{{ asset('storage/dataproker/' . $proker->foto_sampul_proker)}}" class="rounded w-24 h-24 object-cover">
+            </td>
             <td>{{ $proker->deskripsi_proker }}</td>
             <td>{{ $proker->deskripsi_kegiatan_proker }}</td>
             <td>{{ $proker->status_proker}}</td>

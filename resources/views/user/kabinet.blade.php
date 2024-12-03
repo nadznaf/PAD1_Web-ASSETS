@@ -68,63 +68,106 @@
         },
         "isDraggable": true
     }' class="relative">
-        <div class="hs-carousel w-full h-full overflow-hidden bg-white rounded-lg p-0">
+        <div class="hs-carousel w-full h-full overflow-hidden rounded-lg p-0">
                 <div class="hs-carousel-body relative top-0 bottom-0 start-0 flex justify-center flex-nowrap opacity-0 cursor-grab transition-transform duration-700 hs-carousel-dragging:transition-none hs-carousel-dragging:cursor-grabbing">
-                    <div class="hs-carousel-slide flex justify-center px-1">
-                        <figure class="relative transition-all duration-300 cursor-pointer filter grayscale hover:grayscale-0" data-modal-target="default-modal" data-modal-toggle="default-modal">
-                            <img src="{{ asset('assets/yodhim.svg') }}" class="rounded-lg object-bottom" alt="Ketua Kabinet">
-                            {{-- {{ asset('storage/datakabinet/' . $kabinet->ketua_kabinet) }} --}}
-                            <figcaption class="absolute bottom-4 px-4 pb-4 text-white">
-                                <p class="font-semibold text-4xl">Ketua Kabinet</p>
-                                <p class="text-2xl">Yodhimas Geffananda</p>
-                            </figcaption>
-                        </figure>
-                    </div>
-                    <div class="hs-carousel-slide flex justify-center px-1">
-                        <figure class="relative transition-all duration-300 cursor-pointer filter grayscale hover:grayscale-0" data-modal-target="default-modal" data-modal-toggle="default-modal">
-                            <img class="rounded-lg" src="{{ asset('assets/rioga.svg') }}" alt="Sekretaris Jenderal Kabinet">
-                            <figcaption class="absolute bottom-4 px-4 pb-4 text-white">
-                                <p class="font-semibold text-4xl">Sekretaris Jenderal</p>
-                                <p class="text-2xl">Rioga Natayuda</p>
-                            </figcaption>
-                        </figure>
-                    </div>
-                    <div class="hs-carousel-slide flex justify-center px-1">
-                        <figure class="relative transition-all duration-300 cursor-pointer filter grayscale hover:grayscale-0" data-modal-target="default-modal" data-modal-toggle="default-modal">
-                            <img class="rounded-lg" src="{{ asset('assets/risma.svg') }}" alt="Sekretaris 1 Kabinet">
-                            <figcaption class="absolute bottom-4 px-4 pb-4 text-white">
-                                <p class="font-semibold text-4xl">Sekretaris 1</p>
-                                <p class="text-2xl">Risma Saputri</p>
-                            </figcaption>
-                        </figure>
-                    </div>
-                    <div class="hs-carousel-slide flex justify-center px-1">
-                        <figure class="relative transition-all duration-300 cursor-pointer filter grayscale hover:grayscale-0" data-modal-target="default-modal" data-modal-toggle="default-modal">
-                            <img class="rounded-lg" src="{{ asset('assets/charizza.svg') }}" alt="Sekretaris 2 Kabinet">
-                            <figcaption class="absolute bottom-4 px-4 pb-4 text-white">
-                                <p class="font-semibold text-4xl">Sekretaris 2</p>
-                                <p class="text-2xl">Charizza Thunjung</p>
-                            </figcaption>
-                        </figure>
-                    </div>
-                    <div class="hs-carousel-slide flex justify-center px-1">
-                        <figure class="relative transition-all duration-300 cursor-pointer filter grayscale hover:grayscale-0" data-modal-target="default-modal" data-modal-toggle="default-modal">
-                            <img class="rounded-lg" src="{{ asset('assets/luthfi.svg') }}" alt="Bendahara 1 Kabinet">
-                            <figcaption class="absolute bottom-4 px-4 pb-4 text-white">
-                                <p class="font-semibold text-4xl">Bendahara 1</p>
-                                <p class="text-2xl">Luthfi Lisana</p>
-                            </figcaption>
-                        </figure>
-                    </div>
-                    <div class="hs-carousel-slide flex justify-center px-1">
-                        <figure class="relative transition-all duration-300 cursor-pointer filter grayscale hover:grayscale-0" data-modal-target="default-modal" data-modal-toggle="default-modal">
-                            <img class="rounded-lg" src="{{ asset('assets/marwah.svg') }}" alt="Bendahara 2 Kabinet">
-                            <figcaption class="absolute bottom-4 px-4 pb-4 text-white">
-                                <p class="font-semibold text-4xl">Bendahara 2</p>
-                                <p class="text-2xl">Marwah Kamila</p>
-                            </figcaption>
-                        </figure>
-                    </div>
+                    @if (isset($pengurusHarian['Ketua']))
+                    <a href="{{ route('mahasiswa', $pengurusHarian['Ketua']->mahasiswa->id_mhs) }}">
+                        <div class="hs-carousel-slide flex justify-center px-1 object-cover">
+                            <figure
+                                class="relative transition-all duration-300 cursor-pointer filter grayscale hover:grayscale-0">
+                                <img src="{{ asset('storage/datastaff/' . $pengurusHarian['Ketua']->foto_pose_staff) }}" class="h-525 w-full rounded-lg object-cover">
+                                <figcaption class="absolute bottom-4 px-4 pb-4 text-white">
+                                    <p class="font-semibold text-4xl">Ketua Kabinet</p>
+                                    <p class="text-2xl">{{ $pengurusHarian['Ketua']->mahasiswa->nama_mhs }}</p>
+                                </figcaption>
+                            </figure>
+                        </div>
+                    </a>
+                    @endif
+
+                    @if (isset($pengurusHarian['Sekretaris Jenderal']))
+                    <a href="{{ route('mahasiswa', $pengurusHarian['Sekretaris Jenderal']->mahasiswa->id_mhs) }}">
+                        <div class="hs-carousel-slide flex justify-center px-1 object-cover">
+                            <figure
+                                class="relative transition-all duration-300 cursor-pointer filter grayscale hover:grayscale-0"
+                                data-modal-target="default-modal"
+                                data-modal-toggle="default-modal"
+                                data-id="{{ $pengurusHarian['Ketua']->mahasiswa->id_mhs }}">
+                                {{-- Tampilkan gambar Ketua --}}
+                                <img src="{{ asset('storage/datastaff/' . $pengurusHarian['Sekretaris Jenderal']->foto_pose_staff) }}" class="h-525 w-full rounded-lg object-cover">
+                                {{-- Tampilkan nama dan jabatan Ketua --}}
+                                <figcaption class="absolute bottom-4 px-4 pb-4 text-white">
+                                    <p class="font-semibold text-4xl">Sekretaris Jenderal</p>
+                                    <p class="text-2xl">{{ $pengurusHarian['Sekretaris Jenderal']->mahasiswa->nama_mhs }}</p>
+                                </figcaption>
+                            </figure>
+                        </div>
+                    </a>
+                    @endif
+                    @if (isset($pengurusHarian['Sekretaris I']))
+                        <div class="hs-carousel-slide flex justify-center px-1 object-cover">
+                            <figure
+                                class="relative transition-all duration-300 cursor-pointer filter grayscale hover:grayscale-0"
+                                data-modal-target="default-modal"
+                                data-modal-toggle="default-modal">
+                                {{-- Tampilkan gambar Ketua --}}
+                                <img src="{{ asset('storage/datastaff/' . $pengurusHarian['Sekretaris I']->foto_pose_staff) }}" class="h-525 w-full rounded-lg object-cover">
+                                {{-- Tampilkan nama dan jabatan Ketua --}}
+                                <figcaption class="absolute bottom-4 px-4 pb-4 text-white">
+                                    <p class="font-semibold text-4xl">Sekretaris 1</p>
+                                    <p class="text-2xl">{{ $pengurusHarian['Sekretaris I']->mahasiswa->nama_mhs }}</p>
+                                </figcaption>
+                            </figure>
+                        </div>
+                    @endif
+                    @if (isset($pengurusHarian['Sekretaris II']))
+                        <div class="hs-carousel-slide flex justify-center px-1 object-cover">
+                            <figure
+                                class="relative transition-all duration-300 cursor-pointer filter grayscale hover:grayscale-0"
+                                data-modal-target="default-modal"
+                                data-modal-toggle="default-modal">
+                                {{-- Tampilkan gambar Ketua --}}
+                                <img src="{{ asset('storage/datastaff/' . $pengurusHarian['Sekretaris II']->foto_pose_staff) }}" class="h-525 w-full rounded-lg object-cover">
+                                {{-- Tampilkan nama dan jabatan Ketua --}}
+                                <figcaption class="absolute bottom-4 px-4 pb-4 text-white">
+                                    <p class="font-semibold text-4xl">Sekretaris 2</p>
+                                    <p class="text-2xl">{{ $pengurusHarian['Sekretaris II']->mahasiswa->nama_mhs }}</p>
+                                </figcaption>
+                            </figure>
+                        </div>
+                    @endif
+                    @if (isset($pengurusHarian['Bendahara I']))
+                        <div class="hs-carousel-slide flex justify-center px-1 object-cover">
+                            <figure
+                                class="relative transition-all duration-300 cursor-pointer filter grayscale hover:grayscale-0"
+                                data-modal-target="default-modal"
+                                data-modal-toggle="default-modal">
+                                {{-- Tampilkan gambar Ketua --}}
+                                <img src="{{ asset('storage/datastaff/' . $pengurusHarian['Bendahara I']->foto_pose_staff) }}" class="h-525 w-full rounded-lg object-cover">
+                                {{-- Tampilkan nama dan jabatan Ketua --}}
+                                <figcaption class="absolute bottom-4 px-4 pb-4 text-white">
+                                    <p class="font-semibold text-4xl">Bendahara 1</p>
+                                    <p class="text-2xl">{{ $pengurusHarian['Bendahara I']->mahasiswa->nama_mhs }}</p>
+                                </figcaption>
+                            </figure>
+                        </div>
+                    @endif
+                    @if (isset($pengurusHarian['Bendahara II']))
+                        <div class="hs-carousel-slide flex justify-center px-1 object-cover">
+                            <figure
+                                class="relative transition-all duration-300 cursor-pointer filter grayscale hover:grayscale-0"
+                                data-modal-target="default-modal"
+                                data-modal-toggle="default-modal">
+                                {{-- Tampilkan gambar Ketua --}}
+                                <img src="{{ asset('storage/datastaff/' . $pengurusHarian['Bendahara II']->foto_pose_staff) }}" class="h-525 w-full rounded-lg object-cover">
+                                {{-- Tampilkan nama dan jabatan Ketua --}}
+                                <figcaption class="absolute bottom-4 px-4 pb-4 text-white">
+                                    <p class="font-semibold text-4xl">Bendahara 2</p>
+                                    <p class="text-2xl">{{ $pengurusHarian['Bendahara II']->mahasiswa->nama_mhs }}</p>
+                                </figcaption>
+                            </figure>
+                        </div>
+                    @endif
                 </div>
 
         </div>
@@ -151,14 +194,16 @@
     {{-- divisi --}}
     <div class="grid md:grid-cols-3 mx-8 my-16 lg:grid-cols-subgrid lg:grid-flow-col gap-4 items-center">
         @foreach ($dataDivisi as $index => $divisi)
+        <a href="{{ route('kabinet.struktur', $kabinet->id_kabinet) }}">
             <div class="justify-items-center text-center">
                 <img src="{{ asset('storage/datadivisi/' . $divisi->foto_sampul_divisi) }}" class="w-36 h-36 rounded-full" alt="divisi">
                 <p class="mt-4 font-bold text-xl uppercase">{{ $divisi->nama_divisi }}</p>
             </div>
+        </a>
         @endforeach
     </div>
     <div class="flex justify-center mb-32">
-        <a href="{{ route('kabinet.struktur', $kabinet->id_kabinet) }}" type="button" class="text-white bg-black hover:bg-amara hover:text-black font-medium rounded-full text-sm px-5 py-2.5 text-center">
+        <a href="{{ route('kabinet.struktur', $kabinet->id_kabinet) }}" type="button" class="text-white bg-black hover:bg-font font-medium rounded-full text-sm px-5 py-2.5 text-center">
             Selengkapnya
         </a>
     </div>
@@ -168,16 +213,20 @@
         <h2 class="teksWarnaKabinet mt-2 text-2xl md:text-4xl font-semibold uppercase">program kerja kabinet {{ $kabinet->nama_kabinet }}</h2>
     </div>
     <div class="grid grid-cols-1 justify-items-center gap-6 mx-8 mt-16 mb-40 md:grid-cols-2 lg:grid-cols-3">
-        {{-- proker terakhir --}}
+        {{-- proker terbaru --}}
         @foreach($dataProker as $index => $proker)
         <div class="max-w-sm justify-center hover:bg-bg_aspiration duration-100 rounded-lg shadow-lg">
-            <a href="{{ route('proker.show', $kabinet->id_kabinet) }}">
+            <a href="{{ route('proker.show', $proker->id_proker) }}">
                 <!-- Image -->
-                <img class="rounded-t-lg w-full" src="{{ asset('assets/series_img1.svg') }}" alt="proker"/>
+                <img class="h-32 md:h-48 lg:h-64 xl:h-80 w-96 md:w-full max-w-full object-cover rounded-t-lg" src="{{ asset('storage/dataproker/' . $proker->foto_sampul_proker) }}" alt="proker"/>
 
                 <!-- Date and Category Section -->
                 <div class="flex grid-cols-2 items-center justify-between px-4 pt-4">
-                    <p class="text-judul_aspiration text-sm text-left">31 Agustus 2024</p>
+                    <p class="text-judul_aspiration text-sm text-left">
+                        @foreach ($proker->waktu_proker as $tanggal)
+                            {{ \Carbon\Carbon::parse($tanggal->tanggal_kegiatan)->isoFormat('dddd, DD-MM-YYYY') }}<hr><br>
+                        @endforeach
+                    </p>
                     <a href="{{ route('kabinet.struktur', $kabinet->id_kabinet) }}">
                         <div class="bg-judul_aspiration text-white rounded-xl px-3 py-1 text-xs text-center w-fit uppercase">
                             {{ $proker->divisi->nama_divisi }}
@@ -198,49 +247,49 @@
     </div>
 
     <!-- Documentation Section -->
-    <div class="bg-black px-8 md:px-16 pt-8 pb-32 md:pt-32 text-center">
+    <div class="bg-black px-8 md:px-16 pt-8 pb-32 md:pt-24 text-center">
         <div class="mx-auto mt-8 mb-16 md:mb-24 max-w-2xl lg:max-w-4xl">
             <h2 class="teksWarnaKabinet text-2xl md:text-4xl font-semibold text-amara uppercase">Dokumentasi Terbaru</h2>
         </div>
         {{-- 12 images --}}
         <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-            <div>
-                <img class="h-32 md:h-48 lg:h-64 xl:h-80 w-full max-w-full rounded-lg object-cover" src="{{ asset('assets/yodhim.svg') }}" alt="">
-            </div>
-            <div>
-                <img class="h-32 md:h-48 lg:h-64 xl:h-80 w-full max-w-full rounded-lg object-cover" src="{{ asset('assets/pilihan_amara.svg') }}" alt="">
-            </div>
-            <div>
-                <img class="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-2.jpg" alt="">
-            </div>
-            <div>
-                <img class="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-3.jpg" alt="">
-            </div>
-            <div>
-                <img class="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-4.jpg" alt="">
-            </div>
-            <div>
-                <img class="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-5.jpg" alt="">
-            </div>
-            <div>
-                <img class="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-6.jpg" alt="">
-            </div>
-            <div>
-                <img class="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-7.jpg" alt="">
-            </div>
-            <div>
-                <img class="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-8.jpg" alt="">
-            </div>
-            <div>
-                <img class="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-9.jpg" alt="">
-            </div>
-            <div>
-                <img class="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-10.jpg" alt="">
-            </div>
-            <div>
-                <img class="h-auto max-w-full rounded-lg" src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-11.jpg" alt="">
-            </div>
+            @foreach($dataDokumentasi as $index => $dokumentasi)
+                @if ($index < 12)
+                    <div>
+                        <img class="h-32 md:h-48 lg:h-64 xl:h-80 w-full max-w-full rounded-lg object-cover" src="{{ asset('storage/datadokumentasi/' . $dokumentasi->isi_dokumentasi) }}" alt="Dokumentasi">
+                    </div>
+                @endif
+            @endforeach
         </div>
     </div>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const figures = document.querySelectorAll('[data-modal-toggle="default-modal"]');
+        const modal = document.getElementById('default-modal');
+        const modalLink = document.getElementById('modal-link');
+        const closeModalButton = document.getElementById('close-modal');
+
+        figures.forEach(figure => {
+            figure.addEventListener('click', () => {
+                const id = figure.getAttribute('data-id');
+                console.info(id);
+                if (id) {
+                    // Set link dynamically
+                    modalLink.href = `{{ route('mahasiswa', ':id') }}`.replace(':id', id);
+                }
+
+                // Show the modal
+                modal.classList.remove('hidden');
+            });
+        });
+
+        closeModalButton.addEventListener('click', () => {
+            // Hide the modal
+            modal.classList.add('hidden');
+        });
+    });
+
+</script>
 @endsection

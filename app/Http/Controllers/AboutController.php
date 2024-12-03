@@ -33,7 +33,7 @@ class AboutController extends Controller
 
 
         $aspirasi->save();
-        return redirect()->route('user.about')->with('success', 'Aspirasi berhasil ditambahkan.');
+        return redirect()->route('about')->with('success', 'Aspirasi berhasil ditambahkan.');
 
     }
 }

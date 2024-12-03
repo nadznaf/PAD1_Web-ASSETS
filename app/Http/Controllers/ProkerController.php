@@ -15,7 +15,7 @@ class ProkerController extends Controller
         $dataKabinet = Kabinet::orderBy('tahun_awal_kabinet', 'desc')->get();
 
         // Ambil data proker berdasarkan ID
-        $proker = Proker::findOrFail($id)->with('divisi');
+        $proker = Proker::with(['divisi', 'waktu_proker', 'dokumentasi'])->findOrFail($id);
 
         // Ambil data pelaksana dengan jabatan 'Ketua Pelaksana'
         $ketuaPelaksana = Pelaksana::with('mahasiswa') // Ambil data mahasiswa terkait

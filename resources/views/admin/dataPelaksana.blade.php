@@ -41,7 +41,7 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="id_kabinet" class="form-label">Asal Kabinet</label>
+                    <label for="id_kabinet" class="form-label">Kabinet Penyelenggara Program Kerja</label>
                     <select name="id_kabinet" id="id_kabinet" class="form-select" required>
                         <option value="" disabled selected>Pilih Asal Kabinet</option>
                         @foreach($dataKabinet as $kabinet)
@@ -50,16 +50,6 @@
                     </select>
                     <div class="invalid-feedback">
                         Input asal kabinet secara valid!
-                    </div>
-                </div>
-
-                <div class="mb-3">
-                    <label for="id_divisi" class="form-label">Asal Divisi</label>
-                    <select name="id_divisi" id="id_divisi" class="form-select" required>
-                        <option value="" disabled selected>Pilih Asal Divisi</option>
-                    </select>
-                    <div class="invalid-feedback">
-                        Input asal divisi secara valid!
                     </div>
                 </div>
 
@@ -122,7 +112,7 @@
             </div>
           @endif
         <!-- Search Data in Table -->
-        <div class="col-md-10">
+        <div class="col-md-8">
             <div class="input-group">
               <span class="input-group-text" id="basic-addon1">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" class="w-5 h-5">
@@ -132,7 +122,7 @@
               <input type="text" id="searchInput" class="form-control" placeholder="Search in this Category..." onkeyup="searchTable()">
             </div>
         </div>
-        <div class="col-md-2">
+        <div class="col-md-4">
           <!-- Button trigger modal -->
           <button type="button" id="button" class="btn w-100" data-bs-toggle="modal" data-bs-target="#insertData">
             Tambah Data
@@ -227,7 +217,7 @@
                               </div>
                               <div class="mb-3">
                                   <!-- Dropdown for Kabinet -->
-                                  <label for="id_kabinet">Asal Kabinet</label><br>
+                                  <label for="id_kabinet">Kabinet Penyelenggara Program Kerja</label><br>
                                   <p>Asal kabinet pada data saat ini: <strong>{{ $pelaksana->proker->divisi->kabinet->nama_kabinet }}</strong></p>
                                   <select name="id_kabinet" id="id_kabinet_edit-{{ $dataPelaksana->firstItem() + $index }}" class="form-select" required>
                                       <option value="" disabled selected>Pilih Asal Kabinet</option>
@@ -240,17 +230,6 @@
                                   </div>
                                   <div class="valid-feedback">
                                       Input valid.
-                                  </div>
-                              </div>
-                              <div class="mb-3">
-                                  <!-- Dropdown for Divisi -->
-                                  <label for="id_divisi" class="form-label">Asal Divisi</label>
-                                  <p>Asal divisi pada data saat ini: <strong>{{ $pelaksana->proker->divisi->nama_divisi }}</strong></p>
-                                  <select name="id_divisi" required id="id_divisi_edit-{{ $dataPelaksana->firstItem() + $index }}" class="form-select" required>
-                                      <option value="" disabled selected>Pilih Asal Divisi</option>
-                                  </select>
-                                  <div class="invalid-feedback">
-                                      Input asal divisi secara valid!
                                   </div>
                               </div>
                               <div class="mb-3">
@@ -342,14 +321,19 @@
   </nav>
 </div>
 <script>
-    // JS script for dependent dropdown list Divisi
+    function getElementsByIdPrefix(prefix) {
+    return document.querySelectorAll(`[id^="${prefix}"]`);
+}
+    // JS script for dependent dropdown list Proker
     document.addEventListener('DOMContentLoaded', function() {
-        // Dependent dropdown handling
-        $('#id_kabinet').change(function() {
-            const id_kabinet = $(this).val();
-            const divisiSelect = $('#id_divisi');
+    $('#id_kabinet').change(function() {
+        const id_kabinet = $(this).val();
+        const prokerSelect = $('#id_proker');
 
+        // Clear current proker dropdown
+        prokerSelect.html('<option value="" disabled selected>Pilih Program Kerja ...</option>');
             if (id_kabinet) {
+                // Fetch divisi data
                 $.ajax({
                     url: '{{ route("admin.get.divisi") }}',
                     method: 'POST',
@@ -357,149 +341,107 @@
                         _token: '{{ csrf_token() }}',
                         id_kabinet: id_kabinet
                     },
-                    success: function(data) {
-                        let options = '<option value="" disabled selected>Pilih Asal Divisi ...</option>';
+                    success: function(divisiData) {
+                        // Extract all divisi IDs
+                        const divisiIds = divisiData.map(divisi => divisi.id_divisi);
 
-                        data.forEach(function(divisi) {
-                            options += `<option value="${divisi.id_divisi}">${divisi.nama_divisi}</option>`;
-                        });
+                        if (divisiIds.length > 0) {
+                            // Fetch proker data for all divisi IDs
+                            $.ajax({
+                                url: '{{ route("admin.get.proker") }}',
+                                method: 'POST',
+                                data: {
+                                    _token: '{{ csrf_token() }}',
+                                    id_divisi: divisiIds
+                                },
+                                success: function(prokerData) {
+                                    let options = '<option value="" disabled selected>Pilih Program Kerja ...</option>';
 
-                        divisiSelect.html(options);
-                    }
-                });
-            } else {
-                divisiSelect.html('<option value="" disabled selected>Pilih Asal Kabinet Terlebih Dahulu</option>');
-            }
-        });
-        // Form validation
-        const forms = document.querySelectorAll('.needs-validation');
+                                    prokerData.forEach(function(proker) {
+                                        options += `<option value="${proker.id_proker}">${proker.judul_proker}</option>`;
+                                    });
 
-        Array.from(forms).forEach(form => {
-            form.addEventListener('submit', event => {
-                if (!form.checkValidity()) {
-                    event.preventDefault();
-                    event.stopPropagation();
-                }
-
-                form.classList.add('was-validated');
-            }, false);
-        });
-    });
-
-
-    function getElementsByIdPrefix(prefix) {
-    return document.querySelectorAll(`[id^="${prefix}"]`);
-}
-    // JS script for dependent dropdown list Proker
-    document.addEventListener('DOMContentLoaded', function() {
-        // Dependent dropdown handling
-        $('#id_divisi').change(function() {
-            const id_divisi = $(this).val();
-            const prokerSelect = $('#id_proker');
-
-            if (id_divisi) {
-                $.ajax({
-                    url: '{{ route("admin.get.proker") }}',
-                    method: 'POST',
-                    data: {
-                        _token: '{{ csrf_token() }}',
-                        id_divisi: id_divisi
+                                    prokerSelect.html(options);
+                                },
+                                error: function() {
+                                    alert('Gagal mengambil data proker.');
+                                }
+                            });
+                        } else {
+                            prokerSelect.html('<option value="" disabled selected>Tidak ada divisi tersedia</option>');
+                        }
                     },
-                    success: function(data) {
-                        let options = '<option value="" disabled selected>Pilih Program Kerja ...</option>';
-
-                        data.forEach(function(proker) {
-                            options += `<option value="${proker.id_proker}">${proker.judul_proker}</option>`;
-                        });
-
-                        prokerSelect.html(options);
+                    error: function() {
+                        alert('Gagal mengambil data divisi.');
                     }
                 });
             } else {
-                prokerSelect.html('<option value="" disabled selected>Pilih Asal Divisi Terlebih Dahulu</option>');
+                prokerSelect.html('<option value="" disabled selected>Pilih Kabinet Terlebih Dahulu</option>');
             }
         });
-        // Form validation
-        const forms = document.querySelectorAll('.needs-validation');
-
-        Array.from(forms).forEach(form => {
-            form.addEventListener('submit', event => {
-                if (!form.checkValidity()) {
-                    event.preventDefault();
-                    event.stopPropagation();
-                }
-
-                form.classList.add('was-validated');
-            }, false);
-        });
     });
+
         function getElementsByIdPrefix(prefix) {
         return document.querySelectorAll(`[id^="${prefix}"]`);
     }
 
-    // JS script for dependent dropdown list Divisi bagian edit
-    document.addEventListener('DOMContentLoaded', function() {
-        document.querySelectorAll('[id^="id_divisi_edit-"]').forEach((input, index) => {
-            // JS script for dependent dropdown list bagian edit
-            $(`#id_kabinet_edit-${index + 1}`).change(function() {
-                const id_kabinet = $(this).val();
-                const divisiSelect = $(`#id_divisi_edit-${index + 1}`);
-
-                if (id_kabinet) {
-                    $.ajax({
-                        url: '{{ route("admin.get.divisi") }}',
-                        method: 'POST',
-                        data: {
-                            _token: '{{ csrf_token() }}',
-                            id_kabinet: id_kabinet
-                        },
-                        success: function(data) {
-                            let options = '<option value="" disabled selected>Pilih Asal Divisi</option>';
-
-                            data.forEach(function(divisi) {
-                                options += `<option value="${divisi.id_divisi}">${divisi.nama_divisi}</option>`;
-                            });
-
-                            divisiSelect.html(options);
-                        }
-                    });
-                } else {
-                    divisiSelect.html('<option value="" disabled selected>Pilih Asal Kabinet Terlebih Dahulu</option>');
-                }
-            });
-        });
-    });
 
     // JS script for dependent dropdown list Proker bagian edit
     document.addEventListener('DOMContentLoaded', function() {
         document.querySelectorAll('[id^="id_proker_edit-"]').forEach((input, index) => {
             // JS script for dependent dropdown list bagian edit
-            $(`#id_divisi_edit-${index + 1}`).change(function() {
-                const id_divisi = $(this).val();
+            $(`#id_kabinet_edit-${index + 1}`).change(function() {
+                const id_kabinet = $(this).val();
                 const prokerSelect = $(`#id_proker_edit-${index + 1}`);
 
-                if (id_divisi) {
-                    $.ajax({
-                        url: '{{ route("admin.get.proker") }}',
-                        method: 'POST',
-                        data: {
-                            _token: '{{ csrf_token() }}',
-                            id_divisi: id_divisi
-                        },
-                        success: function(data) {
-                            let options = '<option value="" disabled selected>Pilih Program Kerja</option>';
+                // Clear current proker dropdown
+                prokerSelect.html('<option value="" disabled selected>Pilih Program Kerja ...</option>');
+                if (id_kabinet) {
+                // Fetch divisi data
+                $.ajax({
+                    url: '{{ route("admin.get.divisi") }}',
+                    method: 'POST',
+                    data: {
+                        _token: '{{ csrf_token() }}',
+                        id_kabinet: id_kabinet
+                    },
+                    success: function(divisiData) {
+                        // Extract all divisi IDs
+                        const divisiIds = divisiData.map(divisi => divisi.id_divisi);
 
-                            data.forEach(function(proker) {
-                                options += `<option value="${proker.id_proker}">${proker.judul_proker}</option>`;
+                        if (divisiIds.length > 0) {
+                            // Fetch proker data for all divisi IDs
+                            $.ajax({
+                                url: '{{ route("admin.get.proker") }}',
+                                method: 'POST',
+                                data: {
+                                    _token: '{{ csrf_token() }}',
+                                    id_divisi: divisiIds
+                                },
+                                success: function(prokerData) {
+                                    let options = '<option value="" disabled selected>Pilih Program Kerja ...</option>';
+
+                                    prokerData.forEach(function(proker) {
+                                        options += `<option value="${proker.id_proker}">${proker.judul_proker}</option>`;
+                                    });
+
+                                    prokerSelect.html(options);
+                                },
+                                error: function() {
+                                    alert('Gagal mengambil data proker.');
+                                }
                             });
-
-                            prokerSelect.html(options);
+                        } else {
+                            prokerSelect.html('<option value="" disabled selected>Tidak ada divisi tersedia</option>');
                         }
-                    });
-                } else {
-                    prokerSelect.html('<option value="" disabled selected>Pilih Asal Divisi Terlebih Dahulu</option>');
-                }
-            });
+                    },
+                    error: function() {
+                        alert('Gagal mengambil data divisi.');
+                    }
+                });
+            } else {
+                prokerSelect.html('<option value="" disabled selected>Pilih Kabinet Terlebih Dahulu</option>');
+            }});
         });
     });
 </script>

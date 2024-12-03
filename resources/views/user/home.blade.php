@@ -19,7 +19,7 @@
 
         {{-- assets banner --}}
         <div class="grid lg:gap-8 lg:grid-cols-12">
-            <div class="mx-auto place-self-center pl-8 lg:col-span-7" data-aos="fade-right">
+            <div class="mx-auto place-self-center lg:pl-8 lg:col-span-7" data-aos="fade-right">
                 <h1 class="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl text-assets">ASSETS UGM</h1>
                 <p class="max-w-2xl mb-6 font-semibold text-assets lg:mb-8 md:text-lg lg:text-xl">Associaton of Software Engineering Technology Students</p>
                 <p class="max-w-2xl mb-6 font-light text-assets lg:mb-8 md:text-lg lg:text-xl">Association Student of Teknologi Rekayasa Perangkat Lunak <br> Sekolah Vokasi Universitas Gadjah Mada.<br>Small Organization BIG Impact.</p>
@@ -66,13 +66,18 @@
             <div class="hs-carousel h-full overflow-hidden">
                 <div class="relative min-h-72 -mx-1">
                     <div class="hs-carousel-body absolute top-0 bottom-0 start-0 flex flex-nowrap transition-transform duration-700 opacity-0">
-                        @foreach ($dataKabinet as $index => $kabinet)
-                        <div class="hs-carousel-slide cursor-zoom-in px-1 justify-center flex">
-                            <a href="{{ route('kabinet.show', $kabinet->id_kabinet) }}">
-                                <img src="{{ asset('storage/datakabinet/' . $kabinet->foto_sampul_kabinet) }}" alt="Kabinet" class="w-fit h-full object-cover filter grayscale hover:grayscale-0">
-                            </a>
-                        </div>
-                        @endforeach
+                        @isset($dataKabinet)
+                            @foreach ($dataKabinet as $index => $kabinet)
+                            <div class="hs-carousel-slide cursor-zoom-in px-1 justify-center flex">
+                                <a href="{{ route('kabinet.show', $kabinet->id_kabinet) }}">
+                                    <img src="{{ isset($kabinet->foto_sampul_kabinet) ? asset('storage/datakabinet/' . $kabinet->foto_sampul_kabinet) : asset('assets/pilihan_amara.svg') }}" alt="Kabinet" class="w-fit h-full object-cover filter grayscale hover:grayscale-0">
+                                </a>
+                            </div>
+                            @endforeach
+                        @else
+                            <p class="text-center text-amara">Data kabinet belum tersedia.</p>
+                        @endisset
+
                     </div>
                 </div>
             </div>
@@ -107,22 +112,26 @@
         <div class="mx-auto mt-16 py-8 px-6 max-w-2xl text-center lg:max-w-4xl" data-aos="fade-up" data-aos-duration="1000">
             <h2 class="mt-2 text-4xl font-bold text-font">Program Kerja Terbaru</h2>
         </div>
+        @if (isset($prokerTerbaru) && count($prokerTerbaru) > 0)
         <a href="{{ route('proker.show', $prokerTerbaru[0]->id_proker) }}" class="group flex flex-col md:items-center mt-16 mb-8 rounded-lg md:flex-row md:max-w-full" data-aos="fade-left" data-aos-duration="3000">
-            <img class="object-cover w-full h-80 rounded-2xl md:w-2/5" src="{{ asset('assets/series_img1.svg') }}" alt="Proker">
+            <img class="object-cover w-full h-80 rounded-2xl md:w-2/5" src="{{ $prokerTerbaru[0]->foto_sampul_proker ? asset('storage/dataproker/' . $prokerTerbaru[0]->foto_sampul_proker) : asset('assets/home_assets.svg') }}" alt="Proker">
             <div class="flex flex-col justify-between p-4 md:ps-8 leading-normal md:w-3/5">
-                <p class="mb-8 font-semibold text-font">Bulan</p>
+                <p class="mb-8 font-semibold text-font">{{ $prokerTerbaru[0]->rentang_bulan }}</p>
                 <h5 class="mb-2 text-2xl font-bold text-assets group-hover:text-second_a uppercase">{{ $prokerTerbaru[0]->judul_proker }}</h5>
-                <p class="mb-3 font-normal text-description">{{ $prokerTerbaru[0]->deskripsi_proker }}</p>
+                <p class="deskripsiSingkat mb-3 font-normal text-description">{{ $prokerTerbaru[0]->deskripsi_proker }}</p>
             </div>
         </a>
         <a href="{{ route('proker.show', $prokerTerbaru[1]->id_proker) }}" class="group flex flex-col-reverse md:items-center mt-16 mb-8 rounded-lg md:flex-row md:max-w-full" data-aos="fade-right" data-aos-duration="3000">
             <div class="flex flex-col justify-between p-4 md:pe-8 leading-normal md:w-3/5">
-                <p class="mb-8 font-semmibold text-font">Bulan</p>
+                <p class="mb-8 font-semmibold text-font">{{ $prokerTerbaru[1]->rentang_bulan }}</p>
                 <h5 class="mb-2 text-2xl font-bold text-assets group-hover:text-second_a uppercase">{{ $prokerTerbaru[1]->judul_proker }}</h5>
-                <p class="mb-3 font-normal text-description">{{ $prokerTerbaru[1]->deskripsi_proker }}</p>
+                <p class="deskripsiSingkat mb-3 font-normal text-description">{{ $prokerTerbaru[1]->deskripsi_proker }}</p>
             </div>
-            <img class="object-cover w-full h-80 rounded-2xl md:w-2/5" src="{{ asset('assets/series_img1.svg') }}" alt="Proker">
+            <img class="object-cover w-full h-80 rounded-2xl md:w-2/5" src="{{ $prokerTerbaru[1]->foto_sampul_proker ? asset('storage/dataproker/' . $prokerTerbaru[1]->foto_sampul_proker) : asset('assets/home_assets.svg') }}" alt="Proker">
         </a>
+        @else
+        <p class="text-center text-amara">Data program kerja belum tersedia.</p>
+        @endif
     </div>
     {{-- Newest Proker End --}}
 
@@ -131,22 +140,26 @@
         <div class="mx-auto mt-16 py-8 px-6 max-w-2xl text-center lg:max-w-4xl" data-aos="fade-up" data-aos-duration="1000">
             <h2 class="mt-2 text-4xl font-bold text-font">Artikel Terbaru</h2>
         </div>
-        <a href="{{ route('detailArtikel') }}" class="group flex flex-col md:items-center mt-16 mb-8 rounded-lg md:flex-row md:max-w-full" data-aos="fade-left" data-aos-duration="3000">
+        @if (isset($artikelTerbaru) && count($artikelTerbaru) > 0)
+        <a href="{{ route('artikel.show', $artikelTerbaru[0]->id_artikel) }}" class="group flex flex-col md:items-center mt-16 mb-8 rounded-lg md:flex-row md:max-w-full" data-aos="fade-left" data-aos-duration="3000">
             <img class="object-cover w-full h-80 rounded-2xl md:w-2/5" src="{{ asset('storage/artikel/' . $artikelTerbaru[0]->foto_sampul_artikel) }}" alt="Artikel's pict">
             <div class="flex flex-col justify-between p-4 md:ps-8 leading-normal md:w-3/5">
-                <p class="mb-8 font-semibold text-font">Tanggal publish</p>
+                <p class="mb-8 font-semibold text-font">{{ \Carbon\Carbon::parse($artikelTerbaru[0]->tanggal_terbit)->isoFormat('dddd, DD-MM-YYYY') }}</p>
                 <h5 class="mb-2 text-2xl font-bold text-assets group-hover:text-second_a">{{ $artikelTerbaru[0]->judul_artikel }}</h5>
-                <p class="mb-3 font-normal text-description">Deskripsi artikel. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sed ante porta ligula condimentum condimentum. Pellentesque sollicitudin et nulla id laoreet. Pellentesque.</p>
+                <p class="deskripsiSingkat mb-3 font-normal text-description">{{ $artikelTerbaru[0]->konten_artikel }}</p>
             </div>
         </a>
-        <a href="{{ route('detailArtikel') }}" class="group flex flex-col-reverse md:items-center mt-16 mb-8 bg-white rounded-lg md:flex-row md:max-w-full" data-aos="fade-right" data-aos-duration="3000">
+        <a href="{{ route('artikel.show', $artikelTerbaru[0]->id_artikel) }}" class="group flex flex-col-reverse md:items-center mt-16 mb-8 bg-white rounded-lg md:flex-row md:max-w-full" data-aos="fade-right" data-aos-duration="3000">
             <div class="flex flex-col justify-between p-4 md:pe-8 leading-normal md:w-3/5">
-                <p class="mb-8 font-semibold text-font">Tanggal publish</p>
+                <p class="mb-8 font-semibold text-font">{{ \Carbon\Carbon::parse($artikelTerbaru[1]->tanggal_terbit)->isoFormat('dddd, DD-MM-YYYY') }}</p>
                 <h5 class="mb-2 text-2xl font-bold text-assets group-hover:text-second_a">{{ $artikelTerbaru[1]->judul_artikel }}</h5>
-                <p class="mb-3 font-normal text-description">Deskripsi artikel. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sed ante porta ligula condimentum condimentum. Pellentesque sollicitudin et nulla id laoreet. Pellentesque.</p>
+                <p class="deskripsiSingkat mb-3 font-normal text-description">{{ $artikelTerbaru[1]->konten_artikel }}</p>
             </div>
             <img class="object-cover w-full h-80 rounded-2xl md:w-1/2" src="{{ asset('storage/artikel/' . $artikelTerbaru[1]->foto_sampul_artikel) }}" alt="Artikel's pict">
         </a>
+        @else
+        <p class="text-center text-amara">Data artikel belum tersedia.</p>
+        @endif
     </div>
     {{-- Newest Article End --}}
 
@@ -157,100 +170,26 @@
     <div class="p-16">
         <div class="grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-4">
             {{-- foreach --}}
-            <div class="group flex flex-col bg-bg_aspiration border-2 border-border_aspiration hover:bg-second_a shadow-md rounded-xl" data-aos="fade-up" data-aos-duration="3000">
-                <div class="p-4 md:p-7">
-                    <div class="shrink-0 group block">
-                        <div class="flex items-center">
-                            <svg class="w-10 h-10 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
-                                <path fill-rule="evenodd" d="M12 20a7.966 7.966 0 0 1-5.002-1.756l.002.001v-.683c0-1.794 1.492-3.25 3.333-3.25h3.334c1.84 0 3.333 1.456 3.333 3.25v.683A7.966 7.966 0 0 1 12 20ZM2 12C2 6.477 6.477 2 12 2s10 4.477 10 10c0 5.5-4.44 9.963-9.932 10h-.138C6.438 21.962 2 17.5 2 12Zm10-5c-1.84 0-3.333 1.455-3.333 3.25S10.159 13.5 12 13.5c1.84 0 3.333-1.455 3.333-3.25S13.841 7 12 7Z" clip-rule="evenodd"/>
-                            </svg>
-                            <div class="ms-3">
-                                <h3 class="font-semibold text-black group-hover:text-white text-base">Nama</h3>
-                                <p class="text-xs font-medium text-judul_aspiration group-hover:text-dark uppercase">judul</p>
+            @foreach($aspirasiTerbaru as $index => $aspirasi)
+                @if ($index < 6)
+                    <div class="group flex flex-col bg-bg_aspiration border-2 border-border_aspiration hover:bg-second_a shadow-md rounded-xl">
+                        <div class="p-4 md:p-7">
+                            <div class="shrink-0 group block">
+                                <div class="flex items-center">
+                                    <img class="inline-block shrink-0 size-[40px] rounded-full" src="{{ asset('assets/profile.svg') }}" alt="Avatar">
+                                    <div class="ms-3">
+                                        <h3 class="font-semibold text-black group-hover:text-white text-base">{{ $aspirasi->nama_pengirim }}</h3>
+                                        <p class="text-xs font-medium text-judul_aspiration group-hover:text-black uppercase">{{ $aspirasi->judul_aspirasi }}</p>
+                                    </div>
+                                </div>
                             </div>
+                            <p class="mt-4 text-black group-hover:text-white text-center font-light">
+                                "{{ $aspirasi->isi_aspirasi }}"
+                            </p>
                         </div>
                     </div>
-                    <p class="mt-4 text-black group-hover:text-white text-center font-light">
-                        "With supporting text below as a natural lead-in to additional content."
-                    </p>
-                </div>
-            </div>
-
-            <div class="group flex flex-col bg-bg_aspiration border-2 border-border_aspiration hover:bg-second_a shadow-md rounded-xl" data-aos="fade-up" data-aos-duration="3000">
-                <div class="p-4 md:p-7">
-                    <div class="shrink-0 group block">
-                        <div class="flex items-center">
-                            <svg class="w-10 h-10 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
-                                <path fill-rule="evenodd" d="M12 20a7.966 7.966 0 0 1-5.002-1.756l.002.001v-.683c0-1.794 1.492-3.25 3.333-3.25h3.334c1.84 0 3.333 1.456 3.333 3.25v.683A7.966 7.966 0 0 1 12 20ZM2 12C2 6.477 6.477 2 12 2s10 4.477 10 10c0 5.5-4.44 9.963-9.932 10h-.138C6.438 21.962 2 17.5 2 12Zm10-5c-1.84 0-3.333 1.455-3.333 3.25S10.159 13.5 12 13.5c1.84 0 3.333-1.455 3.333-3.25S13.841 7 12 7Z" clip-rule="evenodd"/>
-                            </svg>
-                            <div class="ms-3">
-                                <h3 class="font-semibold text-black group-hover:text-white text-base">Nama</h3>
-                                <p class="text-xs font-medium text-judul_aspiration group-hover:text-dark uppercase">judul</p>
-                            </div>
-                        </div>
-                    </div>
-                    <p class="mt-4 text-black group-hover:text-white text-center font-light">
-                        "With supporting text below as a natural lead-in to additional content."
-                    </p>
-                </div>
-            </div>
-
-            <div class="group flex flex-col bg-bg_aspiration border-2 border-border_aspiration hover:bg-second_a shadow-md rounded-xl" data-aos="fade-up" data-aos-duration="3000">
-                <div class="p-4 md:p-7">
-                    <div class="shrink-0 group block">
-                        <div class="flex items-center">
-                            <svg class="w-10 h-10 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
-                                <path fill-rule="evenodd" d="M12 20a7.966 7.966 0 0 1-5.002-1.756l.002.001v-.683c0-1.794 1.492-3.25 3.333-3.25h3.334c1.84 0 3.333 1.456 3.333 3.25v.683A7.966 7.966 0 0 1 12 20ZM2 12C2 6.477 6.477 2 12 2s10 4.477 10 10c0 5.5-4.44 9.963-9.932 10h-.138C6.438 21.962 2 17.5 2 12Zm10-5c-1.84 0-3.333 1.455-3.333 3.25S10.159 13.5 12 13.5c1.84 0 3.333-1.455 3.333-3.25S13.841 7 12 7Z" clip-rule="evenodd"/>
-                            </svg>
-                            <div class="ms-3">
-                                <h3 class="font-semibold text-black group-hover:text-white text-base">Nama</h3>
-                                <p class="text-xs font-medium text-judul_aspiration group-hover:text-dark uppercase">judul</p>
-                            </div>
-                        </div>
-                    </div>
-                    <p class="mt-4 text-black group-hover:text-white text-center font-light">
-                        "With supporting text below as a natural lead-in to additional content."
-                    </p>
-                </div>
-            </div>
-
-            <div class="group flex flex-col bg-bg_aspiration border-2 border-border_aspiration hover:bg-second_a shadow-md rounded-xl" data-aos="fade-up" data-aos-duration="3000">
-                <div class="p-4 md:p-7">
-                    <div class="shrink-0 group block">
-                        <div class="flex items-center">
-                            <svg class="w-10 h-10 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
-                                <path fill-rule="evenodd" d="M12 20a7.966 7.966 0 0 1-5.002-1.756l.002.001v-.683c0-1.794 1.492-3.25 3.333-3.25h3.334c1.84 0 3.333 1.456 3.333 3.25v.683A7.966 7.966 0 0 1 12 20ZM2 12C2 6.477 6.477 2 12 2s10 4.477 10 10c0 5.5-4.44 9.963-9.932 10h-.138C6.438 21.962 2 17.5 2 12Zm10-5c-1.84 0-3.333 1.455-3.333 3.25S10.159 13.5 12 13.5c1.84 0 3.333-1.455 3.333-3.25S13.841 7 12 7Z" clip-rule="evenodd"/>
-                            </svg>
-                            <div class="ms-3">
-                                <h3 class="font-semibold text-black group-hover:text-white text-base">Nama</h3>
-                                <p class="text-xs font-medium text-judul_aspiration group-hover:text-dark uppercase">judul</p>
-                            </div>
-                        </div>
-                    </div>
-                    <p class="mt-4 text-black group-hover:text-white text-center font-light">
-                        "With supporting text below as a natural lead-in to additional content."
-                    </p>
-                </div>
-            </div>
-
-            <div class="group flex flex-col bg-bg_aspiration border-2 border-border_aspiration hover:bg-second_a shadow-md rounded-xl" data-aos="fade-up" data-aos-duration="3000">
-                <div class="p-4 md:p-7">
-                    <div class="shrink-0 group block">
-                        <div class="flex items-center">
-                            <svg class="w-10 h-10 text-dark group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
-                                <path fill-rule="evenodd" d="M12 20a7.966 7.966 0 0 1-5.002-1.756l.002.001v-.683c0-1.794 1.492-3.25 3.333-3.25h3.334c1.84 0 3.333 1.456 3.333 3.25v.683A7.966 7.966 0 0 1 12 20ZM2 12C2 6.477 6.477 2 12 2s10 4.477 10 10c0 5.5-4.44 9.963-9.932 10h-.138C6.438 21.962 2 17.5 2 12Zm10-5c-1.84 0-3.333 1.455-3.333 3.25S10.159 13.5 12 13.5c1.84 0 3.333-1.455 3.333-3.25S13.841 7 12 7Z" clip-rule="evenodd"/>
-                            </svg>
-                            <div class="ms-3">
-                                <h3 class="font-semibold text-black group-hover:text-white text-base">Nama</h3>
-                                <p class="text-xs font-medium text-judul_aspiration group-hover:text-dark uppercase">judul</p>
-                            </div>
-                        </div>
-                    </div>
-                    <p class="mt-4 text-black group-hover:text-white text-center font-light">
-                        "With supporting text below as a natural lead-in to additional content."
-                    </p>
-                </div>
-            </div>
+                @endif
+            @endforeach
 
         </div>
         <div class="flex justify-center mt-16">
@@ -261,6 +200,21 @@
     </div>
     {{-- Aspiration Cards End --}}
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+        // Ambil semua elemen dengan kelas 'deskripsiSingkat'
+        const deskripsiElements = document.querySelectorAll('.deskripsiSingkat');
+        const maxLength = 200; // Batas jumlah karakter
 
+        // Iterasi setiap elemen
+            deskripsiElements.forEach(function (deskripsiElement) {
+                const fullText = deskripsiElement.textContent;
+
+                if (fullText.length > maxLength) {
+                    deskripsiElement.textContent = fullText.substring(0, maxLength) + ' ...';
+                }
+            });
+        });
+    </script>
 </div>
 @endsection

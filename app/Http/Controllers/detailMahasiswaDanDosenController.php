@@ -15,7 +15,7 @@ class detailMahasiswaDanDosenController extends Controller
         $dataKabinet = Kabinet::orderBy('tahun_awal_kabinet', 'desc')->get();
 
         // Ambil data mahasiswa berdasarkan ID
-        $mahasiswa = Mahasiswa::findOrFail($id)->with('staff','pelaksana');
+        $mahasiswa = Mahasiswa::findOrFail($id)->with('staff','pelaksana')->first();
 
         return view('user.detailMahasiswa', compact('dataKabinet', 'mahasiswa'));
     }

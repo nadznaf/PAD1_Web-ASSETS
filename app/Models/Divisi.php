@@ -23,10 +23,10 @@ class Divisi extends Model
     }
     public function staff()
     {
-        return $this->hasMany(Staff::class, 'id_staff', 'id_staff');
+        return $this->hasMany(Staff::class, 'id_divisi', 'id_divisi');
     }
     public function proker()
     {
-        return $this->hasMany(Staff::class, 'id_divisi', 'id_divisi');
+        return $this->hasMany(Proker::class, 'id_divisi', 'id_divisi');
     }
 }

@@ -26,7 +26,8 @@ export default {
                 judul_aspiration: '#989898',
                 bg_aspiration: '#f6f6f6',
                 border_aspiration: '#c6c6c6',
-                description: '#8CA2C0'
+                description: '#8CA2C0',
+                sumber_artikel: '#859D9D',
             },
             backdropBlur: {
                 xs: '2px',
@@ -39,6 +40,7 @@ export default {
             width: {
                 578: '578px',
                 434: '434px',
+                500: '500px',
                 400: '400px',
                 1000: '1000px',
             },
@@ -47,6 +49,7 @@ export default {
                 434: '434px',
                 550: '550px',
                 500: '500px',
+                525: '525px',
             },
             padding: {
                 575: '575px',

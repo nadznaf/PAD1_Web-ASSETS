@@ -32,4 +32,9 @@ class Staff extends Model
     {
         return $this->belongsTo(Mahasiswa::class, 'id_mhs', 'id_mhs');
     }
+
+    public function kabinet()
+    {
+        return $this->belongsTo(Kabinet::class, 'kabinet', 'kabinet');
+    }
 }
