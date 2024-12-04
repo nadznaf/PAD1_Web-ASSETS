@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="csrf-token" content="{{ csrf_token() }}"> 
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title')</title>
-    @vite('public/css/stylesAdmin.css')
+    @vite('resources/css/stylesAdmin.css')
     <style>
         html, body {
             overflow-x: hidden;
@@ -68,7 +68,7 @@
         <div class="container-fluid">
             @yield('content')
         </div>
-    
+
         <script src="{{ asset('libs/jquery/dist/jquery.min.js') }}"></script>
         <script src="{{ asset('libs/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
         <script src="{{ asset('js/sidebarmenu.js') }}"></script>
@@ -81,10 +81,10 @@
       //Handling invalid form submission
       (() => {
         'use strict';
-    
+
         // Fetch all the forms we want to apply custom Bootstrap validation styles to
         const forms = document.querySelectorAll('.needs-validation');
-    
+
         // Loop over them and prevent submission
         Array.from(forms).forEach(form => {
             form.addEventListener('submit', event => {

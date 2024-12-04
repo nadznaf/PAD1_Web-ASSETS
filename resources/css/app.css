@@ -2,5 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+/* import 'swiper/css';  */
 @import 'aos/dist/aos.css';
 
+
+html {
+    font-family: "Inter", serif;
+    font-optical-sizing: auto;
+    font-weight: <weight>;
+    font-style: normal;
+    /* overflow: hidden; */
+}

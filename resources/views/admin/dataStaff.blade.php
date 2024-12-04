@@ -1,5 +1,5 @@
 @extends('admin.layouts.appAdmin')
-@vite(['public/css/style.css','public/js/script.js'])
+@vite(['resources/css/style.css','resources/js/script.js'])
 
 @section('title', "Data Staff")
 @section('content')
