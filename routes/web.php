@@ -56,7 +56,7 @@ Route::get('/about', [AboutController::class, 'index'])->name('about');
 Route::post('/aspirasi/store', [AboutController::class, 'store'])->name('aspirasi.store');
 
 // DETAIL MAHASISWA DAN DOSEN
-Route::get('/mahasiswa/{id}', [detailMahasiswaDanDosenController::class, 'detailMahasiwa'])->name('mahasiswa');
+Route::get('/mahasiswa/{id}', [detailMahasiswaDanDosenController::class, 'detailMahasiswa'])->name('mahasiswa');
 Route::get('/dosen/{id}', [detailMahasiswaDanDosenController::class, 'detailDosen'])->name('dosen');
 
 

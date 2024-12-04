@@ -75,14 +75,6 @@
                 </div>
                 <br>
 
-
-
-                <!-- Elemen untuk menampilkan kode hex -->
-                <div class="d-flex justify-content-center mt-3">
-                  <p id="hex-code4" class="font-bold text-lg">#000000</p> <!-- Default value -->
-                </div>
-                <br>
-
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
                 <button type="submit" class="btn" id="button">Tambah</button>

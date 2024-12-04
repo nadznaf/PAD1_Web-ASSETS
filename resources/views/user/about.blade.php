@@ -8,7 +8,7 @@
         <div class="bg-assets mx-0 py-24 px-8 text-center md:px-32">
             <h2 class="mt-2 text-4xl font-bold text-white sm:text-5xl" data-aos="fade-up" data-aos-duration="800">Tentang Kami</h2>
             <p class="mt-6 text-l font-normal text-white sm:text-m" data-aos="fade-up" data-aos-duration="800">
-                ASSETS atau Assosciation of Software Engineering Technology Students merupakan sebuah himpunan mahasiswa program studi Teknologi Rekayasa Perangkat Lunak, Sekolah Vokasi, Universitas Gadjah Mada.
+                ASSETS atau Association of Software Engineering Technology Students merupakan sebuah himpunan mahasiswa program studi Teknologi Rekayasa Perangkat Lunak, Sekolah Vokasi, Universitas Gadjah Mada.
                 ASSETS berdiri pada tahun 2020 dengan nama kabinet IRIS. Sebagai humpunan yang membantu prodi dalam menyejahterakan mahasiswanya.
             </p>
         </div>
@@ -20,15 +20,15 @@
         <div class="grid grid-cols-2 gap-8 mt-16 mx-8 md:mx-32">
             <div class="col-span-2">
                 <h1 class="my-4 text-xl font-semibold text-assets">Makna</h1>
-                <p class="mb-6 text-assets text-justify">Setiap tahun, ASSETS membentuk sebuah Kabinet yang didedikasikan untuk menjadikan TRPL sebagai tempat yang lebih baik bagi para siswa dan sekitarnya</p>
+                <p class="mb-6 text-assets text-justify">ASSETS adalah organisasi yang berkomitmen untuk mengembangkan potensi dan keterampilan mahasiswa dalam bidang teknologi rekayasa perangkat lunak melalui kegiatan akademik dan non-akademik.</p>
             </div>
             <div class="col-span-2 md:col-span-1">
                 <h1 class="my-4 text-xl font-semibold text-assets">Visi</h1>
-                <p class="mb-6 text-assets text-justify">The welcoming event for new TRPL students 2024 includes activities that foster togetherness, enrich knowledge, and inspire young software engineers to pursue their dreams.</p>
+                <p class="mb-6 text-assets text-justify">Menjadi wadah unggul bagi mahasiswa untuk berkolaborasi, belajar, dan berinovasi dalam menciptakan solusi teknologi yang bermanfaat bagi masyarakat.</p>
             </div>
             <div class="col-span-2 md:col-span-1">
                 <h1 class="my-4 text-xl font-semibold text-assets">Misi</h1>
-                <p class="mb-6 text-assets text-justify">The welcoming event for new TRPL students 2024 includes activities that foster togetherness, enrich knowledge, and inspire young software engineers to pursue their dreams.</p>
+                <p class="mb-6 text-assets text-justify">Penyelenggaraan kegiatan yang mendukung pengembangan keterampilan teknis dan non-teknis, meningkatkan kesadaran akan pentingnya teknologi dalam kehidupan sehari-hari, serta membangun jaringan yang kuat antara anggota, alumni, dan industri.</p>
             </div>
         </div>
 
@@ -76,7 +76,7 @@
         </div>
 
         {{-- card aspirasi --}}
-        <div class="grid grid-cols-1 gap-6 mt-24 mb-8 mx-4 md:grid-cols-3 md:gap-6 lg:mx-32">
+        <div class="grid grid-cols-1 gap-6 mt-24 mb-8 mx-8 md:grid-cols-3 md:gap-6 lg:mx-32" data-aos="fade-up" data-aos-duration="800">
             {{-- foreach --}}
             @foreach($dataAspirasi as $index => $aspirasi)
                 @if ($index < 6)
@@ -125,8 +125,8 @@
 
         </div>
         <!-- "Lihat aspirasi lainnya" Button -->
-        <div class="mb-24 mx-4 md:mx-16 flex justify-center">
-            <button id="toggle-button" class="text-white mt-4 bg-assets rounded-full hover:bg-second_a py-1 px-3 text-sm" onclick="toggleAspirasi()">Aspirasi Lainnya</button>
+        <div class="mb-24 mx-4 md:mx-16 flex justify-center" data-aos="fade-up" data-aos-duration="1000">
+            <button id="toggle-button" class="text-white mt-4 bg-assets rounded-full hover:bg-second_a py-1.5 px-3" onclick="toggleAspirasi()">Aspirasi Lainnya</button>
         </div>
 
         <script>

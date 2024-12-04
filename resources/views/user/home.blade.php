@@ -18,7 +18,7 @@
         </div>
 
         {{-- assets banner --}}
-        <div class="grid lg:gap-8 lg:grid-cols-12">
+        <div class="grid lg:gap-8 lg:grid-cols-12 ps-8 md:ps-0">
             <div class="mx-auto place-self-center lg:pl-8 lg:col-span-7" data-aos="fade-right">
                 <h1 class="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl text-assets">ASSETS UGM</h1>
                 <p class="max-w-2xl mb-6 font-semibold text-assets lg:mb-8 md:text-lg lg:text-xl">Associaton of Software Engineering Technology Students</p>
@@ -43,7 +43,7 @@
                 style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)">
             </div>
         </div>
-        <div class="mx-auto px-6 mb-24 max-w-2xl text-center lg:max-w-4xl" data-aos="fade-up" data-aos-duration="300">
+        <div class="mx-auto px-6 mb-24 max-w-2xl text-center lg:max-w-4xl" data-aos="fade-down" data-aos-duration="1000">
             <h2 class="mt-2 text-4xl font-bold text-font sm:text-5xl">Kabinet</h2>
             <p class="mt-6 text-l font-bold tracking-tight text-assets sm:text-xl">
                 Choose a Cabinet to learn more about ASSETS
@@ -65,7 +65,7 @@
         }' class="relative">
             <div class="hs-carousel h-full overflow-hidden">
                 <div class="relative min-h-72 -mx-1">
-                    <div class="hs-carousel-body absolute top-0 bottom-0 start-0 flex flex-nowrap transition-transform duration-700 opacity-0">
+                    <div class="hs-carousel-body absolute top-0 bottom-0 start-0 flex flex-nowrap transition-transform duration-700 opacity-0" data-aos="fade-up" data-aos-duration="1000">
                         @isset($dataKabinet)
                             @foreach ($dataKabinet as $index => $kabinet)
                             <div class="hs-carousel-slide cursor-zoom-in px-1 justify-center flex">
@@ -109,7 +109,7 @@
 
     {{-- Newest Proker Start --}}
     <div class="p-8 md:mx-24">
-        <div class="mx-auto mt-16 py-8 px-6 max-w-2xl text-center lg:max-w-4xl" data-aos="fade-up" data-aos-duration="1000">
+        <div class="mx-auto mt-16 py-8 px-6 max-w-2xl text-center lg:max-w-4xl" data-aos="fade-down" data-aos-duration="1000">
             <h2 class="mt-2 text-4xl font-bold text-font">Program Kerja Terbaru</h2>
         </div>
         @if (isset($prokerTerbaru) && count($prokerTerbaru) > 0)
@@ -137,7 +137,7 @@
 
     {{-- Newest Article Start --}}
     <div class="p-8 md:mx-24">
-        <div class="mx-auto mt-16 py-8 px-6 max-w-2xl text-center lg:max-w-4xl" data-aos="fade-up" data-aos-duration="1000">
+        <div class="mx-auto mt-16 py-8 px-6 max-w-2xl text-center lg:max-w-4xl" data-aos="fade-down" data-aos-duration="1000">
             <h2 class="mt-2 text-4xl font-bold text-font">Artikel Terbaru</h2>
         </div>
         @if (isset($artikelTerbaru) && count($artikelTerbaru) > 0)
@@ -164,11 +164,11 @@
     {{-- Newest Article End --}}
 
     {{-- Aspiration Cards Start --}}
-    <div class="mx-auto py-8 px-6 max-w-2xl text-center lg:max-w-4xl" data-aos="fade-up" data-aos-duration="1000">
+    <div class="mx-auto py-8 px-6 max-w-2xl text-center lg:max-w-4xl" data-aos="fade-down" data-aos-duration="1000">
         <h2 class="mt-2 text-4xl font-bold text-font">Aspirasi</h2>
     </div>
-    <div class="p-16">
-        <div class="grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-4">
+    <div class="py-16 px-8 md:p-16">
+        <div class="grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-4" data-aos="fade-up" data-aos-duration="1000">
             {{-- foreach --}}
             @foreach($aspirasiTerbaru as $index => $aspirasi)
                 @if ($index < 6)
@@ -192,7 +192,7 @@
             @endforeach
 
         </div>
-        <div class="flex justify-center mt-16">
+        <div class="flex justify-center mt-16" data-aos="fade-up" data-aos-duration="1000">
             <a href="{{ route('about') }}" type="button" class="text-white bg-second_a hover:bg-assets font-medium rounded-full text-sm px-5 py-2.5 text-center">
                 Kirim Aspirasi
             </a>

@@ -9,7 +9,7 @@
         <!-- Fixed Text Overlay -->
         <div class="absolute inset-0 flex items-center justify-center z-40">
             <div class="text-center text-white bg-black bg-opacity-50 h-full w-full">
-                <div class="flex flex-col justify-center items-center h-full">
+                <div class="flex flex-col justify-center items-center h-full" data-aos="fade-down" data-aos-duration="1000">
                     <h2 class="text-3xl md:text-5xl font-bold">Artikel</h2>
                     <p class="mt-2 text-xl">Berita dan Ativitas Terkait TRPL</p>
                 </div>
@@ -37,7 +37,7 @@
     <div class="mx-8 mt-16 md:mx-16">
         <div class="inline-flex items-center justify-center w-full py-16 px-4">
             <hr class="w-96 h-px my-8 bg-black">
-            <span class="px-3 font-bold text-xl md:text-3xl text-center text-font bg-white uppercase">artikel terbaru trpl</span>
+            <span class="px-3 font-bold text-xl md:text-3xl text-center text-font bg-white uppercase" data-aos="fade-down" data-aos-duration="1000">artikel terbaru trpl</span>
             <hr class="w-96 h-px my-8 bg-black">
         </div>
     </div>
@@ -71,13 +71,13 @@
     <div class="mx-8 mt-8 mb-32 md:mx-16">
         <div class="inline-flex items-center justify-center w-full py-16 px-4">
             <hr class="w-96 h-px my-8 bg-black">
-            <span class="px-3 font-bold text-xl md:text-3xl text-center text-font bg-white uppercase">semua artikel</span>
+            <span class="px-3 font-bold text-xl md:text-3xl text-center text-font bg-white uppercase" data-aos="fade-down" data-aos-duration="1000">semua artikel</span>
             <hr class="w-96 h-px my-8 bg-black">
         </div>
         <div class="space-y-4">
             @foreach ($dataArtikel as $index => $artikel)
                 @if ($index < 3)
-                <div class="group grid grid-cols-8 items-center md:gap-4 gap-1">
+                <div class="group grid grid-cols-8 items-center md:gap-4 gap-1" data-aos="fade-up" data-aos-duration="1000">
                     <div class="col-span-1">
                         <img src="{{ asset('storage/artikel/' . $artikel->foto_sampul_artikel) }}" class="object-cover h-8 w-8 md:h-20 md:w-20 rounded-3xl" alt="Artikel 1">
                     </div>

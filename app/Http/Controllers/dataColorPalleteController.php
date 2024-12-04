@@ -28,19 +28,17 @@ class dataColorPalleteController extends Controller
         [
             'primaryColor.required' => 'Data ini perlu diisi',
             'secondaryColor.required' => 'Data ini perlu diisi',
-            'id_kabinet.required' => 'Data ini perlu diisi',        
-        ]);  
-    
+            'id_kabinet.required' => 'Data ini perlu diisi',
+        ]);
+
         $data = [
             'primary_color' => $request->primaryColor,
             'secondary_color' => $request->secondaryColor,
-            'third_color' => $request->thirdColor,
-            'fourth_color' => $request->fourthColor,
             'id_kabinet' => $request->id_kabinet,
         ];
-    
+
         ColorPallete::create($data);
-    
+
         return redirect()->route('admin.datacolorpallete.index')->with('success', 'Data color pallete berhasil ditambahkan.');
     }
 
@@ -52,13 +50,11 @@ class dataColorPalleteController extends Controller
         ],
         // error messsage:
         [
-            'id_kabinet.required' => 'Data ini perlu diisi',        
-        ]);  
+            'id_kabinet.required' => 'Data ini perlu diisi',
+        ]);
 
         $colorPallete->primary_color = $request->primaryColor;
         $colorPallete->secondary_color = $request->secondaryColor;
-        $colorPallete->third_color = $request->thirdColor;
-        $colorPallete->fourth_color = $request->fourthColor;
         $colorPallete->id_kabinet = $request->id_kabinet;
 
 

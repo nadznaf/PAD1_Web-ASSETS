@@ -43,7 +43,7 @@ class dataProkerController extends Controller
     }
     public function getProker(Request $request)
     {
-        $proker = Proker::where('id_divisi', $request->id_divisi)->get();
+        $proker = Proker::whereIn('id_divisi', $request->id_divisi)->get();
 
         return response()->json($proker);
     }

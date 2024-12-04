@@ -18,7 +18,7 @@ class Mahasiswa extends Model
 
     public function staff()
     {
-        return $this->hasOne(Staff::class, 'id_mhs', 'id_mhs');
+        return $this->hasMany(Staff::class, 'id_mhs', 'id_mhs');
     }
 
     public function pelaksana()

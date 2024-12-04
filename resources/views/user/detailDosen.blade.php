@@ -45,7 +45,7 @@
     <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     @vite(['./public/css/style.css', './public/js/script.js'])
-    <title>Detail Mahasiswa</title>
+    <title>Desain Dosen</title>
 </head>
 <body class="bg-gray-100">
 
@@ -55,29 +55,15 @@
         <div class="grid max-w-max grid-cols-1 md:grid-cols-2">
             <!-- Modal Image -->
             <div class="p-4">
-                <img class="object-cover w-full h-60 md:h-auto rounded-xl" src="{{ asset('storage/datamahasiswa/' . $mahasiswa->foto_profil_mhs) }}" alt="Detail mahasiswa">
+                <img class="object-cover w-full h-60 md:h-auto rounded-xl" src="{{ asset('storage/datadosen/' . $dosen->foto_profil_dosen) }}" alt="Detail dosen">
             </div>
 
             <!-- Content Modal -->
             <div class="p-4">
-                <p class="text-end uppercase text-sm text-description">TRPL {{ substr($mahasiswa->nim_mhs, 0, 2) }}</p>
+                <p class="text-end uppercase text-sm text-description">{{ $dosen->nika_dosen }}</p>
                 <h3 class="py-2 text-xl lg:text-2xl font-bold text-assets">
-                    {{ $mahasiswa->nama_mhs }}
+                    {{ $dosen->nama_dosen }}
                 </h3>
-                <div class="py-4">
-                    <p class="text-base font-normal text-gray-700">Jabatan:</p>
-                    @foreach($mahasiswa->staff as $staff)
-                        <p class="text-base font-semibold text-font">
-                            - {{ $staff->nama_jabatan ?? 'Data Jabatan Tidak Tersedia' }} Divisi {{ $staff->divisi->nama_divisi }} Kabinet {{ $staff->divisi->kabinet->nama_kabinet ?? 'Data kabinet Tidak Tersedia' }}
-                        </p>
-                    @endforeach
-                    <p class="text-base font-normal text-gray-700 mt-4">Jabatan dalam proker:</p>
-                    @foreach($mahasiswa->pelaksana as $pelaksana)
-                        <p class="text-base font-semibold text-font">
-                            - {{ $pelaksana->jabatan_pelaksana ?? 'Belum ada jabatan dalam program kerja'}} pada Program Kerja {{ $pelaksana->proker->judul_proker ?? 'Data program kerja tidak tersedia'}} Kabinet {{ $pelaksana->proker->divisi->kabinet->nama_kabinet ?? 'Data kabinet Tidak Tersedia'}}
-                        </p>
-                    @endforeach
-                </div>
                 <div class="flex justify-end">
                     <!-- Tombol Tutup untuk kembali ke halaman sebelumnya -->
                     <button onclick="goBack()" class="py-2 px-4 text-sm font-medium text-white bg-assets rounded-lg hover:bg-second_a">

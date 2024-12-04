@@ -2,7 +2,7 @@
 <header id='navbar' class="bg-white sticky top-0 z-50 transition-shadow duration-300 md:backdrop-blur-sm md:bg-white/30">
     <nav class="px-4 lg:px-6 py-2.5">
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-            <a href="" class="flex items-center space-x-3">
+            <a href="#" class="flex items-center space-x-3">
                 <img src="{{ asset('assets/assets_logo.svg') }}" class="w-[122px] h-[29px]" alt="Assets Logo">
             </a>
             <button data-collapse-toggle="navbar-default" type="button"
