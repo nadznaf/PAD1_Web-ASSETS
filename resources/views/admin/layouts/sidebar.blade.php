@@ -1,4 +1,15 @@
 <aside class="left-sidebar">
+    <style>
+        .warning-hover-bg:hover {
+        background-color: #f5f5f5; /* Warna hover */
+        transition: all 0.3s ease; /* Efek animasi */
+        }
+
+        form button.sidebar-link.warning-hover-bg:hover {
+        width: 100%; /* Memastikan tombol memanjang penuh */
+        border-radius: 8px; /* Menyesuaikan dengan desain */
+        }
+    </style>
       <!-- Sidebar scroll-->
       <div class="scroll-sidebar" data-simplebar>
         <div class="d-flex mb-4 align-items-center justify-content-between">

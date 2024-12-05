@@ -18,11 +18,11 @@
         </div>
 
         {{-- assets banner --}}
-        <div class="grid lg:gap-8 lg:grid-cols-12 ps-8 md:ps-0">
+        <div class="grid lg:gap-8 lg:grid-cols-12 px-8 md:px-0">
             <div class="mx-auto place-self-center lg:pl-8 lg:col-span-7" data-aos="fade-right">
                 <h1 class="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl text-assets">ASSETS UGM</h1>
                 <p class="max-w-2xl mb-6 font-semibold text-assets lg:mb-8 md:text-lg lg:text-xl">Associaton of Software Engineering Technology Students</p>
-                <p class="max-w-2xl mb-6 font-light text-assets lg:mb-8 md:text-lg lg:text-xl">Association Student of Teknologi Rekayasa Perangkat Lunak <br> Sekolah Vokasi Universitas Gadjah Mada.<br>Small Organization BIG Impact.</p>
+                <p class="max-w-2xl mb-6 font-light text-assets lg:mb-8 md:text-lg lg:text-xl">Himpunan Mahasiswa Program Studi Teknologi Rekayasa Perangkat Lunak, Sekolah Vokasi, Universitas Gadjah Mada<br>"Small Organization BIG Impact"</p>
                 <a href="{{ route('about') }}" class="inline-flex items-center justify-center px-5 py-3 mr-3 text-base font-medium text-center text-white rounded-lg bg-assets hover:bg-second_a focus:ring-4 focus:ring-primary-300">
                     Selengkapnya
                     <svg class="w-5 h-5 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
@@ -46,10 +46,10 @@
         <div class="mx-auto px-6 mb-24 max-w-2xl text-center lg:max-w-4xl" data-aos="fade-down" data-aos-duration="1000">
             <h2 class="mt-2 text-4xl font-bold text-font sm:text-5xl">Kabinet</h2>
             <p class="mt-6 text-l font-bold tracking-tight text-assets sm:text-xl">
-                Choose a Cabinet to learn more about ASSETS
+                Pilih Kabinet untuk mengetahui ASSETS lebih lanjut
             </p>
             <p class="mx-auto mt-2 max-w-2xl text-center text-lg leading-8 text-gray-400">
-                Each year, ASSETS organizes a Cabinet dedicated to making TRPL a better place for students and the surrounding community.
+                Setiap tahun, ASSETS membentuk Kabinet yang didedikasikan untuk membuat TRPL menjadi tempat yang lebih baik bagi para mahasiswa dan lingkungan sekitar.
             </p>
         </div>
 

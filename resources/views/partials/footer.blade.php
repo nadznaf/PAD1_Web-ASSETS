@@ -6,9 +6,9 @@
                 <img class="w-auto h-8 mb-4" src="{{ asset('assets/assets_logo_white.svg') }}" alt="Assets Logo">
             </a>
             <div class="flex flex-wrap justify-center mt-6 -mx-4">
-                <a href="{{ route('home') }}" class="mx-4 text-sm text-white transition-colors duration-300 hover:text-second_a" aria-label="Reddit"> Home </a>
+                <a href="{{ route('home') }}" class="mx-4 text-sm text-white transition-colors duration-300 hover:text-second_a" aria-label="Reddit"> Beranda </a>
                 <a href="{{ route('artikel') }}" class="mx-4 text-sm text-white transition-colors duration-300 hover:text-second_a" aria-label="Reddit"> Artikel </a>
-                <a href="{{ route('about') }}" class="mx-4 text-sm text-white transition-colors duration-300 hover:text-second_a " aria-label="Reddit"> About </a>
+                <a href="{{ route('about') }}" class="mx-4 text-sm text-white transition-colors duration-300 hover:text-second_a " aria-label="Reddit"> Tentang Kami </a>
             </div>
 
         </div>

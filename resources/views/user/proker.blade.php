@@ -58,7 +58,7 @@
                 <div class="row-span-1 mb-4">
                     <p class="teksWarnaKabinet text-base">Tanggal Pelaksanaan</p>
                     @foreach ($proker->waktu_proker as $tanggal)
-                    <p class="text-dark text-base font-semibold">{{ \Carbon\Carbon::parse($tanggal->tanggal_kegiatan)->isoFormat('dddd, DD-MM-YYYY') }}<hr><br></p>
+                    <p class="text-dark text-base font-semibold">{{ \Carbon\Carbon::parse($tanggal->tanggal_kegiatan)->isoFormat('dddd, DD-MM-YYYY') }}<br></p>
                     @endforeach
                 </div>
             </div>

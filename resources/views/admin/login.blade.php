@@ -22,7 +22,7 @@
   </head>
   <body>
     <div id="webcrumbs">
-      <div class="container">
+      <div class="container gx-0">
         <div class="left-section">
           <div class="flex flex-col items-left">
             <img src="{{ asset('imagesAdmin/logoAssets.svg') }}" alt="logo" class="object-contain w-[150px] h-[80px] mb-6"/>
@@ -35,12 +35,7 @@
 
         <div class="right-section">
           <h2 class="text-3xl font-title mb-2">Log In</h2>
-          <p class="text-sm mb-6">
-            Don't have an Account?
-            <a href="{{ route('register') }}" class="text-blue-600">
-              Create Account
-            </a>
-          </p>
+            <p class="text-sm">Please enter your email and password</p>
           @if ($errors->any())
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 <ul>

@@ -65,7 +65,6 @@ Route::get('/dosen/{id}', [detailMahasiswaDanDosenController::class, 'detailDose
 // ADMIN ROUTES
 Route::middleware('guest:admin')->group(function () {
     Route::get('/login', [LoginRegisterController::class, 'login'])->name('login');
-    Route::get('/register', [LoginRegisterController::class, 'register'])->name('register');
     Route::post('/store', [LoginRegisterController::class, 'store'])->name('store');
     Route::post('/authenticate', [LoginRegisterController::class, 'authenticate'])->name('authenticate');
 });
