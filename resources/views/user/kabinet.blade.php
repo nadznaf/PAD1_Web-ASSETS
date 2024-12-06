@@ -258,8 +258,8 @@
                 <h5 class="p-4 text-2xl font-semibold text-font uppercase">{{ $proker->judul_proker}}</h5>
 
                 <!-- Description -->
-                <p class="px-4 pb-4 font-normal text-font">
-                    {{ $proker->deskripsi_proker }}
+                <p class="deskripsiSingkat px-4 pb-4 font-normal text-font">
+                    {{ $proker->deskripsi_proker ?? 'Deskripsi tidak tersedia' }}
                 </p>
             </a>
         </div>
@@ -296,6 +296,9 @@
         const modal = document.getElementById('default-modal');
         const modalLink = document.getElementById('modal-link');
         const closeModalButton = document.getElementById('close-modal');
+        // Ambil semua elemen dengan kelas 'deskripsiSingkat'
+        const deskripsiElements = document.querySelectorAll('.deskripsiSingkat');
+        const maxLength = ; // Batas jumlah karakter
 
         figures.forEach(figure => {
             figure.addEventListener('click', () => {
@@ -314,6 +317,30 @@
         closeModalButton.addEventListener('click', () => {
             // Hide the modal
             modal.classList.add('hidden');
+        });
+
+        deskripsiElements.forEach(function (deskripsiElement) {
+            const fullText = deskripsiElement.textContent;
+
+            if (fullText.length > maxLength) {
+                deskripsiElement.textContent = fullText.substring(0, maxLength) + ' ...';
+            }
+        });
+    });
+    document.addEventListener('DOMContentLoaded', () => {
+        const deskripsiSingkatElements = document.querySelectorAll('.deskripsiSingkat');
+
+        deskripsiSingkatElements.forEach((element) => {
+            const maxLength = 50; // Panjang maksimal deskripsi
+            const originalText = element.textContent.trim();
+
+            if (originalText.length > maxLength) {
+                const truncatedText = originalText.substring(0, maxLength) + '...';
+                element.textContent = truncatedText;
+
+                // Untuk menunjukkan teks lengkap saat hover
+                element.setAttribute('title', originalText);
+            }
         });
     });
 

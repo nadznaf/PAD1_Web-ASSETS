@@ -3,9 +3,6 @@
 @section('title', 'Home')
 
 @section('content')
-<style>
-
-</style>
 
 <div class="bg-white">
     {{-- Banner start --}}
