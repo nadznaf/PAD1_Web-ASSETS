@@ -16,7 +16,7 @@
 <body>
     @include('partials.navbar')
 
-    <main class="overflow-x-hidden overflow-y-hidden">
+    <main class="overflow-hidden">
         @yield('content')
     </main>
 

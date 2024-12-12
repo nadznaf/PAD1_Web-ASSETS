@@ -15,7 +15,7 @@
         </div>
 
         {{-- assets banner --}}
-        <div class="grid lg:gap-8 lg:grid-cols-12 px-8 md:px-0">
+        <div class="grid lg:gap-8 lg:grid-cols-12 ps-8 md:px-0">
             <div class="mx-auto place-self-center lg:pl-8 lg:col-span-7" data-aos="fade-right">
                 <h1 class="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl text-assets">ASSETS UGM</h1>
                 <p class="max-w-2xl mb-6 font-semibold text-assets lg:mb-8 md:text-lg lg:text-xl">Associaton of Software Engineering Technology Students</p>

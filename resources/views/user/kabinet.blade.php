@@ -223,7 +223,7 @@
         @endforeach
     </div>
     <div class="flex justify-center mb-32" data-aos="fade-up" data-aos-duration="1000">
-        <a href="{{ route('kabinet.struktur', $kabinet->id_kabinet) }}" type="button" class="text-white bg-black hover:bg-font font-medium rounded-full text-sm px-3 py-1.5 text-center">
+        <a href="{{ route('kabinet.struktur', $kabinet->id_kabinet) }}" type="button" class="text-white bg-black hover:bg-font font-medium rounded-full text-sm px-5 py-2.5 text-center">
             Selengkapnya
         </a>
     </div>
