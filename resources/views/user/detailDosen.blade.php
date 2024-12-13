@@ -44,7 +44,7 @@
     </style>
     <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
-    @vite(['./public/css/style.css', './public/js/script.js'])
+    @vite(['resource/css/style.css', 'resource/js/script.js'])
     <title>Desain Dosen</title>
 </head>
 <body class="bg-gray-100">
