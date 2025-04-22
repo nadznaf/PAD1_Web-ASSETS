@@ -158,10 +158,7 @@
                         <tr>
                             <th>NO.</th>
                             <th>NAMA STAFF</th>
-                            <th>ASAL KABINET</th>
-                            <th>ASAL DIVISI</th>
-                            <th>FOTO POSE STAFF</th>
-                            <th>JABATAN</th>
+                            <th>ASAL DIVISI - Kabinet</th>
                             <th>TUGAS STAFF</th>
                             <th>ACTION</th>
                         </tr>
@@ -173,13 +170,7 @@
                             <tr>
                                 <td>{{ $dataStaff->firstItem() + $index }}</td>
                                 <td>{{ $staff->mahasiswa->nama_mhs }}</td>
-                                <td>{{ $staff->divisi->kabinet->nama_kabinet }}</td>
-                                <td>{{ $staff->divisi->nama_divisi }}</td>
-                                <td class="text-center">
-                                    <img src="{{ asset('storage/datamahasiswa/' . $staff->foto_pose_staff) }}"
-                                        class="rounded w-24 h-24 object-cover">
-                                </td>
-                                <td>{{ $staff->nama_jabatan }}</td>
+                                <td>{{ $staff->divisi->nama_divisi }}-{{ $staff->divisi->kabinet->nama_kabinet }}</td>
                                 <td>{{ $staff->tugas_staff }}</td>
                                 <td>
                                     <div

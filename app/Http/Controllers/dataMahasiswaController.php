@@ -23,23 +23,19 @@ class dataMahasiswaController extends Controller
         $validatedData = $request->validate(
             [
                 'namaMahasiswa' => 'required',
-                'nimMahasiswa' => 'required|unique:mahasiswa,nim_mhs',
-                'fotoMhs' => 'nullable|image|mimes:jpg,jpeg,png,svg',
+                'fotoMhs' => 'nullable|image|mimes:jpg,jpeg,png,svg|max:100',
             ],
             // Error message:
             [
-                'namaMahasiswa.required' => 'Nama mahasiswa harus diisi.',
-                'nimMahasiswa.required' => 'NIM mahasiswa harus diisi.',
-                'nimMahasiswa.unique' => 'NIM mahasiswa sudah terdaftar.',
                 'fotoMhs.image' => 'File harus berupa gambar.',
                 'fotoMhs.mimes' => 'Gambar harus berformat jpg, jpeg, svg, atau png.',
+                'fotoMhs.max' => 'Gambar maximal 100KB.',
             ]
         );
 
         // Jika validasi berhasil, simpan data mahasiswa
         $data = [
             'nama_mhs' => $validatedData['namaMahasiswa'],
-            'nim_mhs' => $validatedData['nimMahasiswa'],
         ];
 
         if ($request->hasFile('fotoMhs')) {
@@ -60,12 +56,10 @@ class dataMahasiswaController extends Controller
         $request->validate(
             [
                 'namaMhs' => 'nullable',
-                'nimMhs' => 'nullable|unique:mahasiswa,nim_mhs,' . $mahasiswa->id_mhs . ',id_mhs',
                 'fotoMhs' => 'nullable|image|mimes:jpeg,png,jpg,svg',
             ],
             // Error message:
             [
-                'nimMahasiswa.unique' => 'NIM mahasiswa sudah terdaftar.',
                 'fotoMhs.image' => 'File harus berupa gambar.',
                 'fotoMhs.mimes' => 'Gambar harus berformat jpg, jpeg, svg, atau png.',
             ]
@@ -74,11 +68,6 @@ class dataMahasiswaController extends Controller
         // Cek jika nama baru berbeda dari yang ada di database
         if ($request->namaMhs !== $mahasiswa->nama_mhs) {
             $mahasiswa->nama_mhs = $request->namaMhs;
-        }
-
-        // Cek jika NIM baru berbeda dari yang ada di database
-        if ($request->nimMhs && $request->nimMhs !== $mahasiswa->nim_mhs) {
-            $mahasiswa->nim_mhs = $request->nimMhs;
         }
 
         // Cek jika ada upload foto baru

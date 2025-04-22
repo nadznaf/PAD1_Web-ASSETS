@@ -129,7 +129,6 @@
                         <tr>
                             <th>NO.</th>
                             <th>NAMA MAHASISWA</th>
-                            <th>NOMOR INDUK MAHASISWA(NIM)</th>
                             <th>FOTO PROFIL</th>
                             <th>ACTION</th>
                         </tr>
@@ -140,7 +139,6 @@
                             <tr>
                                 <td>{{ $dataMahasiswa->firstItem() + $index }}</td>
                                 <td>{{ $mahasiswa->nama_mhs }}</td>
-                                <td>{{ $mahasiswa->nim_mhs }}</td>
                                 <td class="text-center">
                                     <img src="{{ asset('storage/datamahasiswa/' . $mahasiswa->foto_profil_mhs) }}"
                                         class="rounded w-24 h-24 object-cover">
@@ -208,13 +206,6 @@
                                                     <label for="namaMhs" class="form-label">Nama Mahasiswa</label>
                                                     <input type="text" class="form-control" name="namaMhs"
                                                         value="{{ $mahasiswa->nama_mhs }}">
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label for="nimMhs" class="form-label">Nomor Induk Mahasiswa
-                                                        (NIM)
-                                                    </label>
-                                                    <input type="text" class="form-control" name="nimMhs"
-                                                        value="{{ $mahasiswa->nim_mhs }}">
                                                 </div>
                                                 <div class="mb-3">
                                                     <label>Foto Profil Mahasiswa</label><br>

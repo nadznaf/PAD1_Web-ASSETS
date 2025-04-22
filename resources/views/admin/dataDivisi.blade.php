@@ -147,8 +147,6 @@
                             <th>NAMA DIVISI</th>
                             <th>ASAL KABINET</th>
                             <th>FOTO SAMPUL DIVISI</th>
-                            <th>DESKRIPSI DIVISI</th>
-                            <th>TUGAS & TANGGUNG JAWAB DIVISI</th>
                             <th>ACTION</th>
                         </tr>
                     </thead>
@@ -164,8 +162,6 @@
                                     <img src="{{ asset('storage/datadivisi/' . $divisi->foto_sampul_divisi) }}"
                                         class="rounded w-24 h-24 object-cover">
                                 </td>
-                                <td>{{ $divisi->deskripsi_divisi }}</td>
-                                <td>{{ $divisi->tugas_dan_tanggung_jawab }}</td>
                                 <td>
                                     <div class="flex flex-row gap-x-4">
                                         <!-- Edit Button -->

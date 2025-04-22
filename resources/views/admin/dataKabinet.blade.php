@@ -285,9 +285,6 @@
                             <th>NO.</th>
                             <th>NAMA KABINET</th>
                             <th>LOGO KABINET</th>
-                            <th>VISI, MISI, DAN MAKNA KABINET</th>
-                            <th>DESKRIPSI KABINET</th>
-                            <th>DOSEN PEBIMBING</th>
                             <th>PERIODE KABINET</th>
                             <th>FOTO SAMPUL KABINET</th>
                             <th>ACTION</th>
@@ -304,15 +301,7 @@
                                     <img src="{{ asset('storage/datakabinet/' . $kabinet->logo_kabinet) }}"
                                         class="rounded w-24 h-24 object-cover">
                                 </td>
-                                <td>
-                                    <strong>Visi Kabinet:</strong> <br>{{ $kabinet->visi_kabinet }} <br>
-                                    <hr>
-                                    <strong>Misi Kabinet:</strong> <br>{{ $kabinet->misi_kabinet }} <br>
-                                    <hr>
-                                    <strong>Makna Kabinet:</strong> <br> {{ $kabinet->makna_kabinet }}
-                                </td>
-                                <td>{{ $kabinet->deskripsi_kabinet }}</td>
-                                <td>{{ $kabinet->dosen->nama_dosen }}</td>
+
                                 <td>{{ $kabinet->tahun_awal_kabinet }} - {{ $kabinet->tahun_akhir_kabinet }}</td>
                                 <td class="text-center">
                                     <img src="{{ asset('storage/datakabinet/' . $kabinet->foto_sampul_kabinet) }}"

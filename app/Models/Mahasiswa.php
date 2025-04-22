@@ -12,7 +12,6 @@ class Mahasiswa extends Model
 
     protected $fillable = [
         'nama_mhs',
-        'nim_mhs',
         'foto_profil_mhs',
     ];
 
@@ -25,6 +24,4 @@ class Mahasiswa extends Model
     {
         return $this->hasMany(Pelaksana::class, 'id_mhs', 'id_mhs');
     }
-
-
 }
