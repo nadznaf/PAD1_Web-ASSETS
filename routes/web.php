@@ -19,6 +19,36 @@ use App\Http\Controllers\Auth\LoginRegisterController;
 use App\Http\Controllers\ArtikelController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\KabinetController;
+use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
+use Illuminate\Http\Request;
+
+Route::post('pull', function (Request $request) {
+    if ($request->code != env('GIT_KEY')) {
+        abort(403);
+    }
+    $output = null;
+    $returnVar = null;
+    exec('cd ' . base_path() . ' && git pull 2>&1', $output, $returnVar);
+    return implode("\n", $output);
+})->withoutMiddleware(VerifyCsrfToken::class);
+Route::post('migrate', function (Request $request) {
+    if ($request->code != env('GIT_KEY')) {
+        abort(403);
+    }
+    $output = null;
+    $returnVar = null;
+    exec('cd ' . base_path() . ' && php artisan migrate 2>&1', $output, $returnVar);
+    return implode("\n", $output);
+})->withoutMiddleware(VerifyCsrfToken::class);
+Route::post('migrate-back', function (Request $request) {
+    if ($request->code != env('GIT_KEY')) {
+        abort(403);
+    }
+    $output = null;
+    $returnVar = null;
+    exec('cd ' . base_path() . ' && php artisan migrate:rollback 2>&1', $output, $returnVar);
+    return implode("\n", $output);
+})->withoutMiddleware(VerifyCsrfToken::class);
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -32,9 +62,6 @@ Route::get('/artikel/{id}', [ArtikelController::class, 'detailArtikel'])->name('
 
 Route::get('/about', [AboutController::class, 'index'])->name('about');
 Route::post('/aspirasi/store', [AboutController::class, 'store'])->name('aspirasi.store');
-
-Route::get('/mahasiswa/{id}', [detailMahasiswaDanDosenController::class, 'detailMahasiswa'])->name('mahasiswa');
-Route::get('/dosen/{id}', [detailMahasiswaDanDosenController::class, 'detailDosen'])->name('dosen');
 
 Route::middleware('guest:admin')->group(function () {
     Route::get('/login', [LoginRegisterController::class, 'login'])->name('login');
