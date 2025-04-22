@@ -51,8 +51,9 @@ class dataMahasiswaController extends Controller
 
 
 
-    public function update(Request $request, Mahasiswa $mahasiswa)
+    public function update(Request $request, string $mahasiswa)
     {
+        $mahasiswa = Mahasiswa::find($mahasiswa);
         $request->validate(
             [
                 'namaMhs' => 'nullable',
@@ -94,8 +95,9 @@ class dataMahasiswaController extends Controller
     }
 
 
-    public function destroy(Mahasiswa $mahasiswa)
+    public function destroy(string $mahasiswa)
     {
+        $mahasiswa = Mahasiswa::find($mahasiswa);
         if ($mahasiswa->foto_profil_mhs) {
             Storage::delete('public/datamahasiswa/' . $mahasiswa->foto_profil_mhs);
         }

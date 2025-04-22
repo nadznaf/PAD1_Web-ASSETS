@@ -16,23 +16,25 @@ class dataDokumentasiController extends Controller
         $admin = Auth::guard('admin')->user();
         $dataProker = Proker::orderBy('created_at', 'desc')->get(); //Mengambil data kabinet dari waktu pembuatan terbaru
         $dataDokumentasi = Dokumentasi::latest()->with('proker')->paginate(5);
-        return view('admin.dataDokumentasi', compact('dataProker','dataDokumentasi', 'admin'));
+        return view('admin.dataDokumentasi', compact('dataProker', 'dataDokumentasi', 'admin'));
     }
 
     public function store(Request $request)
     {
-        $request->validate([
-            'id_proker' => 'required',
-            'hariDokumentasi' => 'required|integer',
-            'dokumentasiFoto' => 'nullable|image|mimes:jpg,jpeg,png,svg',
-        ], 
-        [
-            'id_proker.required' => 'Program kerja harus diisi.',
-            'hariDokumentasi.required' => 'Keterangan hari harus diisi.',
-            'hariDokumentasi.integer' => 'Keterangan hari harus berupa angka.',
-            'dokumentasiFoto.image' => 'File harus berupa gambar.',
-            'dokumentasiFoto.mimes' => 'Gambar harus berformat jpg, jpeg, svg, atau png.',
-        ]);
+        $request->validate(
+            [
+                'id_proker' => 'required',
+                'hariDokumentasi' => 'required|integer',
+                'dokumentasiFoto' => 'nullable|image|mimes:jpg,jpeg,png,svg',
+            ],
+            [
+                'id_proker.required' => 'Program kerja harus diisi.',
+                'hariDokumentasi.required' => 'Keterangan hari harus diisi.',
+                'hariDokumentasi.integer' => 'Keterangan hari harus berupa angka.',
+                'dokumentasiFoto.image' => 'File harus berupa gambar.',
+                'dokumentasiFoto.mimes' => 'Gambar harus berformat jpg, jpeg, svg, atau png.',
+            ]
+        );
 
         $data = [
             'id_proker' => $request->id_proker,
@@ -50,20 +52,23 @@ class dataDokumentasiController extends Controller
         return redirect()->route('admin.datadokumentasi.index')->with('success', 'Data dokumentasi berhasil ditambahkan.');
     }
 
-    public function update(Request $request, Dokumentasi $dokumentasi)
+    public function update(Request $request, string $dokumentasi)
     {
-        $request->validate([
-            'id_proker' => 'required',
-            'hariDokumentasi' => 'required|integer',
-            'dokumentasiFoto' => 'nullable|image|mimes:jpg,jpeg,png,svg',
-        ], 
-        [
-            'id_proker.required' => 'Program kerja harus diisi.',
-            'hariDokumentasi.required' => 'Keterangan hari harus diisi.',
-            'hariDokumentasi.integer' => 'Keterangan hari harus berupa angka.',
-            'dokumentasiFoto.image' => 'File harus berupa gambar.',
-            'dokumentasiFoto.mimes' => 'Gambar harus berformat jpg, jpeg, svg, atau png.',
-        ]);
+        $dokumentasi = Dokumentasi::find($dokumentasi);
+        $request->validate(
+            [
+                'id_proker' => 'required',
+                'hariDokumentasi' => 'required|integer',
+                'dokumentasiFoto' => 'nullable|image|mimes:jpg,jpeg,png,svg',
+            ],
+            [
+                'id_proker.required' => 'Program kerja harus diisi.',
+                'hariDokumentasi.required' => 'Keterangan hari harus diisi.',
+                'hariDokumentasi.integer' => 'Keterangan hari harus berupa angka.',
+                'dokumentasiFoto.image' => 'File harus berupa gambar.',
+                'dokumentasiFoto.mimes' => 'Gambar harus berformat jpg, jpeg, svg, atau png.',
+            ]
+        );
 
         $dokumentasi->id_proker = $request->id_proker;
         $dokumentasi->keterangan_hari = $request->hariDokumentasi;
@@ -72,7 +77,7 @@ class dataDokumentasiController extends Controller
             if ($dokumentasi->isi_dokumentasi) {
                 Storage::delete('public/datadokumentasi/' . $dokumentasi->isi_dokumentasi);
             }
-            
+
             $file = $request->file('dokumentasiFoto');
             $path = $file->store('datadokumentasi', 'public');
             $dokumentasi->isi_dokumentasi = basename($path);
@@ -83,8 +88,9 @@ class dataDokumentasiController extends Controller
         return redirect()->route('admin.datadokumentasi.index')->with('success', 'Data dokumentasi berhasil diperbarui.');
     }
 
-    public function destroy(Dokumentasi $dokumentasi)
+    public function destroy(string $dokumentasi)
     {
+        $dokumentasi = Dokumentasi::find($dokumentasi);
         if ($dokumentasi->isi_dokumentasi) {
             Storage::delete('public/datadokumentasi/' . $dokumentasi->isi_dokumentasi);
         }

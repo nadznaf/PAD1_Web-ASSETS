@@ -15,7 +15,7 @@ class dataPelaksanaController extends Controller
     public function index()
     {
         $admin = Auth::guard(name: 'admin')->user();
-        $dataPelaksana = Pelaksana::latest()->with('mahasiswa','proker')->paginate(5);
+        $dataPelaksana = Pelaksana::latest()->with('mahasiswa', 'proker')->paginate(5);
         $dataMahasiswa = Mahasiswa::all();
         $dataKabinet = Kabinet::all();
 
@@ -41,8 +41,9 @@ class dataPelaksanaController extends Controller
     }
 
     // Update an existing 'Pelaksana' record
-    public function update(Request $request, Pelaksana $pelaksana)
+    public function update(Request $request, string $pelaksana)
     {
+        $pelaksana = Pelaksana::find($pelaksana);
         $request->validate([
             'id_mahasiswa' => 'required|exists:mahasiswa,id_mhs',
             'id_proker' => 'required|exists:proker,id_proker',
@@ -59,8 +60,9 @@ class dataPelaksanaController extends Controller
     }
 
     // Delete an existing 'Pelaksana' record
-    public function destroy(Pelaksana $pelaksana)
+    public function destroy(string $pelaksana)
     {
+        $pelaksana = Pelaksana::find($pelaksana);
         $pelaksana->delete();
 
         return redirect()->route('admin.datapelaksana.index')->with('success', 'Data Pelaksana berhasil dihapus.');

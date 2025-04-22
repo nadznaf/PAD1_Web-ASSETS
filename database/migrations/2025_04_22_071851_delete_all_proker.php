@@ -13,11 +13,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Storage::disk('public')->deleteDirectory('dataproker');
+        Storage::disk('public')->deleteDirectory('datadokumentasi');
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         DB::table('pelaksana')->truncate();
         DB::table('dokumentasi')->truncate();
         DB::table('waktu_proker')->truncate();
         DB::table('proker')->truncate();
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }
 
     /**

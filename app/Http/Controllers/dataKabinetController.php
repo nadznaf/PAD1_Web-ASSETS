@@ -69,24 +69,27 @@ class dataKabinetController extends Controller
         return redirect()->route('admin.datakabinet.index')->with('success', 'Data kabinet berhasil ditambahkan.');
     }
 
-    public function update(Request $request, Kabinet $kabinet)
+    public function update(Request $request, string $kabinet)
     {
-        $request->validate([
-            'namaKabinet' => 'nullable',
-            'visiKabinet' => 'nullable',
-            'misiKabinet' => 'nullable',
-            'deskripsiKabinet' => 'nullable',
-            'id_dosen' => 'nullable',
-            'tahunAwalKabinet' => 'nullable',
-            'tahunAkhirKabinet' => 'nullable',
-            'fotoSampulKabinet' => 'nullable|image|mimes:jpeg,png,jpg,svg',
-            'logoKabinet' => 'nullable|image|mimes:jpeg,png,jpg,svg',
-        ],
-        // error messsage:
-        [
-            'fotoKabinet.mimes' => 'Gambar harus berformat jpg, jpeg, svg, atau png.',
-            'logoKabinet.mimes' => 'Gambar harus berformat jpg, jpeg, svg, atau png.',
-        ]);
+        $kabinet = Kabinet::find($kabinet);
+        $request->validate(
+            [
+                'namaKabinet' => 'nullable',
+                'visiKabinet' => 'nullable',
+                'misiKabinet' => 'nullable',
+                'deskripsiKabinet' => 'nullable',
+                'id_dosen' => 'nullable',
+                'tahunAwalKabinet' => 'nullable',
+                'tahunAkhirKabinet' => 'nullable',
+                'fotoSampulKabinet' => 'nullable|image|mimes:jpeg,png,jpg,svg',
+                'logoKabinet' => 'nullable|image|mimes:jpeg,png,jpg,svg',
+            ],
+            // error messsage:
+            [
+                'fotoKabinet.mimes' => 'Gambar harus berformat jpg, jpeg, svg, atau png.',
+                'logoKabinet.mimes' => 'Gambar harus berformat jpg, jpeg, svg, atau png.',
+            ]
+        );
 
         $kabinet->nama_kabinet = $request->namaKabinet;
         $kabinet->visi_kabinet = $request->visiKabinet;
@@ -126,8 +129,9 @@ class dataKabinetController extends Controller
         return redirect()->route('admin.datakabinet.index')->with('success', 'Data kabinet berhasil diperbarui.');
     }
 
-    public function destroy(Kabinet $kabinet)
+    public function destroy(string $kabinet)
     {
+        $kabinet = Kabinet::find($kabinet);
         if ($kabinet->foto_sampul_kabinet) {
             Storage::delete('public/datakabinet/' . $kabinet->foto_sampul_kabinet);
         }

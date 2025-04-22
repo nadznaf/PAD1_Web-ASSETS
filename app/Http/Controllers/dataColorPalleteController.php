@@ -19,17 +19,19 @@ class dataColorPalleteController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'primaryColor' => 'required',
-            'secondaryColor' => 'required',
-            'id_kabinet' => 'required',
-        ],
-        // error messsage:
-        [
-            'primaryColor.required' => 'Data ini perlu diisi',
-            'secondaryColor.required' => 'Data ini perlu diisi',
-            'id_kabinet.required' => 'Data ini perlu diisi',
-        ]);
+        $request->validate(
+            [
+                'primaryColor' => 'required',
+                'secondaryColor' => 'required',
+                'id_kabinet' => 'required',
+            ],
+            // error messsage:
+            [
+                'primaryColor.required' => 'Data ini perlu diisi',
+                'secondaryColor.required' => 'Data ini perlu diisi',
+                'id_kabinet.required' => 'Data ini perlu diisi',
+            ]
+        );
 
         $data = [
             'primary_color' => $request->primaryColor,
@@ -42,16 +44,19 @@ class dataColorPalleteController extends Controller
         return redirect()->route('admin.datacolorpallete.index')->with('success', 'Data color pallete berhasil ditambahkan.');
     }
 
-    public function update(Request $request, ColorPallete $colorPallete)
+    public function update(Request $request, string $colorPallete)
     {
+        $colorPallete = ColorPallete::find($colorPallete);
 
-        $request->validate([
-            'id_kabinet' => 'required',
-        ],
-        // error messsage:
-        [
-            'id_kabinet.required' => 'Data ini perlu diisi',
-        ]);
+        $request->validate(
+            [
+                'id_kabinet' => 'required',
+            ],
+            // error messsage:
+            [
+                'id_kabinet.required' => 'Data ini perlu diisi',
+            ]
+        );
 
         $colorPallete->primary_color = $request->primaryColor;
         $colorPallete->secondary_color = $request->secondaryColor;
@@ -63,8 +68,9 @@ class dataColorPalleteController extends Controller
         return redirect()->route('admin.datacolorpallete.index')->with('success', 'Data color pallete  berhasil diperbarui.');
     }
 
-    public function destroy( ColorPallete $colorPallete)
+    public function destroy(string $colorPallete)
     {
+        $colorPallete = ColorPallete::find($colorPallete);
 
         $colorPallete->delete();
 

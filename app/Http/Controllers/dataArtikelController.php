@@ -34,7 +34,7 @@ class dataArtikelController extends Controller
         $artikel->nama_penulis = $request->penulisArtikel;
         $artikel->konten_artikel = $request->kontenArtikel;
         $artikel->tautan_artikel_resmi = $request->tautanArtikel;
-        $artikel->tanggal_terbit = $request->tanggalTerbit; 
+        $artikel->tanggal_terbit = $request->tanggalTerbit;
 
         if ($request->hasFile('fotoSampulArtikel')) {
             $path = $request->file('fotoSampulArtikel')->store('artikel', 'public');

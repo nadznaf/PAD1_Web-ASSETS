@@ -21,10 +21,10 @@ class dataProkerController extends Controller
         // Ambil data Proker dengan relasi Divisi, WaktuProker (sorted by tanggal_kegiatan), dan Kabinet (sorted by terbaru)
         $dataProker = Proker::latest()
             ->with([
-                'divisi.kabinet' => function($query) {
+                'divisi.kabinet' => function ($query) {
                     $query->orderBy('created_at', 'desc');
                 },
-                'waktu_proker' => function($query) {
+                'waktu_proker' => function ($query) {
                     $query->orderBy('tanggal_kegiatan', 'asc'); // Sorting tanggal kegiatan dari yang terlama
                 }
             ])
@@ -176,9 +176,9 @@ class dataProkerController extends Controller
 
 
 
-    public function destroy(Proker $proker)
+    public function destroy(string $proker)
     {
-
+        $proker = Proker::find($proker);
         $proker->waktu_proker->delete();
         $proker->delete();
 

@@ -21,23 +21,25 @@ class dataDivisiController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'namaDivisi' => 'required',
-            'deskripsiDivisi' => 'required',
-            'tugasDanTanggungJawab' => 'required',
-            'id_kabinet' => 'required',
-            'fotoSampulDivisi' => 'nullable|image|mimes:jpg,jpeg,png,svg',
-        ], 
-        // Error message:
-        [
-            'namaDivisi.required' => 'Nama divisi harus diisi.',
-            'deskripsiDivisi.required' => 'Deskripsi divisi harus diisi.',
-            'tugasDanTanggungJawab.required' => 'Tugas divisi harus diisi.',
-            'id_kabinet.required' => 'Asal kabinet harus diisi.',
-            'fotoSampulDivisi.image' => 'File harus berupa gambar.',
-            'fotoSampulDivisi.mimes' => 'Gambar harus berformat jpg, jpeg, svg, atau png.',
-        ]);
-    
+        $request->validate(
+            [
+                'namaDivisi' => 'required',
+                'deskripsiDivisi' => 'required',
+                'tugasDanTanggungJawab' => 'required',
+                'id_kabinet' => 'required',
+                'fotoSampulDivisi' => 'nullable|image|mimes:jpg,jpeg,png,svg',
+            ],
+            // Error message:
+            [
+                'namaDivisi.required' => 'Nama divisi harus diisi.',
+                'deskripsiDivisi.required' => 'Deskripsi divisi harus diisi.',
+                'tugasDanTanggungJawab.required' => 'Tugas divisi harus diisi.',
+                'id_kabinet.required' => 'Asal kabinet harus diisi.',
+                'fotoSampulDivisi.image' => 'File harus berupa gambar.',
+                'fotoSampulDivisi.mimes' => 'Gambar harus berformat jpg, jpeg, svg, atau png.',
+            ]
+        );
+
         $data = [
             'nama_divisi' => $request->namaDivisi,
             'deskripsi_divisi' => $request->deskripsiDivisi,
@@ -50,22 +52,22 @@ class dataDivisiController extends Controller
             $path = $file->store('datadivisi', 'public');
             $data['foto_sampul_divisi'] = basename($path);
         }
-    
+
         Divisi::create($data);
-    
+
         return redirect()->route('admin.datadivisi.index')->with('success', 'Data divisi berhasil ditambahkan.');
     }
 
-    public function update(Request $request, Divisi $divisi)
+    public function update(Request $request, string $divisi)
     {
+        $divisi = Divisi::find($divisi);
 
-        
         if ($request->hasFile('fotoSampulDivisi')) {
             // Hapus foto lama jika ada
             if ($divisi->foto_sampul_divisi) {
                 Storage::delete('public/datadivisi/' . $divisi->foto_sampul_divisi);
             }
-            
+
             // Simpan foto baru
             $file = $request->file('fotoSampulDivisi');
             $path = $file->store('datadivisi', 'public');
@@ -83,8 +85,9 @@ class dataDivisiController extends Controller
         return redirect()->route('admin.datadivisi.index')->with('success', 'Data divisi berhasil diperbarui.');
     }
 
-    public function destroy(Divisi $divisi)
+    public function destroy(string $divisi)
     {
+        $divisi = Divisi::find($divisi);
 
         $divisi->delete();
 

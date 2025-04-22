@@ -58,9 +58,9 @@ class dataStaffController extends Controller
         return redirect()->route('admin.datastaff.index')->with('success', 'Data staff berhasil ditambahkan.');
     }
 
-    public function update(Request $request, Staff $staff)
+    public function update(Request $request, string $staff)
     {
-
+        $staff = Staff::find($staff);
         $staff->nama_jabatan = $request->namaJabatan;
         $staff->tugas_staff = $request->tugasStaff;
         $staff->id_divisi = $request->id_divisi;
@@ -71,8 +71,9 @@ class dataStaffController extends Controller
         return redirect()->route('admin.datastaff.index')->with('success', 'Data staff berhasil diperbarui.');
     }
 
-    public function destroy(Staff $staff)
+    public function destroy(string $staff)
     {
+        $staff = Staff::find($staff);
 
         $staff->delete();
 
