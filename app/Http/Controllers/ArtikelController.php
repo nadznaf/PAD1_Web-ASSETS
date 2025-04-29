@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Kabinet;
-use App\Models\Artikel;
 use Illuminate\Support\Facades\Http;
 
 class ArtikelController extends Controller
