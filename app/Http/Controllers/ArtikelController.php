@@ -5,27 +5,62 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Kabinet;
 use App\Models\Artikel;
+use Illuminate\Support\Facades\Http;
 
 class ArtikelController extends Controller
 {
-    public function index(){
+    private function getFirstImageFromContent($content)
+    {
+        // Buat DOM Document
+        $doc = new \DOMDocument();
 
-        // Mengambil seluruh data kabinet untuk isi pada bagian Navbar
-        $dataKabinet = Kabinet::orderBy('tahun_awal_kabinet', 'desc')->get();
+        // Supaya nggak error karena HTML tidak lengkap
+        libxml_use_internal_errors(true);
 
-        // Ambil seluruh data artikel diurutkan berdasarkan tanggal terbit secara descending
-        $dataArtikel = Artikel::orderBy('tanggal_terbit', 'desc')->get();
+        // Load HTML dari string
+        $doc->loadHTML($content);
 
-        return view('user.artikel', compact('dataKabinet', 'dataArtikel'));
+        // Ambil semua tag img
+        $tags = $doc->getElementsByTagName('img');
+
+        // Kalau ada <img>, ambil src pertama
+        if ($tags->length > 0) {
+            return $tags->item(0)->getAttribute('src');
+        }
+
+        return null; // Kalau nggak ada gambar
     }
-    public function detailArtikel($id){
 
-        // Mengambil seluruh data kabinet untuk isi pada bagian Navbar
+
+    private function getRssFeeds()
+    {
+        // Fetch RSS feed
+        $response = Http::get('https://trpl.sv.ugm.ac.id/feed/');
+
+        // Parse XML
+        $xml = simplexml_load_string($response->body());
+
+        // Ambil semua item
+        $items = [];
+        foreach ($xml->channel->item as $item) {
+            $content = (string) $item->children('content', true)->encoded;
+            $img = $this->getFirstImageFromContent($content);
+            $items[] = [
+                'title' => (string) $item->title,
+                'link' => (string) $item->link,
+                'description' => (string) $item->description,
+                'pubDate' => (string) $item->pubDate,
+                'img' => (string) $img,
+                // kamu bisa tambahkan field lain sesuai kebutuhan
+            ];
+        }
+
+        return $items;
+    }
+    public function index()
+    {
         $dataKabinet = Kabinet::orderBy('tahun_awal_kabinet', 'desc')->get();
-
-        // Ambil data artikel berdasarkan ID
-        $artikel = Artikel::findOrFail($id);
-
-        return view('user.detailArtikel', compact('dataKabinet', 'artikel'));
+        $dataArtikel = $this->getRssFeeds();
+        return view('user.artikel', compact('dataKabinet', 'dataArtikel'));
     }
 }

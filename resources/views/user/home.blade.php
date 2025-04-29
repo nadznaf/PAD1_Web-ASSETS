@@ -176,36 +176,34 @@
                 <h2 class="mt-2 text-4xl font-bold text-font">Artikel Terbaru</h2>
             </div>
             @if (isset($artikelTerbaru) && count($artikelTerbaru) > 0)
-                <a href="{{ route('artikel.show', $artikelTerbaru[0]->id_artikel) }}"
+                <a href="{{ $artikelTerbaru[0]['link'] }}"
                     class="group flex flex-col md:items-center mt-16 mb-8 rounded-lg md:flex-row md:max-w-full"
                     data-aos="fade-left" data-aos-duration="3000">
-                    <img class="object-cover w-full h-80 rounded-2xl md:w-2/5"
-                        src="{{ asset('storage/artikel/' . $artikelTerbaru[0]->foto_sampul_artikel) }}"
+                    <img class="object-cover w-full h-80 rounded-2xl md:w-2/5" src="{{ $artikelTerbaru[0]['img'] }}"
                         alt="Artikel's pict">
                     <div class="flex flex-col justify-between p-4 md:ps-8 leading-normal md:w-3/5">
                         <p class="mb-8 font-semibold text-font">
-                            {{ \Carbon\Carbon::parse($artikelTerbaru[0]->tanggal_terbit)->isoFormat('dddd, DD-MM-YYYY') }}
+                            {{ \Carbon\Carbon::parse($artikelTerbaru[0]['pubDate'])->isoFormat('dddd, DD-MM-YYYY') }}
                         </p>
                         <h5 class="mb-2 text-2xl font-bold text-assets group-hover:text-second_a">
-                            {{ $artikelTerbaru[0]->judul_artikel }}</h5>
+                            {{ $artikelTerbaru[0]['title'] }}</h5>
                         <p class="deskripsiSingkat mb-3 font-normal text-description">
-                            {{ $artikelTerbaru[0]->konten_artikel }}</p>
+                            {{ $artikelTerbaru[0]['description'] }}</p>
                     </div>
                 </a>
-                <a href="{{ route('artikel.show', $artikelTerbaru[0]->id_artikel) }}"
+                <a href="{{ $artikelTerbaru[1]['link'] }}"
                     class="group flex flex-col-reverse md:items-center mt-16 mb-8 bg-white rounded-lg md:flex-row md:max-w-full"
                     data-aos="fade-right" data-aos-duration="3000">
                     <div class="flex flex-col justify-between p-4 md:pe-8 leading-normal md:w-3/5">
                         <p class="mb-8 font-semibold text-font">
-                            {{ \Carbon\Carbon::parse($artikelTerbaru[1]->tanggal_terbit)->isoFormat('dddd, DD-MM-YYYY') }}
+                            {{ \Carbon\Carbon::parse($artikelTerbaru[1]['pubDate'])->isoFormat('dddd, DD-MM-YYYY') }}
                         </p>
                         <h5 class="mb-2 text-2xl font-bold text-assets group-hover:text-second_a">
-                            {{ $artikelTerbaru[1]->judul_artikel }}</h5>
+                            {{ $artikelTerbaru[1]['title'] }}</h5>
                         <p class="deskripsiSingkat mb-3 font-normal text-description">
-                            {{ $artikelTerbaru[1]->konten_artikel }}</p>
+                            {{ $artikelTerbaru[1]['description'] }}</p>
                     </div>
-                    <img class="object-cover w-full h-80 rounded-2xl md:w-1/2"
-                        src="{{ asset('storage/artikel/' . $artikelTerbaru[1]->foto_sampul_artikel) }}"
+                    <img class="object-cover w-full h-80 rounded-2xl md:w-1/2" src="{{ $artikelTerbaru[1]['img'] }}"
                         alt="Artikel's pict">
                 </a>
             @else

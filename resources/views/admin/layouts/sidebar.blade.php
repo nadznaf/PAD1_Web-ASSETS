@@ -126,15 +126,6 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link sidebar-link success-hover-bg" href="{{ route('admin.artikel.index') }}"
-                        aria-expanded="false">
-                        <span class="aside-icon p-2 bg-light-success rounded-3">
-                            <i class="ti ti-article fs-7 text-secondary"></i>
-                        </span>
-                        <span class="hide-menu ms-2 ps-1">Artikel</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
                     <a class="sidebar-link sidebar-link success-hover-bg" href="{{ route('admin.aspirasi.index') }}"
                         aria-expanded="false">
                         <span class="aside-icon p-2 bg-light-success rounded-3">

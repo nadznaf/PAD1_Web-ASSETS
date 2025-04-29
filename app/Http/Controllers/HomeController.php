@@ -9,30 +9,79 @@ use App\Models\Proker;
 use Illuminate\Support\Facades\DB;
 use App\Models\Aspirasi;
 use Carbon\Carbon;
-
+use Illuminate\Support\Facades\Http;
 
 class HomeController extends Controller
 {
+
+    private function getFirstImageFromContent($content)
+    {
+        // Buat DOM Document
+        $doc = new \DOMDocument();
+
+        // Supaya nggak error karena HTML tidak lengkap
+        libxml_use_internal_errors(true);
+
+        // Load HTML dari string
+        $doc->loadHTML($content);
+
+        // Ambil semua tag img
+        $tags = $doc->getElementsByTagName('img');
+
+        // Kalau ada <img>, ambil src pertama
+        if ($tags->length > 0) {
+            return $tags->item(0)->getAttribute('src');
+        }
+
+        return null; // Kalau nggak ada gambar
+    }
+
+
+    private function getRssFeeds()
+    {
+        // Fetch RSS feed
+        $response = Http::get('https://trpl.sv.ugm.ac.id/feed/');
+
+        // Parse XML
+        $xml = simplexml_load_string($response->body());
+
+        // Ambil semua item
+        $items = [];
+        foreach ($xml->channel->item as $item) {
+            $content = (string) $item->children('content', true)->encoded;
+            $img = $this->getFirstImageFromContent($content);
+            $items[] = [
+                'title' => (string) $item->title,
+                'link' => (string) $item->link,
+                'description' => (string) $item->description,
+                'pubDate' => (string) $item->pubDate,
+                'img' => (string) $img,
+                // kamu bisa tambahkan field lain sesuai kebutuhan
+            ];
+        }
+
+        return $items;
+    }
     public function index()
     {
         // Mengambil seluruh data kabinet untuk isi pada bagian Navbar
         $dataKabinet = Kabinet::with('dosen')->orderBy('tahun_awal_kabinet', 'desc')->get();
 
         // AMBIL 2 DATA ARTIKEL TERBARU
-        $artikelTerbaru = Artikel::orderBy('tanggal_terbit', 'desc')->take(2)->get();
+        $artikelTerbaru = $this->getRssFeeds();
 
         // Mengambil 2 data Proker terbaru berdasarkan tanggal_kegiatan terbaru dari WaktuProker
         $prokerTerbaru = Proker::with(['waktu_proker' => function ($query) {
             $query->orderBy('tanggal_kegiatan', 'asc'); // Urutkan dari tanggal terlama ke terbaru
         }])
-        ->whereHas('waktu_proker', function ($query) {
-            $query->orderBy('tanggal_kegiatan', 'desc');
-        })
-        ->orderBy(DB::raw('(SELECT MAX(tanggal_kegiatan) FROM waktu_proker WHERE waktu_proker.id_proker = proker.id_proker)'), 'desc')
-        ->take(2)
-        ->get();
+            ->whereHas('waktu_proker', function ($query) {
+                $query->orderBy('tanggal_kegiatan', 'desc');
+            })
+            ->orderBy(DB::raw('(SELECT MAX(tanggal_kegiatan) FROM waktu_proker WHERE waktu_proker.id_proker = proker.id_proker)'), 'desc')
+            ->take(2)
+            ->get();
 
-        
+
 
         // Proses untuk menentukan rentang bulan
         $prokerTerbaru->each(function ($proker) {
@@ -59,5 +108,4 @@ class HomeController extends Controller
         // Mengembalikan view untuk halaman about
         return view('user.about');
     }
-
 }
