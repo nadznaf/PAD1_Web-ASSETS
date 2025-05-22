@@ -11,7 +11,6 @@ return new class extends Migration
         Schema::create('mahasiswa', function (Blueprint $table) {
             $table->id('id_mhs');
             $table->string('nama_mhs');
-            $table->string('nim_mhs');
             $table->string('foto_profil_mhs')->nullable();
             $table->timestamps();
         });

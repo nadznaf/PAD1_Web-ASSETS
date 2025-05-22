@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\dataArtikelController;
 use App\Http\Controllers\dataDokumentasiController;
 use App\Http\Controllers\dataMahasiswaController;
 use App\Http\Controllers\dataDosenController;
@@ -16,6 +15,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\LoginRegisterController;
 use App\Http\Controllers\ArtikelController;
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\dataAspirasiController;
 use App\Http\Controllers\KabinetController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -49,7 +49,7 @@ Route::middleware('auth:admin')->group(function () {
         Route::resource('program', dataProkerController::class)->only(['index', 'store', 'update', 'destroy'])->names('dataproker');
         Route::resource('documentation', dataDokumentasiController::class)->only(['index', 'store', 'update', 'destroy'])->names('datadokumentasi');
         Route::resource('pelaksana', dataPelaksanaController::class)->only(['index', 'store', 'update', 'destroy'])->names('datapelaksana');
-        Route::resource('aspirasi', dataArtikelController::class)->only(['index', 'destroy'])->names('aspirasi');
+        Route::resource('aspirasi', dataAspirasiController::class)->only(['index', 'destroy'])->names('aspirasi');
         Route::get('mahasiswa/search', [dataStaffController::class, 'search'])->name('mahasiswa.search');
         Route::post('get-divisi', [dataStaffController::class, 'getDivisi'])->name('get.divisi');
         Route::post('get-proker', [dataProkerController::class, 'getProker'])->name('get.proker');
