@@ -40,7 +40,7 @@ class HomeController extends Controller
     private function getRssFeeds()
     {
         // Fetch RSS feed
-        $response = Http::get('https://trpl.sv.ugm.ac.id/feed/');
+        $response = Http::timeout(30)->get('https://trpl.sv.ugm.ac.id/feed/');
 
         // Parse XML
         $xml = simplexml_load_string($response->body());
