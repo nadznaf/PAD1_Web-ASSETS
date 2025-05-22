@@ -42,7 +42,12 @@ class HomeController extends Controller
         // Fetch RSS feed
         $response = Http::timeout(30)->get('https://trpl.sv.ugm.ac.id/feed/');
 
-        // Parse XML
+        if ($response->clientError()) {
+            return "Client Error: " . $response->status();
+        } elseif ($response->serverError()) {
+            return "Server Error: " . $response->status();
+        }
+
         $xml = simplexml_load_string($response->body());
 
         // Ambil semua item
