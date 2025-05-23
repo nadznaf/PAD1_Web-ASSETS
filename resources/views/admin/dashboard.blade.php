@@ -95,15 +95,6 @@
                     </div>
                 </div>
             </div>
-            <!-- Card Upload Artikel-->
-            <div class="col-md-3 col-sm-6 mb-3">
-                <div class="card text-center">
-                    <div class="card-body">
-                        <h1 style="text-size:36dp; color:#115C5B"><strong>{{ $jumlahArtikel }}</strong></h1>
-                        <p class="card-text">Artikel</p>
-                    </div>
-                </div>
-            </div>
             <!-- Card Upload Dokumentasi -->
             <div class="col-md-3 col-sm-6 mb-3">
                 <div class="card text-center">

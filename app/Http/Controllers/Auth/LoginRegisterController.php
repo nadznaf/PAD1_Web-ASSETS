@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Models\Admin;
-use App\Models\Artikel;
 use App\Models\Aspirasi;
 use App\Models\Divisi;
 use App\Models\Dokumentasi;
@@ -82,14 +81,21 @@ class LoginRegisterController extends Controller
             $jumlahProker = Proker::count();
             $jumlahPelaksana = Pelaksana::count();
             $jumlahDokumentasi = Dokumentasi::count();
-            $jumlahArtikel = Artikel::count();
             $jumlahAspirasi = Aspirasi::count();
 
             // Kirim data admin ke view 'admin.dashboard'
-            return view('admin.dashboard', compact('admin',
-            'jumlahMahasiswa', 'jumlahDosen', 'jumlahKabinet', 'jumlahDivisi',
-            'jumlahStaff', 'jumlahProker', 'jumlahPelaksana', 'jumlahDokumentasi',
-            'jumlahArtikel', 'jumlahAspirasi'));
+            return view('admin.dashboard', compact(
+                'admin',
+                'jumlahMahasiswa',
+                'jumlahDosen',
+                'jumlahKabinet',
+                'jumlahDivisi',
+                'jumlahStaff',
+                'jumlahProker',
+                'jumlahPelaksana',
+                'jumlahDokumentasi',
+                'jumlahAspirasi'
+            ));
         }
 
         return redirect()->route('login')->withErrors([
