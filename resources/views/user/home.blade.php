@@ -170,7 +170,7 @@
         {{-- Newest Proker End --}}
 
         {{-- Newest Article Start --}}
-        <div class="p-8 md:mx-24">
+        {{-- <div class="p-8 md:mx-24">
             <div class="mx-auto mt-16 py-8 px-6 max-w-2xl text-center lg:max-w-4xl" data-aos="fade-down"
                 data-aos-duration="1000">
                 <h2 class="mt-2 text-4xl font-bold text-font">Artikel Terbaru</h2>
@@ -209,7 +209,7 @@
             @else
                 <p class="text-center text-amara">Data artikel belum tersedia.</p>
             @endif
-        </div>
+        </div> --}}
         {{-- Newest Article End --}}
 
         {{-- Aspiration Cards Start --}}

@@ -73,7 +73,7 @@ class HomeController extends Controller
         $dataKabinet = Kabinet::with('dosen')->orderBy('tahun_awal_kabinet', 'desc')->get();
 
         // AMBIL 2 DATA ARTIKEL TERBARU
-        $artikelTerbaru = $this->getRssFeeds();
+        // $artikelTerbaru = $this->getRssFeeds();
 
         // Mengambil 2 data Proker terbaru berdasarkan tanggal_kegiatan terbaru dari WaktuProker
         $prokerTerbaru = Proker::with(['waktu_proker' => function ($query) {
@@ -105,7 +105,7 @@ class HomeController extends Controller
         // AMBIL 6 DATA ASPIRASI TERBARU
         $aspirasiTerbaru = Aspirasi::orderBy('created_at', 'desc')->take(6)->get();
 
-        return view('user.home', compact('dataKabinet', 'artikelTerbaru', 'prokerTerbaru', 'aspirasiTerbaru'));
+        return view('user.home', compact('dataKabinet', 'prokerTerbaru', 'aspirasiTerbaru'));
     }
 
     public function about()

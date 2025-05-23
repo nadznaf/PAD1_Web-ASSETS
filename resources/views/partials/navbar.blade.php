@@ -1,5 +1,6 @@
 {{-- Header navbar start --}}
-<header id='navbar' class="bg-white sticky top-0 z-50 transition-shadow duration-300 md:backdrop-blur-sm md:bg-white/30">
+<header id='navbar'
+    class="bg-white sticky top-0 z-50 transition-shadow duration-300 md:backdrop-blur-sm md:bg-white/30">
     <nav class="px-4 lg:px-6 py-2.5">
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
             <a href="#" class="flex items-center space-x-3">
@@ -13,25 +14,33 @@
                 </svg>
             </button>
             <div class="hidden w-full md:block md:w-auto" id="navbar-default">
-                <ul class="font-medium flex flex-col p-4 md:p-0 mt-4 border rounded-lg md:flex-row md:space-x-8 md:mt-0 md:border-0 md:hover:text-assets">
+                <ul
+                    class="font-medium flex flex-col p-4 md:p-0 mt-4 border rounded-lg md:flex-row md:space-x-8 md:mt-0 md:border-0 md:hover:text-assets">
                     <li>
-                        <a href="{{ route('home') }}"
-                            aria-current="page" class="block py-2 px-3 text-l {{ request()->routeIs('home') ? 'text-assets font-bold' : 'text-gray-400' }} hover:text-second_a " >
+                        <a href="{{ route('home') }}" aria-current="page"
+                            class="block py-2 px-3 text-l {{ request()->routeIs('home') ? 'text-assets font-bold' : 'text-gray-400' }} hover:text-second_a ">
                             Beranda
                         </a>
                     </li>
 
                     <li>
-                        <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar" class="flex items-center justify-between py-2 px-3 {{ request()->routeIs('kabinet.show') ? 'text-assets font-bold' : 'text-gray-400' }} hover:text-second_a">
-                        Kabinet
-                            <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/></svg>
+                        <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar"
+                            class="flex items-center justify-between py-2 px-3 {{ request()->routeIs('kabinet.show') ? 'text-assets font-bold' : 'text-gray-400' }} hover:text-second_a">
+                            Kabinet
+                            <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                fill="none" viewBox="0 0 10 6">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="2" d="m1 1 4 4 4-4" />
+                            </svg>
                         </button>
                         <!-- Dropdown menu -->
-                        <div id="dropdownNavbar" class="z-10 hidden font-normal bg-white divide-y rounded-lg shadow w-44 ">
+                        <div id="dropdownNavbar"
+                            class="z-10 hidden font-normal bg-white divide-y rounded-lg shadow w-44 ">
                             <ul class="py-2 text-sm text-gray-400" aria-labelledby="dropdownLargeButton">
                                 @foreach ($dataKabinet as $index => $kabinet)
                                     <li>
-                                        <a href="{{ route('kabinet.show', $kabinet->id_kabinet) }}" class="block px-4 py-2 hover:text-second_a text-assets">
+                                        <a href="{{ route('kabinet.show', $kabinet->id_kabinet) }}"
+                                            class="block px-4 py-2 hover:text-second_a text-assets">
                                             {{ $kabinet->nama_kabinet }}
                                         </a>
                                     </li>
@@ -39,12 +48,12 @@
                             </ul>
                         </div>
                     </li>
-                    <li>
+                    {{-- <li>
                         <a href="{{ route('artikel') }}"
                             class="block py-2 px-3 {{ request()->routeIs('artikel') ? 'text-assets font-bold' : 'text-gray-400' }} hover:text-second_a text-l">
                             Artikel
                         </a>
-                    </li>
+                    </li> --}}
                     <li>
                         <a href="{{ route('about') }}"
                             class="block py-2 px-3 {{ request()->routeIs('about') ? 'text-assets font-bold' : 'text-gray-400' }} hover:text-second_a text-l">
