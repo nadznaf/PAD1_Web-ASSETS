@@ -65,7 +65,7 @@ class dataDivisiController extends Controller
         if ($request->hasFile('fotoSampulDivisi')) {
             // Hapus foto lama jika ada
             if ($divisi->foto_sampul_divisi) {
-                Storage::delete('public/datadivisi/' . $divisi->foto_sampul_divisi);
+                Storage::disk('public')->delete('datadivisi/' . $divisi->foto_sampul_divisi);
             }
 
             // Simpan foto baru
@@ -88,7 +88,9 @@ class dataDivisiController extends Controller
     public function destroy(string $divisi)
     {
         $divisi = Divisi::find($divisi);
-
+        if ($divisi->foto_sampul_divisi) {
+            Storage::disk('public')->delete('datadivisi/' . $divisi->foto_sampul_divisi);
+        }
         $divisi->delete();
 
         return redirect()->route('admin.datadivisi.index')->with('success', 'Data divisi berhasil dihapus.');

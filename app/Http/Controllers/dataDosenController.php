@@ -79,7 +79,7 @@ class dataDosenController extends Controller
         if ($request->hasFile('fotoDosenEdit')) {
             // Hapus foto lama jika ada
             if ($dosen->foto_profil_dosen) {
-                Storage::delete('public/datadosen/' . $dosen->foto_profil_dosen);
+                Storage::disk('public')->delete('datadosen/' . $dosen->foto_profil_dosen);
             }
 
             // Simpan foto baru
@@ -102,7 +102,7 @@ class dataDosenController extends Controller
     {
         $dosen = Dosen::find($dosen);
         if ($dosen->foto_profil_dosen) {
-            Storage::delete('public/datadosen/' . $dosen->foto_profil_dosen);
+            Storage::disk('public')->delete('datadosen/' . $dosen->foto_profil_dosen);
         }
 
         $dosen->delete();

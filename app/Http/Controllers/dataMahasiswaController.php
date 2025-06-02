@@ -75,7 +75,7 @@ class dataMahasiswaController extends Controller
         if ($request->hasFile('fotoMhsEdit')) {
             // Hapus foto lama jika ada
             if ($mahasiswa->foto_profil_mhs) {
-                Storage::delete('public/datamahasiswa/' . $mahasiswa->foto_profil_mhs);
+                Storage::disk('public')->delete('datamahasiswa/' . $mahasiswa->foto_profil_mhs);
             }
 
 
@@ -99,7 +99,7 @@ class dataMahasiswaController extends Controller
     {
         $mahasiswa = Mahasiswa::find($mahasiswa);
         if ($mahasiswa->foto_profil_mhs) {
-            Storage::delete('public/datamahasiswa/' . $mahasiswa->foto_profil_mhs);
+            Storage::disk('public')->delete('datamahasiswa/' . $mahasiswa->foto_profil_mhs);
         }
 
         $mahasiswa->delete();

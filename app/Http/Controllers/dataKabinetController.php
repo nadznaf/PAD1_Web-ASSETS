@@ -103,7 +103,7 @@ class dataKabinetController extends Controller
         if ($request->hasFile('fotoSampulKabinet')) {
             // Hapus foto lama jika ada
             if ($kabinet->foto_sampul_kabinet) {
-                Storage::delete('public/datakabinet/' . $kabinet->foto_sampul_kabinet);
+                Storage::disk('public')->delete('datakabinet/' . $kabinet->foto_sampul_kabinet);
             }
 
             // Simpan foto baru
@@ -115,7 +115,7 @@ class dataKabinetController extends Controller
         if ($request->hasFile('logoKabinet')) {
             // Hapus foto lama jika ada
             if ($kabinet->logo_kabinet) {
-                Storage::delete('public/datakabinet/' . $kabinet->logo_kabinet);
+                Storage::disk('public')->delete('datakabinet/' . $kabinet->logo_kabinet);
             }
 
             // Simpan foto baru
@@ -133,10 +133,10 @@ class dataKabinetController extends Controller
     {
         $kabinet = Kabinet::find($kabinet);
         if ($kabinet->foto_sampul_kabinet) {
-            Storage::delete('public/datakabinet/' . $kabinet->foto_sampul_kabinet);
+            Storage::disk('public')->delete('datakabinet/' . $kabinet->foto_sampul_kabinet);
         }
         if ($kabinet->logo_kabinet) {
-            Storage::delete('public/datakabinet/' . $kabinet->logo_kabinet);
+            Storage::disk('public')->delete('datakabinet/' . $kabinet->logo_kabinet);
         }
 
         $kabinet->delete();
