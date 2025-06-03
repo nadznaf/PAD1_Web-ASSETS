@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Mahasiswa;
 use App\Models\ColorPallete;
+use App\Models\Staff;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
@@ -88,6 +89,10 @@ class dataMahasiswaController extends Controller
         // Simpan perubahan hanya jika ada perubahan data
         if ($mahasiswa->isDirty()) {
             $mahasiswa->save();
+            $staffs = Staff::where('id_mhs', $mahasiswa->id_mhs)->get();
+            foreach ($staffs as $item) {
+                $item->update(["foto_pose_staff" => $mahasiswa->foto_profil_mhs]);
+            }
             return redirect()->route('admin.datamahasiswa.index')->with('success', 'Data mahasiswa berhasil diperbarui.');
         }
 
