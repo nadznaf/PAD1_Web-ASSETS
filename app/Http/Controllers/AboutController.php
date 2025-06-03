@@ -8,9 +8,10 @@ use App\Models\Aspirasi;
 
 class AboutController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         // Mengambil seluruh data kabinet untuk isi pada bagian Navbar
-        $dataKabinet = Kabinet::with('dosen')->orderBy('tahun_awal_kabinet', 'desc')->get();
+        $dataKabinet = Kabinet::orderBy('tahun_awal_kabinet', 'desc')->get();
 
         // Mengambil seluruh data Aspirasi yang diurutkan dari 'time_create' terbaru ke terlama
         $dataAspirasi = Aspirasi::latest()->paginate(perPage: 6);
@@ -34,6 +35,5 @@ class AboutController extends Controller
 
         $aspirasi->save();
         return redirect()->route('about')->with('success', 'Aspirasi berhasil ditambahkan.');
-
     }
 }
