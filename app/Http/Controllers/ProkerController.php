@@ -17,13 +17,7 @@ class ProkerController extends Controller
         // Ambil data proker berdasarkan ID
         $proker = Proker::with(['divisi', 'waktu_proker', 'dokumentasi'])->findOrFail($id);
 
-        // Ambil data pelaksana dengan jabatan 'Ketua Pelaksana'
-        $ketuaPelaksana = Pelaksana::with('mahasiswa') // Ambil data mahasiswa terkait
-            ->where('id_proker', $id) // Filter berdasarkan id_proker
-            ->where('jabatan_pelaksana', 'Ketua Pelaksana') // Filter berdasarkan jabatan
-            ->first(); // Ambil hanya satu data (ketua pelaksana seharusnya unik)
-
         // Kirim data ke view GANTI NAMA VIEW user.home ke NAMA FILE DETAIL PROKER YANG SESUAI
-        return view('user.proker', compact('proker', 'ketuaPelaksana', 'dataKabinet'));
+        return view('user.proker', compact('proker', 'dataKabinet'));
     }
 }
