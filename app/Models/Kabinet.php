@@ -23,10 +23,6 @@ class Kabinet extends Model
         "deskripsi_kabinet",
         "foto_sampul_kabinet"
     ];
-    public function dosen()
-    {
-        return $this->belongsTo(Dosen::class, 'id_dosen', 'id_dosen');
-    }
 
     public function color_pallete()
     {

@@ -54,15 +54,6 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link sidebar-link success-hover-bg" href="{{ route('admin.datadosen.index') }}"
-                        aria-expanded="false">
-                        <span class="aside-icon p-2 bg-light-success rounded-3">
-                            <i class="ti ti-user fs-7 text-secondary"></i>
-                        </span>
-                        <span class="hide-menu ms-2 ps-1">Dosen Pebimbing</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
                     <a class="sidebar-link sidebar-link success-hover-bg" href="{{ route('admin.datakabinet.index') }}"
                         aria-expanded="false">
                         <span class="aside-icon p-2 bg-light-success rounded-3">
@@ -114,15 +105,6 @@
                             <i class="ti ti-photo fs-7 text-secondary"></i>
                         </span>
                         <span class="hide-menu ms-2 ps-1">Dokumentasi</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a class="sidebar-link sidebar-link success-hover-bg"
-                        href="{{ route('admin.datapelaksana.index') }}" aria-expanded="false">
-                        <span class="aside-icon p-2 bg-light-success rounded-3">
-                            <i class="ti ti-user fs-7 text-secondary"></i>
-                        </span>
-                        <span class="hide-menu ms-2 ps-1">Pelaksana Proker</span>
                     </a>
                 </li>
                 <li class="sidebar-item">

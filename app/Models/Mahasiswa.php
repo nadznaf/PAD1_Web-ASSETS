@@ -19,9 +19,4 @@ class Mahasiswa extends Model
     {
         return $this->hasMany(Staff::class, 'id_mhs', 'id_mhs');
     }
-
-    public function pelaksana()
-    {
-        return $this->hasMany(Pelaksana::class, 'id_mhs', 'id_mhs');
-    }
 }

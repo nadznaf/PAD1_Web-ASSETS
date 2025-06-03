@@ -6,7 +6,6 @@ use App\Models\Dokumentasi;
 use Illuminate\Http\Request;
 use App\Models\Kabinet;
 use App\Models\Proker;
-use App\Models\Dosen;
 use App\Models\Divisi;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -16,9 +15,8 @@ class dataKabinetController extends Controller
     public function index()
     {
         $admin = Auth::guard('admin')->user();
-        $dataKabinet = Kabinet::latest()->with('dosen')->paginate(5);
-        $dataDosen = Dosen::all(); // Mengambil data dosen untuk dropdown
-        return view('admin.dataKabinet', compact('dataKabinet', 'dataDosen', 'admin'));
+        $dataKabinet = Kabinet::latest()->paginate(5);
+        return view('admin.dataKabinet', compact('dataKabinet', 'admin'));
     }
 
     public function store(Request $request)
@@ -29,7 +27,6 @@ class dataKabinetController extends Controller
             'misiKabinet' => 'required',
             'maknaKabinet' => 'nullable',
             'deskripsiKabinet' => 'required',
-            'id_dosen' => 'required',
             'tahunAwalKabinet' => 'required',
             'tahunAkhirKabinet' => 'required',
             'fotoKabinet' => 'nullable|image|mimes:jpeg,png,svg',
@@ -48,7 +45,6 @@ class dataKabinetController extends Controller
             'misi_kabinet' => $request->misiKabinet,
             'makna_kabinet' => $request->maknaKabinet,
             'deskripsi_kabinet' => $request->deskripsiKabinet,
-            'id_dosen' => $request->id_dosen,
             'tahun_awal_kabinet' => $request->tahunAwalKabinet,
             'tahun_akhir_kabinet' => $request->tahunAkhirKabinet,
         ];
@@ -78,7 +74,6 @@ class dataKabinetController extends Controller
                 'visiKabinet' => 'nullable',
                 'misiKabinet' => 'nullable',
                 'deskripsiKabinet' => 'nullable',
-                'id_dosen' => 'nullable',
                 'tahunAwalKabinet' => 'nullable',
                 'tahunAkhirKabinet' => 'nullable',
                 'fotoSampulKabinet' => 'nullable|image|mimes:jpeg,png,jpg,svg',
@@ -96,7 +91,6 @@ class dataKabinetController extends Controller
         $kabinet->misi_kabinet = $request->misiKabinet;
         $kabinet->makna_kabinet = $request->maknaKabinet;
         $kabinet->deskripsi_kabinet = $request->deskripsiKabinet;
-        $kabinet->id_dosen = $request->id_dosen;
         $kabinet->tahun_awal_kabinet = $request->tahunAwalKabinet;
         $kabinet->tahun_akhir_kabinet = $request->tahunAkhirKabinet;
 

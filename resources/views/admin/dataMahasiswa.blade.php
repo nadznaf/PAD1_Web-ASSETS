@@ -37,15 +37,7 @@
                                     </div>
                                     <br>
 
-                                    <label for="nimMahasiswa">Nomor Induk Mahasiswa (NIM)</label><br>
-                                    <input type="text" name="nimMahasiswa" placeholder="Tuliskan NIM mahasiswa"
-                                        class="form-control" required>
-                                    <div class="invalid-feedback">
-                                        Input Nomor Induk Mahasiswa (NIM) secara valid!
-                                    </div>
-                                    <div class="valid-feedback">
-                                        Input valid.
-                                    </div>
+
                                     <br>
 
                                     <label>Foto Profil Mahasiswa</label><br>

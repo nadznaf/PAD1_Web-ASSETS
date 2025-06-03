@@ -10,7 +10,6 @@ return new class extends Migration
     {
         Schema::create('kabinet', function (Blueprint $table) {
             $table->id('id_kabinet');
-            $table->unsignedBigInteger('id_dosen');
             $table->string('nama_kabinet');
             $table->string('logo_kabinet')->nullable();
             $table->string('foto_sampul_kabinet')->nullable();
@@ -21,8 +20,6 @@ return new class extends Migration
             $table->integer('tahun_akhir_kabinet');
             $table->text('deskripsi_kabinet');
             $table->timestamps();
-
-            $table->foreign('id_dosen')->references('id_dosen')->on('dosen_pebimbing')->onDelete('restrict')->onUpdate('cascade');
         });
     }
 

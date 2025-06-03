@@ -41,14 +41,12 @@ Route::middleware('auth:admin')->group(function () {
     Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('dashboard', [LoginRegisterController::class, 'dashboard'])->name('dashboard');
         Route::resource('student', dataMahasiswaController::class)->only(['index', 'store', 'update', 'destroy'])->names('datamahasiswa');
-        Route::resource('lecture', dataDosenController::class)->only(['index', 'store', 'update', 'destroy'])->names('datadosen');
         Route::resource('cabinet', dataKabinetController::class)->only(['index', 'store', 'update', 'destroy'])->names('datakabinet');
         Route::resource('division', dataDivisiController::class)->only(['index', 'store', 'update', 'destroy'])->names('datadivisi');
         Route::resource('pallete', dataColorPalleteController::class)->only(['index', 'store', 'update', 'destroy'])->names('datacolorpallete');
         Route::resource('staff', dataStaffController::class)->only(['index', 'store', 'update', 'destroy'])->names('datastaff');
         Route::resource('program', dataProkerController::class)->only(['index', 'store', 'update', 'destroy'])->names('dataproker');
         Route::resource('documentation', dataDokumentasiController::class)->only(['index', 'store', 'update', 'destroy'])->names('datadokumentasi');
-        Route::resource('pelaksana', dataPelaksanaController::class)->only(['index', 'store', 'update', 'destroy'])->names('datapelaksana');
         Route::resource('aspirasi', dataAspirasiController::class)->only(['index', 'destroy'])->names('aspirasi');
         Route::get('mahasiswa/search', [dataStaffController::class, 'search'])->name('mahasiswa.search');
         Route::post('get-divisi', [dataStaffController::class, 'getDivisi'])->name('get.divisi');

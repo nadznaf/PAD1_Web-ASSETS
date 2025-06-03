@@ -161,21 +161,6 @@
                                         Input valid.
                                     </div>
                                     <br>
-
-                                    <!-- Fill dropdown button content using all data retrieved from dosen's table -->
-                                    <label for="id_dosen">Dosen Pebimbing</label><br>
-                                    <select name="id_dosen" class="form-select" required>
-                                        <option value="" disabled selected>Pilih Dosen Pebimbing</option>
-                                        @foreach ($dataDosen as $dosen)
-                                            <option value="{{ $dosen->id_dosen }}">{{ $dosen->nama_dosen }}</option>
-                                        @endforeach
-                                    </select>
-                                    <div class="invalid-feedback">
-                                        Input dosen pebimbing secara valid!
-                                    </div>
-                                    <div class="valid-feedback">
-                                        Input valid.
-                                    </div>
                                     <br>
 
                                     <label for="tahunAwalKabinet">Tahun Mulai Kabinet</label><br>
@@ -409,23 +394,6 @@
                                                     <label for="deskripsiKabinet">Deskripsi Kabinet</label><br>
                                                     <textarea id="deskripsiKabinet" name="deskripsiKabinet" class="form-control"
                                                         value="{{ $kabinet->deskripsi_kabinet }}" style="resize: none;" rows="4" cols="50">{{ $kabinet->deskripsi_kabinet }}</textarea>
-                                                </div>
-                                                <div class="mb-3">
-                                                    <!-- Fill dropdown button content using all data retrieved from dosen's table -->
-                                                    <label for="id_dosen">Dosen Pebimbing</label><br>
-                                                    <select name="id_dosen" class="form-select">
-                                                        <!-- Option pertama adalah dosen yang sudah dipilih -->
-                                                        <option value="{{ $kabinet->id_dosen }}" selected>
-                                                            {{ $kabinet->dosen->nama_dosen }}</option>
-
-                                                        <!-- Iterasi untuk menampilkan dosen lain selain dosen yang sudah dipilih -->
-                                                        @foreach ($dataDosen as $dosen)
-                                                            @if ($dosen->id_dosen != $kabinet->id_dosen)
-                                                                <option value="{{ $dosen->id_dosen }}">
-                                                                    {{ $dosen->nama_dosen }}</option>
-                                                            @endif
-                                                        @endforeach
-                                                    </select>
                                                 </div>
                                                 <div class="mb-3">
                                                     <label for="tahunAwalKabinet">Tahun Mulai Kabinet</label><br>

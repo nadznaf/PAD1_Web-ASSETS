@@ -55,9 +55,4 @@ class Proker extends Model
     {
         return $this->belongsTo(Kabinet::class, 'id_kabinet', 'id_kabinet');
     }
-
-    public function pelaksana()
-    {
-        return $this->hasMany(Pelaksana::class, 'id_proker');
-    }
 }
