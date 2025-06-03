@@ -74,12 +74,10 @@ class LoginRegisterController extends Controller
             $admin = Auth::guard('admin')->user();
 
             $jumlahMahasiswa = Mahasiswa::count();
-            $jumlahDosen = Dosen::count();
             $jumlahKabinet = Kabinet::count();
             $jumlahDivisi = Divisi::count();
             $jumlahStaff = Staff::count();
             $jumlahProker = Proker::count();
-            $jumlahPelaksana = Pelaksana::count();
             $jumlahDokumentasi = Dokumentasi::count();
             $jumlahAspirasi = Aspirasi::count();
 
@@ -87,12 +85,10 @@ class LoginRegisterController extends Controller
             return view('admin.dashboard', compact(
                 'admin',
                 'jumlahMahasiswa',
-                'jumlahDosen',
                 'jumlahKabinet',
                 'jumlahDivisi',
                 'jumlahStaff',
                 'jumlahProker',
-                'jumlahPelaksana',
                 'jumlahDokumentasi',
                 'jumlahAspirasi'
             ));

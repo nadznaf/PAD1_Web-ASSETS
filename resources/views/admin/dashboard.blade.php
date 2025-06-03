@@ -32,15 +32,6 @@
                     </div>
                 </div>
             </div>
-            <!-- Card Dosen -->
-            <div class="col-md-3 col-sm-6 mb-3">
-                <div class="card text-center">
-                    <div class="card-body">
-                        <h1 style="text-size:36dp; color:#115C5B"><strong>{{ $jumlahDosen }}</strong></h1>
-                        <p class="card-text">Dosen</p>
-                    </div>
-                </div>
-            </div>
             <!-- Card Kabinet -->
             <div class="col-md-3 col-sm-6 mb-3">
                 <div class="card text-center">
@@ -74,15 +65,6 @@
                     <div class="card-body">
                         <h1 style="text-size:36dp; color:#115C5B"><strong>{{ $jumlahProker }}</strong></h1>
                         <p class="card-text">Proker</p>
-                    </div>
-                </div>
-            </div>
-            <!-- Card Upload Pelaksana -->
-            <div class="col-md-3 col-sm-6 mb-3">
-                <div class="card text-center">
-                    <div class="card-body">
-                        <h1 style="text-size:36dp; color:#115C5B"><strong>{{ $jumlahPelaksana }}</strong></h1>
-                        <p class="card-text">Pelaksana</p>
                     </div>
                 </div>
             </div>
