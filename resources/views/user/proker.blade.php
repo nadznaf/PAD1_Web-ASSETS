@@ -67,7 +67,7 @@
             <div class="inline-flex items-center justify-center w-full p-16">
                 <hr class="w-96 h-px my-8 bg-black">
                 <span class="teksWarnaKabinet px-3 font-bold text-3xl md:text-4xl text-center uppercase"
-                    data-aos="fade-down" data-aos-duration="1000">seputar series</span>
+                    data-aos="fade-down" data-aos-duration="1000">seputar {{ $proker->judul_proker }}</span>
                 <hr class="w-96 h-px my-8 bg-black">
             </div>
             <div class="m-4 lg:mx-32 text-font text-justify" data-aos="fade-up" data-aos-duration="1000">
@@ -80,7 +80,7 @@
             <div class="inline-flex items-center justify-center w-full p-16">
                 <hr class="w-80 h-px my-8 bg-black">
                 <span class="teksWarnaKabinet px-3 font-bold text-3xl md:text-4xl text-center uppercase"
-                    data-aos="fade-down" data-aos-duration="1000">acara dalam series</span>
+                    data-aos="fade-down" data-aos-duration="1000">acara dalam {{ $proker->judul_proker }}</span>
                 <hr class="w-80 h-px my-8 bg-black">
             </div>
             <div class="m-4 lg:mx-32 text-font text-justify" data-aos="fade-up" data-aos-duration="1000">
