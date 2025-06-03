@@ -89,17 +89,6 @@
                                         </div>
                                     </div>
 
-                                    <div class="mb-3">
-                                        <label for="tugasStaff">Tugas Staff</label><br>
-                                        <textarea name="tugasStaff" id="tugasStaff" class="form-control" required style="resize: none;" rows="4"
-                                            cols="50" placeholder="Tuliskan tugas staff di sini."></textarea>
-                                        <div class="invalid-feedback">
-                                            Input tugas staff secara valid!
-                                        </div>
-                                        <div class="valid-feedback">
-                                            Input valid.
-                                        </div>
-                                    </div>
 
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary"
@@ -159,7 +148,6 @@
                             <th>NO.</th>
                             <th>NAMA STAFF</th>
                             <th>ASAL DIVISI - Kabinet</th>
-                            <th>TUGAS STAFF</th>
                             <th>ACTION</th>
                         </tr>
                     </thead>
@@ -171,7 +159,7 @@
                                 <td>{{ $dataStaff->firstItem() + $index }}</td>
                                 <td>{{ $staff->mahasiswa->nama_mhs }}</td>
                                 <td>{{ $staff->divisi->nama_divisi }}-{{ $staff->divisi->kabinet->nama_kabinet }}</td>
-                                <td>{{ $staff->tugas_staff }}</td>
+
                                 <td>
                                     <div
                                         class="d-grid gap-2 2 d-sm-flex justify-content-sm-center justify-content-xl-start">
@@ -309,11 +297,6 @@
                                                             <option value="Staff">Staff</option>
                                                         </optgroup>
                                                     </select>
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label for="tugasStaff">Tugas Staff</label><br>
-                                                    <textarea name="tugasStaff" id="tugasStaff" class="form-control" required style="resize: none;" rows="4"
-                                                        cols="50">{{ $staff->tugas_staff }}</textarea>
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary"

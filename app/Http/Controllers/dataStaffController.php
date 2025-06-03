@@ -34,12 +34,10 @@ class dataStaffController extends Controller
                 'id_divisi' => 'required',
                 'id_mahasiswa' => 'required',
                 'namaJabatan' => 'required',
-                'tugasStaff' => 'required',
             ],
             // Error message:
             [
                 'namaJabatan.required' => 'Nama staff harus diisi.',
-                'tugasStaff.required' => 'Tugas staff harus diisi.',
                 'id_divisi.required' => 'Asal divisi harus diisi.',
                 'id_mhs.required' => 'Mahasiswa harus diisi.',
             ]
@@ -48,7 +46,6 @@ class dataStaffController extends Controller
         $mhs = Mahasiswa::find($request->id_mahasiswa);
         $data = [
             'nama_jabatan' => $request->namaJabatan,
-            'tugas_staff' => $request->tugasStaff,
             'id_divisi' => $request->id_divisi,
             'id_mhs' => $request->id_mahasiswa,
             'foto_pose_staff' => $mhs->foto_profil_mhs
@@ -62,7 +59,6 @@ class dataStaffController extends Controller
     {
         $staff = Staff::find($staff);
         $staff->nama_jabatan = $request->namaJabatan;
-        $staff->tugas_staff = $request->tugasStaff;
         $staff->id_divisi = $request->id_divisi;
         $staff->id_mhs = $request->id_mahasiswa;
 

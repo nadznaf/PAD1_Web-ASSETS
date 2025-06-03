@@ -17,8 +17,7 @@ class Staff extends Model
         'id_divisi',
         'id_mhs',
         'nama_jabatan',
-        'foto_pose_staff',
-        'tugas_staff',
+        'foto_pose_staff'
     ];
 
     // Defining the relationship with the Divisi model
