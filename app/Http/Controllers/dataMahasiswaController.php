@@ -82,7 +82,7 @@ class dataMahasiswaController extends Controller
 
             // Simpan foto baru
             $file = $request->file('fotoMhsEdit');
-            $path = $file->store('datamahasiswa', 'public');
+            $path = Storage::disk('public')->put('datamahasiswa', $file);
             $mahasiswa->foto_profil_mhs = basename($path);
         }
 
