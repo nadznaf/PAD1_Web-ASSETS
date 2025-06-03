@@ -70,7 +70,7 @@ class HomeController extends Controller
     public function index()
     {
         // Mengambil seluruh data kabinet untuk isi pada bagian Navbar
-        $dataKabinet = Kabinet::with('dosen')->orderBy('tahun_awal_kabinet', 'desc')->get();
+        $dataKabinet = Kabinet::orderBy('tahun_awal_kabinet', 'desc')->get();
 
         // AMBIL 2 DATA ARTIKEL TERBARU
         $artikelTerbaru = $this->getRssFeeds();
