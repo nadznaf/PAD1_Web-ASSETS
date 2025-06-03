@@ -9,7 +9,8 @@ use App\Models\Proker;
 use App\Models\Dokumentasi;
 
 
-class KabinetController extends Controller {
+class KabinetController extends Controller
+{
     // DETAIL STRUKTUR KABINET
     public function strukturKabinet($id)
     {
@@ -54,7 +55,7 @@ class KabinetController extends Controller {
     public function show($id)
     {
         // Ambil data kabinet berdasarkan ID
-        $kabinet = Kabinet::with(['dosen', 'color_pallete', 'divisi.staff'])->findOrFail($id);
+        $kabinet = Kabinet::with(['color_pallete', 'divisi.staff'])->findOrFail($id);
 
         // Ambil divisi "Pengurus Harian"
         $divisiPengurusHarian = $kabinet->divisi->where('nama_divisi', 'Pengurus Harian')->first();
